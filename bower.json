@@ -1,0 +1,26 @@
+{
+  "name": "beer-and-chip",
+  "version": "0.0.1",
+  "description": "Event organizing application",
+  "homepage": "https://github.com/CantillatingZygote/beer-and-chip",
+  "license": "UNLICENSED",
+  "contributors": [
+    "Diamond Wheeler",
+    "Alex Su",
+    "Saumitra Saha",
+    "Deniz Mekik"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib"
+  ],
+  "dependencies": {
+    "angular": "~1.3.16",
+    "angular-route": "~1.3.16",
+    "angular-mocks": "~1.3.16"
+    "jquery": "~2.2.0",
+    "underscore": "~1.8.3"
+  }
+}
