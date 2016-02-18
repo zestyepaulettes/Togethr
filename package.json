@@ -1,0 +1,35 @@
+{
+  "name": "beer-and-chip",
+  "version": "0.0.1",
+  "description": "Event organizing application",
+  "homepage": "https://github.com/CantillatingZygote/beer-and-chip#readme",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CantillatingZygote/beer-and-chip.git"
+  },
+  "contributors": [
+    "Diamond Wheeler",
+    "Alex Su",
+    "Saumitra Saha",
+    "Deniz Mekik"
+  ],
+  "bugs": {
+    "url": "https://github.com/CantillatingZygote/beer-and-chip/issues"
+  },
+  "scripts": {},
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4",
+    "sinon": "^1.17.2",
+    "karma": "^0.13.15"
+  },
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "express": "^4.4.5",
+    "morgan": "^1.1.1",
+    "bookshelf": "^0.9.1",
+    "knex": "^0.9.0"
+  },
+  "private": true
+}
