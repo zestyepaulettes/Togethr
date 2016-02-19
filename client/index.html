@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+ <html ng-app= "myApp">
+    <head>
+    
+<!-- Compiled and minified CSS of Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<!-- ALL ANGULAR CONTROLLERS ARE DEFINED AT END OF BODY -->
+     
+     </head>
+
+    <body>
+        
+        <header>
+            <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Beer and Chip</a>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right">
+    <!-- THE ROUTES HERE ARE NOT DEFINED AS OF YET -->
+    <!-- The fa in the classes below are using bootstrap
+        font awesome, which help nav bar alignment
+        See: https://fortawesome.github.io/Font-Awesome/examples/
+     -->
+     <!-- NAV BAR ROUTES: -->
+                    <li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="#/"><i class="fa fa-login"></i> LogIn</a></li>
+                    <li><a href="#/"><i class="fa fa-create"></i> Create</a></li> 
+                    <li><a href="#/"><i class="fa fa-events"></i> Events</a></li>
+                    <li><a href="#/"><i class="fa fa-logout"></i> LogOut</a></li>
+
+                </ul>
+            </div>
+            </nav>
+        </header>
+        
+        
+        
+        
+        <!-- Angular Scripts  -->
+        <script src="https://code.angularjs.org/1.5.0/angular.js"></script>
+        <script src="https://code.angularjs.org/1.5.0/angular-route.js"></script>
+        <!-- THIS IS THE START OF THE ANGULAR APP.JS -->
+        <script src="/js/app.js"></script>
+
+
+        <!-- THIS IS WHERE OUR ANGULAR VIEWS WILL BE INSERTED -->
+        <div ng-view>
+            
+        </div>
+        
+    </body>
+</html>
