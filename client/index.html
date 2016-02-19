@@ -24,11 +24,12 @@
         See: https://fortawesome.github.io/Font-Awesome/examples/
      -->
      <!-- NAV BAR ROUTES: -->
-                    <li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#/"><i class="fa fa-login"></i> LogIn</a></li>
-                    <li><a href="#/"><i class="fa fa-create"></i> Create</a></li> 
-                    <li><a href="#/"><i class="fa fa-events"></i> Events</a></li>
-                    <li><a href="#/"><i class="fa fa-logout"></i> LogOut</a></li>
+            <!-- These have the nav bar ROUTES THAT MAY NEED TO BE CHANGED -->
+                    <li><a href="#/create/create.html"><i class="fa fa-home"></i> Home</a></li>
+                    <li><a href="#/auth/signin.html"><i class="fa fa-signin"></i> SignIn</a></li>
+                    <li><a href="#/create/create.html"><i class="fa fa-create"></i> Create</a></li> 
+                    <li><a href="#/eventdetails/eventdetails.html"><i class="fa fa-events"></i> Events</a></li>
+                    <li><a href="#/auth/signout.html"><i class="fa fa-signout"></i> SignOut</a></li>
 
                 </ul>
             </div>
@@ -42,7 +43,7 @@
         <script src="https://code.angularjs.org/1.5.0/angular.js"></script>
         <script src="https://code.angularjs.org/1.5.0/angular-route.js"></script>
         <!-- THIS IS THE START OF THE ANGULAR APP.JS -->
-        <script src="/js/app.js"></script>
+        <script src="/app/app.js"></script>
 
 
         <!-- THIS IS WHERE OUR ANGULAR VIEWS WILL BE INSERTED -->
