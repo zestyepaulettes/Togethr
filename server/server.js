@@ -4,6 +4,9 @@ var db = require('./models/models');
 //middleware
 var parser = require('body-parser');
 var morgan = require('morgan');
+var passport = require('passport');
+var FacebookStrategy = require('passport-facebook');
+
 
 //router
 var router = require('./config/routes.js');
@@ -23,6 +26,40 @@ app.use('/api', router);
 
 //serve client files
 app.use(express.static(__dirname + '/../client'));
+
+
+
+//auth
+var User = require('./models/models').User;
+var FACEBOOK_APP_ID = '553060631520944';
+var FACEBOOK_APP_SECRET = '6d6d7fe25752c6bb43490d4d915f42af';
+
+passport.use(new FacebookStrategy({
+    clientID: FACEBOOK_APP_ID,
+    clientSecret: FACEBOOK_APP_SECRET,
+    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    profileFields: ['id', 'displayName', 'email']
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ facebookId: profile.id, displayName: profile.displayName, email: profile.email }, function (err, user) {
+      return cb(err, user);
+    });
+  }
+));
+
+app.get('/auth/facebook',
+  passport.authenticate('facebook'));
+
+app.get('/auth/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+
+
+
 
 //if we are being rung directly, run the server
 if(!module.parent) {
