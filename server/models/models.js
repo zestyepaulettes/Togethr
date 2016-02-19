@@ -1,13 +1,18 @@
+var Sequelize = require('sequelize');
 var db = require('../config/db');
 
 //define models
-var Host = db.define('Host', {
+var User = db.define('User', {
+  facebookID: Sequelize.STRING,
+  displayName: Sequelize.STRING,
   email: Sequelize.STRING
 });
 
 var Event = db.define('Event', {
   name: Sequelize.STRING,
-  date: Sequelize.DATE
+  description: Sequelize.STRING,
+  date: Sequelize.DATE,
+  location: Sequelize.STRING
 });
 
 var Guest = db.define('Guest', {
@@ -15,41 +20,39 @@ var Guest = db.define('Guest', {
 });
 
 var Basket = db.define('Basket', {
-
+  name: Sequelize.STRING
 });
 
 var Item = db.define('Item', {
-
+  name: Sequelize.STRING,
+  category: Sequelize.STRING,
+  price: Sequelize.FLOAT
 });
 
-
-//set bi-directional associations
-Event.belongsTo(Host);
-Host.hasMany(Event);
-
-Guest.belongsTo(Event);
-Event.hasMany(Guest);
-
-Basket.belongsTo(Guest);
-Guest.belongsTo(Basket);
-
-Item.belongsTo(Basket);
-Basket.hasMany(Item);
-
-
-
-
 //create tables in MySql if they don't already exist
-Host.sync();
+User.sync();
 Event.sync();
 Guest.sync();
 Basket.sync();
 Item.sync();
 
+//set bi-directional associations
+Event.belongsTo(User);
+User.hasMany(Event);
 
-exports.Host = Host;
-exports.Event = Event;
-exports.Guest = Guest;
-exports.Set = Set;
-exports.Item = Item;
+Guest.belongsTo(Event);
+Event.hasMany(Guest);
 
+Basket.belongsTo(Guest);
+Guest.hasOne(Basket);
+
+Item.belongsTo(Basket);
+Basket.hasMany(Item);
+
+module.exports = {
+  User: User,
+  Event: Event,
+  Guest: Guest,
+  Basket: Basket,
+  Item: Item
+};
