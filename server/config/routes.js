@@ -1,8 +1,12 @@
 var router = require('express').Router();
+var usersController = require('');
 var eventsController = require('');
 var guestsController = require('');
 var setsController = require('');
 var itemsController = require('');
+
+router.get('/users', usersController.getAll);
+router.post('/users', usersController.addOne);
 
 router.get('/events', eventsController.getAll);
 router.post('/events', eventsController.addOne);
