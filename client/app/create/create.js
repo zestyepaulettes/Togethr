@@ -1,11 +1,12 @@
 angular.module('createEvent', [])
+
 .controller('CreateController', ['$scope', 'CreateFactory', function($scope, CreateFactory) {
   $scope.master = {};
   $scope.event = {
     date: new Data(2016, 02, 24)
   };
 
-  //Update function is invoked in submit button in create.html
+//Update function is invoked in submit button in create.html
   $scope.update = function(event) {
     $scope.master = angular.copy(event);
     CreateFactory.addEvent($scope.master)
@@ -22,6 +23,7 @@ angular.module('createEvent', [])
 }])
 .factory('CreateFactory', function() {
   //send a post request to server
+
   var addEvent = function(event) {
     return $http({
       method: 'POST',
