@@ -20,6 +20,7 @@ app.set('port', 3000);
 //logging and parsing
 app.use(morgan('dev'));
 app.use(parser.json());
+app.use(parser.urlencoded({ extended: true }));
 
 //set up routes
 app.use('/api', router);
@@ -30,7 +31,7 @@ app.use(express.static(__dirname + '/../client'));
 
 
 //auth
-var User = require('./models/models').User;
+var User = db.User;
 var FACEBOOK_APP_ID = '553060631520944';
 var FACEBOOK_APP_SECRET = '6d6d7fe25752c6bb43490d4d915f42af';
 
@@ -41,7 +42,7 @@ passport.use(new FacebookStrategy({
     profileFields: ['id', 'displayName', 'email']
   },
   function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookId: profile.id, displayName: profile.displayName, email: profile.email }, function (err, user) {
+    User.findOrCreate({ facebookID: profile.id, displayName: profile.displayName, email: profile.email }, function (err, user) {
       return cb(err, user);
     });
   }
@@ -51,7 +52,7 @@ app.get('/auth/facebook',
   passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  passport.authenticate('facebook', { failureRedirect: '/signin' }),
   function(req, res) {
     // Successful authentication, redirect home.
     res.redirect('/');
