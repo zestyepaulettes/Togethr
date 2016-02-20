@@ -1,20 +1,20 @@
 // Declare app level module which depends on filters, and services
 angular.module('myApp', [
-  'ngRoute',
+  'ngRoute','createEvent', 'eventList', 'eventDetails'
 
 ]).
 config(['$routeProvider', '$httpProvider',function($routeProvider, $httpProvider) {
   $routeProvider.when('/', {
     templateUrl: 'create/create.html',
-    controller: 'create'
+    controller: 'CreateController'
   });
   $routeProvider.when('/events', {
     templateUrl: 'events/events.html',
-    controller: 'events'
+    controller: 'EventsController'
   });
   $routeProvider.when('/eventdetails', {
     templateUrl: 'eventdetails/eventdetails.html',
-    controller: 'eventdetails'
+    controller: 'EventDetailsController'
   });
   $routeProvider.when('/signin',{
     templateUrl: 'auth/signin.html',
