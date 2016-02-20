@@ -1,5 +1,5 @@
 var express = require('express');
-var db = require('./config/db');
+var db = require('./models/models');
 
 //middleware
 var parser = require('body-parser');
