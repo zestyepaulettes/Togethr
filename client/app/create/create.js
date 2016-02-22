@@ -1,18 +1,18 @@
 angular.module('createEvent', [])
 
-.controller('CreateController', ['$scope', 'CreateFactory', function($scope, CreateFactory) {
+.controller('CreateController', ['$scope', 'CreateFactory', '$location', function($scope, CreateFactory, $location) {
   $scope.master = {};
   $scope.event = {
-    date: new Data(2016, 02, 24)
+    date: new Date(2016, 02, 24)
   };
 
 //Update function is invoked in submit button in create.html
   $scope.update = function(event) {
     $scope.master = angular.copy(event);
     CreateFactory.addEvent($scope.master)
-    .then(function () {
-      $location.path('/events');
-    })
+    // .then(function () {
+    //   $location.path('/events');
+    // })
   };
   // clears out the form
   $scope.reset = function() {
@@ -21,7 +21,7 @@ angular.module('createEvent', [])
 
   $scope.reset();
 }])
-.factory('CreateFactory', function() {
+.factory('CreateFactory', function($http) {
   //send a post request to server
 
   var addEvent = function(event) {

@@ -1,5 +1,5 @@
 angular.module('eventList', [])
-.controller('EventsController', ['$scope', 'EventFactory', '$location' function($scope, EventFactory, $location) {
+.controller('EventsController', ['$scope', 'EventFactory', '$location', function($scope, EventFactory, $location) {
   $scope.data = {};
   var initializeEvents = function() {
   	EventFactory.getEvents()
@@ -18,7 +18,7 @@ angular.module('eventList', [])
   initializeEvents();
 
 }])
-.factory('EventFactory', function() {
+.factory('EventFactory', function($http) {
 	var getEvents = function() {
 		return $http({
 			method: 'GET',
@@ -28,4 +28,7 @@ angular.module('eventList', [])
 			return resp.data;
 		})
 	}
+  return {
+    getEvents: getEvents
+  }
 })

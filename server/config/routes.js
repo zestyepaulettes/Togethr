@@ -1,6 +1,6 @@
 var router = require('express').Router();
 // var usersController = require('');
-// var eventsController = require('');
+var eventsController = require('../controllers/eventsController.js');
 // var guestsController = require('');
 // var setsController = require('');
 // var itemsController = require('');
@@ -9,7 +9,7 @@ var router = require('express').Router();
 // router.post('/users', usersController.addOne);
 
 // router.get('/events', eventsController.getAll);
-// router.post('/events', eventsController.addOne);
+router.post('/events', eventsController.addOne);
 
 // router.get('/guests', guestsController.getAll);
 // router.post('/guests', guestsController.addOne);
