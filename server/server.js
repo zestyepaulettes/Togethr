@@ -5,7 +5,7 @@ var db = require('./models/models');
 var parser = require('body-parser');
 var morgan = require('morgan');
 var passport = require('passport');
-var FacebookStrategy = require('passport-facebook');
+var FacebookStrategy = require('passport-facebook').Strategy;
 
 
 //router
@@ -28,7 +28,17 @@ app.use('/api', router);
 //serve client files
 app.use(express.static(__dirname + '/../client'));
 
+//initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
+passport.serializeUser(function(user, cb) {
+  cb(null, user);
+});
+
+passport.deserializeUser(function(obj, cb) {
+  cb(null, obj);
+});
 
 //auth
 var User = db.User;
@@ -39,11 +49,13 @@ passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
     callbackURL: "http://localhost:3000/auth/facebook/callback",
-    profileFields: ['id', 'displayName', 'email']
+    profileFields: ['id', 'displayName']
   },
   function(accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ facebookID: profile.id, displayName: profile.displayName, email: profile.email }, function (err, user) {
-      return cb(err, user);
+    console.log(profile, '<---profile!!!!');
+    User.findOrCreate({ where:{facebookID: profile.id, displayName: profile.displayName}})
+      .spread(function (user, created) {
+        return cb(null, user);
     });
   }
 ));
