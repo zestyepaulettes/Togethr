@@ -1,27 +1,27 @@
 // Declare app level module which depends on filters, and services
 angular.module('myApp', [
-  'ngRoute','createEvent', 'eventList', 'eventDetails'
+  'createEvent', 'eventList', 'eventDetails', 'ngRoute'
 
-]).
-config(['$routeProvider', '$httpProvider',function($routeProvider, $httpProvider) {
+])
+.config(['$routeProvider', '$httpProvider',function($routeProvider, $httpProvider) {
   $routeProvider.when('/', {
-    templateUrl: 'create/create.html',
+    templateUrl: '/app/create/create.html',
     controller: 'CreateController'
   });
   $routeProvider.when('/events', {
-    templateUrl: 'events/events.html',
+    templateUrl: 'app/events/events.html',
     controller: 'EventsController'
   });
   $routeProvider.when('/eventdetails', {
-    templateUrl: 'eventdetails/eventdetails.html',
-    controller: 'EventDetailsController'
+    templateUrl: 'app/eventdetails/eventdetails.html',
+    controller: 'eventDetailsController'
   });
   $routeProvider.when('/signin',{
-    templateUrl: 'auth/signin.html',
+    templateUrl: 'app/auth/signin.html',
     controller: 'auth.js'
   });
   $routeProvider.when('/signout',{
-    templateUrl: 'auth/signout.html',
+    templateUrl: 'app/auth/signout.html',
     //WARNING: THIS HAS THE SAME CONTROLLER AS Signin
     controller: 'auth.js'
   });  

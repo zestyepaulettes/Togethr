@@ -1,4 +1,3 @@
 angular.module('eventDetails', [])
-.controller('eventDetailsController', [$scope, function($scope) {
-	
+.controller('eventDetailsController', ['$scope', function($scope) {
 }])
