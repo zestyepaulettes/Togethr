@@ -1,0 +1,52 @@
+<style>
+    label
+    {
+      width: 100px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    input
+    {
+      width: 150px;
+      vertical-align: middle;
+    }
+
+    textarea
+    {
+      width: 150px;
+      height: 100px;
+      vertical-align: middle;
+    }
+</style>
+<div>
+  <form novalidate class="event-form">
+    <label>Event Name:</label> 
+    <input type="text" ng-model="event.name" />
+    <br />
+
+    <label>Event Date:</label> 
+    <input type="date" id="exampleInput" name="input" ng-model="event.date"
+       placeholder="yyyy-MM-dd" min="2016-01-01" max="2016-12-31" required />
+    <br />
+
+    <label>Event Location:</label> 
+    <input type="text" ng-model="event.location" />
+    <br />
+
+    <label>Guests:</label> 
+    <textarea ng-model="event.guests" ng-list="&#10;" ng-trim="false"></textarea>
+    <br />
+
+    <label>Stuff you need for your party:</label>
+    <textarea ng-model="event.items" ng-list="&#10;" ng-trim="false"></textarea><br />
+
+    <input type="button" ng-click="reset()" value="Reset" />
+
+
+    <input type="submit" ng-click="update(event)" value="Submit" />
+
+
+  </form>
+</div>
+
