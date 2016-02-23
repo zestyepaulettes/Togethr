@@ -1,6 +1,6 @@
 var router = require('express').Router();
 // var usersController = require('');
-var eventsController = require('../controllers/eventsController.js');
+var eventsController = require('../controllers/eventsController');
 // var guestsController = require('');
 // var setsController = require('');
 // var itemsController = require('');
@@ -8,8 +8,9 @@ var eventsController = require('../controllers/eventsController.js');
 // router.get('/users', usersController.getAll);
 // router.post('/users', usersController.addOne);
 
-// router.get('/events', eventsController.getAll);
-router.post('/events', eventsController.addOne);
+router.get('/events', eventsController.events.get);
+router.post('/events', eventsController.events.post);
+router.get('/eventDetails', setsController.eventDetails.post);
 
 // router.get('/guests', guestsController.getAll);
 // router.post('/guests', guestsController.addOne);
@@ -20,6 +21,5 @@ router.post('/events', eventsController.addOne);
 // router.get('/items', itemsController.getAll);
 // router.post('/items', itemsController.addOne);
 
-// router.get('/eventDetails', setsController.getEventDetails);
 
 module.exports = router;
