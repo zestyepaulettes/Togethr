@@ -10,7 +10,7 @@ var eventsController = require('../controllers/eventsController');
 
 router.get('/events', eventsController.events.get);
 router.post('/events', eventsController.events.post);
-router.get('/eventDetails', setsController.eventDetails.post);
+router.get('/eventDetails', eventsController.eventDetails.get);
 
 // router.get('/guests', guestsController.getAll);
 // router.post('/guests', guestsController.addOne);

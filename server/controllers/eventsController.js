@@ -1,4 +1,4 @@
-var EventQuery = require(../queries/eventQueries);
+var EventQuery = require('../queries/eventQueries');
 
 module.exports = {
   events: {

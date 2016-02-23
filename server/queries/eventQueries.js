@@ -1,5 +1,5 @@
-var Event = require(../models/models).Event;
-var UserQueries = require(./UserQueries);
+var Event = require('../models/models').Event;
+var UserQueries = require('./UserQueries');
 
 module.exports = {
 // create/add and return one event
