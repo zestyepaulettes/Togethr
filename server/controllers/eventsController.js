@@ -3,7 +3,7 @@ var EventQuery = require('../queries/eventQueries');
 module.exports = {
   events: {
     get: function(req, res) {
-      var facebookID = req.body.facebookID;
+      var facebookID = req.params.facebookID;
       EventQuery.getAll(facebookID, function(events) {
         res.json(events);
       })

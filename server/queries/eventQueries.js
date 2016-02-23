@@ -17,7 +17,7 @@ module.exports = {
   	  var userID = user.facebookID;
   	  Event
   	  	.findAll({
-  	      where: {user_ID: userID}
+  	      where: {UserID: userID}
   	    })
   	    .then(function(events) {
   	      callback(events);

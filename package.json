@@ -21,7 +21,8 @@
     "postinstall": "bower install",
     "createDB": "mysql -u root -p < server/createDB.sql",
     "openDB": "mysql -u root -p beerandchip",
-    "start": "nodemon server/server.js"
+    "start": "nodemon server/server.js",
+    "insertData": "node server/mockData.js"
   },
   "devDependencies": {
     "chai": "^3.4.1",
