@@ -1,5 +1,5 @@
 angular.module('eventList', [])
-.controller('EventsController', ['$scope', 'EventFactory', '$location', function($scope, EventFactory, $location) {
+.controller('EventsController', ['$scope', 'EventFactory', '$location','storeFactory', function($scope, EventFactory, $location, storeFactory) {
   $scope.data = {};
   var initializeEvents = function() {
   	EventFactory.getEvents()
@@ -12,17 +12,19 @@ angular.module('eventList', [])
   }
 
   $scope.getEvent = function( event ) {
-  	$location.path('/eventDetails');
+    storeFactory.event = event;
+    $location.path('/eventDetails');
   }
 
   initializeEvents();
 
 }])
 .factory('EventFactory', function($http) {
-	var getEvents = function() {
-		return $http({
+	var getEvents = function(event) {
+		event = event || '';
+    return $http({
 			method: 'GET',
-			url: '/api/events'
+			url: '/api/events/' + event
 		})
 		.then(function(resp) {
 			return resp.data;
@@ -30,5 +32,11 @@ angular.module('eventList', [])
 	}
   return {
     getEvents: getEvents
+  }
+})
+.factory('storeFactory', function() {
+  var eventId = '';
+  return {
+    eventId: eventId
   }
 })
