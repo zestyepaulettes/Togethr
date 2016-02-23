@@ -3,7 +3,10 @@ var db = require('../config/db');
 
 //define models
 var User = db.define('User', {
-  facebookID: Sequelize.STRING,
+  facebookID: {
+    type: Sequelize.STRING,
+    unique: true
+  },
   displayName: Sequelize.STRING,
   email: Sequelize.STRING
 });
@@ -29,25 +32,35 @@ var Item = db.define('Item', {
   price: Sequelize.FLOAT
 });
 
-//create tables in MySql if they don't already exist
-User.sync();
-Event.sync();
-Guest.sync();
-Basket.sync();
-Item.sync();
 
 //set bi-directional associations
-Event.belongsTo(User);
 User.hasMany(Event);
+Event.belongsTo(User);
 
-Guest.belongsTo(Event);
 Event.hasMany(Guest);
+Guest.belongsTo(Event);
 
-Basket.belongsTo(Guest);
 Guest.hasOne(Basket);
+Basket.belongsTo(Guest);
 
-Item.belongsTo(Basket);
 Basket.hasMany(Item);
+Item.belongsTo(Basket);
+
+//create tables in MySql if they don't already exist
+User.sync()
+  .then(function() {
+    Event.sync()
+      .then(function() {
+        Guest.sync()
+          .then(function() {
+            Basket.sync()
+              .then(function() {
+                Item.sync();
+              });
+          });
+      });
+  });
+
 
 module.exports = {
   User: User,
