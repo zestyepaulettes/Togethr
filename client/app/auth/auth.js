@@ -3,11 +3,9 @@ angular.module('auth', ['ngCookies'])
 .controller('AuthController', function($scope, $window, $location, $cookies, AuthFactory) {
   $scope.user = {};
 
-
-  $scope.something = $cookies.get('displayName')
-
-
-
+  $scope.logout = function() {
+    AuthFactory.signout();
+  }
 })
 
 .factory('AuthFactory', function($http, $window, $location, $cookies) {
