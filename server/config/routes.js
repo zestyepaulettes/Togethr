@@ -12,8 +12,8 @@ router.get('/events/:userID', eventsController.events.get);
 router.post('/events', eventsController.events.post);
 router.get('/eventDetails', eventsController.eventDetails.get);
 
-// router.get('/guests', guestsController.getAll);
-// router.post('/guests', guestsController.addOne);
+router.get('/guests', guestsController.getAll);
+router.post('/guests', guestsController.addOne);
 
 // router.get('/baskets', basketsController.getAll);
 // router.post('/baskets', basketsController.addOne);
