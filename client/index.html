@@ -1,60 +1,60 @@
 <!DOCTYPE html>
  <html ng-app= "myApp">
-    <head>
+  <head>
     
-<!-- Compiled and minified CSS of Bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Compiled and minified CSS of Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <!-- ALL ANGULAR CONTROLLERS ARE DEFINED AT END OF BODY -->
      
-     </head>
+  </head>
 
-    <body>
-        
-        <header>
-            <nav class="navbar navbar-default">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="/">Beer and Chip</a>
-                </div>
+  <body ng-app-'myApp'>
+  
 
-                <ul class="nav navbar-nav navbar-right">
-    <!-- THE ROUTES HERE ARE NOT DEFINED AS OF YET -->
-    <!-- The fa in the classes below are using bootstrap
-        font awesome, which help nav bar alignment
-        See: https://fortawesome.github.io/Font-Awesome/examples/
-     -->
-     <!-- NAV BAR ROUTES: -->
-            <!-- These have the nav bar ROUTES THAT MAY NEED TO BE CHANGED -->
-                    <li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
-                    <li><a href="#/signin"><i class="fa fa-signin"></i> SignIn</a></li>
-                    <li><a href="#/"><i class="fa fa-create"></i> Create</a></li> 
-                    <li><a href="#/eventdetails"><i class="fa fa-eventdetails"></i> Events Details</a></li>
-                    <li><a href="#/events"><i class="fa fa-events"></i> Events</a></li>
-                    <li><a href="#/signout"><i class="fa fa-signout"></i> SignOut</a></li>
+    <header ng-controller='AuthController'>
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <div class="navbar-header">
+              <a class="navbar-brand" href="/">Beer and Chip</a>
+          </div>
 
-                </ul>
-            </div>
-            </nav>
-        </header>
-        
-        
-        
-        
-        <!-- Angular Scripts  -->
-        <script src="https://code.angularjs.org/1.5.0/angular.js"></script>
-        <script src="https://code.angularjs.org/1.5.0/angular-route.js"></script>
-        <!-- THIS IS THE START OF THE ANGULAR APP.JS -->
-        <script src="/app/events/events.js"></script>
-        <script src="/app/create/create.js"></script>
-        <script src="/app/auth/auth.js"></script>
-        <script src="/app/eventDetails/eventDetails.js"></script>
-        <script src="/app/app.js"></script>
+          <ul class="nav navbar-nav navbar-right">
+<!-- THE ROUTES HERE ARE NOT DEFINED AS OF YET -->
+<!-- The fa in the classes below are using bootstrap
+  font awesome, which help nav bar alignment
+  See: https://fortawesome.github.io/Font-Awesome/examples/
+-->
+<!-- NAV BAR ROUTES: -->
+      <!-- These have the nav bar ROUTES THAT MAY NEED TO BE CHANGED -->
+            <li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="#/"><i class="fa fa-create"></i> Create</a></li> 
+            <li><a href="#/eventdetails"><i class="fa fa-eventdetails"></i> Events Details</a></li>
+            <li><a href="#/events"><i class="fa fa-events"></i> Events</a></li>
+            <li><a ng-click='logout()' class='fa fa-signout'> SignOut</a></li>
 
-
-        <!-- THIS IS WHERE OUR ANGULAR VIEWS WILL BE INSERTED -->
-        <div ng-view>
-            
+          </ul>
         </div>
+      </nav>
+    </header>
+
+    
+    <!-- Angular Scripts  -->
+    <script src="https://code.angularjs.org/1.5.0/angular.js"></script>
+    <script src="https://code.angularjs.org/1.5.0/angular-route.js"></script>
+    <script src="https://code.angularjs.org/1.5.0/angular-cookies.js"></script>
+
+    <!-- THIS IS THE START OF THE ANGULAR APP.JS -->
+    <script src="/app/events/events.js"></script>
+    <script src="/app/create/create.js"></script>
+    <script src="/app/auth/auth.js"></script>
+    <script src="/app/eventDetails/eventDetails.js"></script>
+    <script src="/app/app.js"></script>
+
+
+    <!-- THIS IS WHERE OUR ANGULAR VIEWS WILL BE INSERTED -->
+    <div ng-view>
         
-    </body>
+    </div>
+    <!-- <button onclick="myFacebookLogin()">Login with Facebook</button> -->
+  </body>
 </html>
