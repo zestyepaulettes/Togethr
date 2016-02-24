@@ -35,7 +35,7 @@ angular.module('myApp', [
 }])
 
 .run(['$rootScope', '$location', 'AuthFactory', function($rootScope, $location, AuthFactory) {
-  $rootScope.$on('$routeChangeStart', function(event, toState, toParams) {
+  $rootScope.$on('$routeChangeStart', function(event, toState) {
     if(!toState.$$route) {
       $location.path('/')
     }
