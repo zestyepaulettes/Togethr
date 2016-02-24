@@ -3,7 +3,7 @@ var ItemsQueries = require('../queries/itemsQueries');
 module.exports = {
 
 	getAll: function(req, res){
-		var eventID = req.body.eventID; 
+		var eventID = req.params.eventID; 
 		ItemsQueries.getAllItems(eventID, function(items){
 			res.json(items);
 		});

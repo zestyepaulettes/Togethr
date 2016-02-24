@@ -1,5 +1,6 @@
 var USER = require('./models/models').User;
 var EVENT = require('./models/models').Event;
+var ITEM = require('./models/models').Item; 
 
 var users = [
   { facebookID: 1,
@@ -22,7 +23,13 @@ var events = [
     name: "Alex's Graduation" }
 ];
 
+var items = [{name: 'cake', EventId: 1},{name: 'milk', EventId: 2}];
+
 USER.bulkCreate(users)
   .then(function() {
-    EVENT.bulkCreate(events);
+    EVENT.bulkCreate(events)
+      .then(function(){
+        ITEM.bulkCreate(items);
+      });
   });
+

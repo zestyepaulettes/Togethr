@@ -3,7 +3,7 @@
 var Items = require('../models/models.js').Item;
 
 
-module.export = {
+module.exports = {
 
 	//get all items from the database 
 	getAllItems: function(eventID, callback){

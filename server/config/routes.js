@@ -24,7 +24,7 @@ router.post('/guests', guestsController.addOne);
 
 
 console.log("****ITEMS CONTROLLER", itemsController.getAll);
-router.get('/items', itemsController.getAll);
+router.get('/items/:eventID', itemsController.getAll);
  
 router.post('/items', itemsController.addOne);
 router.post('items/all', itemsController.addAll); 
