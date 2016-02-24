@@ -36,6 +36,6 @@ module.exports = {
 		Guests.addAll(guests, function(newGuests){
 			res.json(newGuests);
 		});
-	};
+	}
 
-}
+};
