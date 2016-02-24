@@ -16,7 +16,7 @@ module.exports = {
   getAll: function(userID, callback) {
   	Event
   		.findAll({
-  	    where: {UserId: userID}
+  	    where: {userId: userID}
   	  })
   	  .then(function(events) {
   	    callback(events);

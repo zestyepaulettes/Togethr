@@ -1,7 +1,7 @@
 var User = require('../models/models').User;
 
 module.exports = {
-  addOne: function(newUser) {
+  addOne: function(newUser, callback) {
     // TODO: MOVE FROM server.js 
   },
 
