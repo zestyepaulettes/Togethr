@@ -40,6 +40,12 @@ Event.belongsTo(User);
 Event.hasMany(Guest);
 Guest.belongsTo(Event);
 
+Event.hasMany(Item);
+Item.belongsTo(Event);
+
+Event.hasMany(Basket);
+Basket.belongsTo(Event);
+
 Guest.hasOne(Basket);
 Basket.belongsTo(Guest);
 

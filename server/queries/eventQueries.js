@@ -2,27 +2,25 @@ var Event = require('../models/models').Event;
 var UserQueries = require('./UserQueries');
 
 module.exports = {
-// create/add and return one event
-  addOne: function(event) {
+// create and add one event and passes the new event to a callback
+  addOne: function(userID, event, callback) {
+    event.userID = userID;
   	Event
   	  .create(event)
   	  .then(function(newEvent) {
-  	  	callback(newEvent);
+  	  	callback(newEvent.id);
   	  });
   },
 
 // passes all events from a user to a callback
-  getAll: function(facebookID, callback) {
-  	UserQueries.getByFacebookID(facebookID, function(user) {
-  	  var userID = user.facebookID;
-  	  Event
-  	  	.findAll({
-  	      where: {UserID: userID}
-  	    })
-  	    .then(function(events) {
-  	      callback(events);
-  	    }); 
-  	});
+  getAll: function(userID, callback) {
+  	Event
+  		.findAll({
+  	    where: {UserId: userID}
+  	  })
+  	  .then(function(events) {
+  	    callback(events);
+  	  }); 
   },
 
 // get event by ID and pass to a callback
@@ -35,4 +33,4 @@ module.exports = {
   	  	callback(event)
   	  });
   }
-}
+};
