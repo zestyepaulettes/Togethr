@@ -4,9 +4,9 @@ module.exports = {
   addAll: function(eventID, guests, callback) {
     var baskets = [];
     for (var i = 0; i < guests.length; i++) {
-      basket.push({ 
-        eventID: eventID, 
-        guestID: guests[i].id 
+      baskets.push({ 
+        EventId: eventID, 
+        GuestId: guests[i].id 
       });
     }
     Basket

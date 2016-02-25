@@ -20,6 +20,10 @@ module.exports = {
   },
 
   addAll: function(eventID, guests, callback) {
+    for (var i=0; i < guests.length; i++) {
+    	guests[i].EventId = eventID;
+    }
+
     Guest
 	    .bulkCreate(guests)
 	    .then(function(newGuests) {

@@ -35,16 +35,16 @@
     <br />
 
     <label>Guests:</label> 
-    <textarea ng-model="event.guests" ng-list="&#10;" ng-trim="false"></textarea>
+    <textarea ng-model="hold.guests" ng-list="&#10;" ng-trim="false"></textarea>
     <br />
 
     <label>Stuff you need for your party:</label>
-    <textarea ng-model="event.items" ng-list="&#10;" ng-trim="false"></textarea><br />
+    <textarea ng-model="hold.items" ng-list="&#10;" ng-trim="false"></textarea><br />
 
     <input type="button" ng-click="reset()" value="Reset" />
 
 
-    <input type="submit" ng-click="update(event)" value="Submit" />
+    <input type="submit" ng-click="update(event, hold)" value="Submit" />
 
 
   </form>
