@@ -4,7 +4,7 @@ module.exports = {
   getAll: function(eventID, callback) {
 	  Guest
 	    .findAll({
-	  	  where: {eventID: eventID}
+	  	  where: {EventId: eventID}
 	    })
 	    .then(function(guests) {
 	  	  callback(guests);
@@ -27,6 +27,7 @@ module.exports = {
     Guest
 	    .bulkCreate(guests)
 	    .then(function(newGuests) {
+        console.log(JSON.stringify(newGuests));
 	  	  callback(newGuests);
 	    });
   }

@@ -25,7 +25,7 @@ module.exports = {
         // Add event's guests
         GuestQuery.addAll(eventID, data.guests, function(guests) {
           // Add a basket for each guest
-          BasketQuery.addAll(eventID, guests, function() {
+          BasketQuery.addAll(eventID, function() {
             // End response and send nothing back
             res.send(); 
           });
@@ -42,29 +42,27 @@ module.exports = {
 
       EventQuery.getByID(eventID, function(event) {
         data.event = event; // get event
-        if (Object.keys(data).length === 4) {
-          res.json(data);
-        }
+        checkQueries();
       });
       GuestQuery.getAll(eventID, function(guests) {
         data.guests = guests; // get event guests
-        if (Object.keys(data).length === 4) {
-          res.json(data);
-        }
+        checkQueries();
       });
       BasketQuery.getAll(eventID, function(baskets) {
         data.baskets = baskets; // get event baskets
-        if (Object.keys(data).length === 4) {
-          res.json(data);
-        }
+        checkQueries();
       });
-
       ItemQuery.getAll(eventID, function(items) {
         data.items = items; // get event items
-        if (Object.keys(data).length === 4) {
+        checkQueries();
+      });
+
+      // check if all queries are done and return data in response
+      function checkQueries() {
+        if (Object.keys(data).length === 4) { 
           res.json(data);
         }
-      });
+      }
     }
   }
 };
