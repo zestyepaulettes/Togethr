@@ -1,11 +1,9 @@
 var router = require('express').Router();
 // var usersController = require('');
 var eventsController = require('../controllers/eventsController');
-var guestsController = require('../controllers/guestsController');
+// var guestsController = require('../controllers/guestsController');
 // var setsController = require('');
 var itemsController = require('../controllers/itemsController');
-
-console.log("********* is items controller linking?", itemsController); 
 
 // router.get('/users', usersController.getAll);
 // router.post('/users', usersController.addOne);
@@ -14,19 +12,18 @@ console.log("********* is items controller linking?", itemsController);
 router.get('/events/:userID', eventsController.events.get);
 
 router.post('/events', eventsController.events.post);
-router.get('/eventDetails', eventsController.eventDetails.get);
+router.get('/eventDetails/:eventID', eventsController.eventDetails.get);
 
-router.get('/guests', guestsController.getAll);
-router.post('/guests', guestsController.addOne);
+// router.get('/guests', guestsController.get);
+// router.post('/guests', guestsController.post);
+// router.delete('/guests', guestsController.delete);
 
-// router.get('/baskets', basketsController.getAll);
-// router.post('/baskets', basketsController.addOne);
+// router.get('/baskets', basketsController.get);
+// router.post('/baskets', basketsController.post);
+// router.delete('/baskets', basketsController.delete);
 
-
-console.log("****ITEMS CONTROLLER", itemsController.getAll);
-router.get('/items/:eventID', itemsController.getAll);
- 
-router.post('/items', itemsController.addOne);
-router.post('items/all', itemsController.addAll); 
+// router.get('/items', itemsController.get);
+// router.post('/items', itemsController.post);
+// router.delete('/items', itemsController.delete);
 
 module.exports = router;
