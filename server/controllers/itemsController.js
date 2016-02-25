@@ -1,4 +1,4 @@
-var ItemsQueries = require('../queries/itemsQueries');
+var ItemsQueries = require('../queries/itemQueries');
 
 module.exports = {
 

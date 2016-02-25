@@ -6,7 +6,7 @@ var Items = require('../models/models.js').Item;
 module.exports = {
 
 	//get all items from the database 
-	getAllItems: function(eventID, callback){
+	getAll: function(eventID, callback){
 		Items
 			.findAll({
 				where: {eventId: eventID}
@@ -18,7 +18,7 @@ module.exports = {
 	},
 
 	//add one item to data base 
-	addOneItem: function(item, callback){
+	addOne: function(item, callback){
 		Items
 			.create(item)
 			.then(function(newItem){
@@ -28,17 +28,11 @@ module.exports = {
 	},
 
 	//add all items to database 
-	addAllItems: function(items, callback){
+	addAll: function(items, callback){
 		Items
 			.bulkCreate(items)
 			.then(function(newItems){
 				callback(newItems);
 			});
 	}
-
-
-
 };
-
-
-
