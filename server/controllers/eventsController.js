@@ -19,13 +19,13 @@ module.exports = {
         items: req.body.items
       };
       // Add event
-      EventQuery.addOne(data.userID, event, function(eventID) {
+      EventQuery.addOne(data.userID, data.event, function(eventID) {
         // Add event's items, currently not assigned to a basket
         ItemQuery.addAll(eventID, data.items);
         // Add event's guests
         GuestQuery.addAll(eventID, data.guests, function(guests) {
           // Add a basket for each guest
-          BasketQuery.addAll(guests, function() {
+          BasketQuery.addAll(eventID, guests, function() {
             // End response and send nothing back
             res.send(); 
           });

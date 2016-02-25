@@ -6,7 +6,7 @@ angular.module('eventDetails', ['eventList'])
   //we fill in $scope.details with the event stored in 
   //the storeFactory factory and we then show it on the screen:
   var initializeDetails = function() {
-    EventFactory.getEvents(storeFactory.eventId)
+    eventDetailsFactory.getEvents(storeFactory.eventId)
       .then(function(details) {
       	$scope.details = details;
       })
@@ -16,9 +16,20 @@ angular.module('eventDetails', ['eventList'])
   	
   }
 
-}])
-.factory('eventDetailsFactory', function() {
-  return {
+  initializeDetails();
 
-  };
+}])
+.factory('eventDetailsFactory', function(storeFactory, $http) {
+  var getEvents = function() {
+    return $http({
+      method: 'GET',
+      url: '/api/events/' + storeFactory.eventID
+    })
+    .then(function(resp) {
+      return resp.data;
+    })
+  }
+  return {
+    getEvents: getEvents
+  }
 })

@@ -4,7 +4,7 @@ var UserQueries = require('./UserQueries');
 module.exports = {
 // create and add one event and passes the new event to a callback
   addOne: function(userID, event, callback) {
-    event.userID = userID;
+    event.UserId = userID;
   	Event
   	  .create(event)
   	  .then(function(newEvent) {
@@ -16,7 +16,7 @@ module.exports = {
   getAll: function(userID, callback) {
   	Event
   		.findAll({
-  	    where: {userId: userID}
+  	    where: {UserId: userID}
   	  })
   	  .then(function(events) {
   	    callback(events);

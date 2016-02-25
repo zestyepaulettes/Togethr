@@ -1,13 +1,13 @@
 //we are going to have to require the sequelize models file
 //specifically the items table 
-var Items = require('../models/models.js').Item;
+var Item = require('../models/models.js').Item;
 
 
 module.exports = {
 
 	//get all items from the database 
 	getAll: function(eventID, callback){
-		Items
+		Item
 			.findAll({
 				where: {eventId: eventID}
 			})
@@ -19,7 +19,7 @@ module.exports = {
 
 	//add one item to data base 
 	addOne: function(item, callback){
-		Items
+		Item
 			.create(item)
 			.then(function(newItem){
 				callback(newItem);
@@ -28,11 +28,15 @@ module.exports = {
 	},
 
 	//add all items to database 
-	addAll: function(items, callback){
-		Items
+	addAll: function(eventID, items, callback){
+		for (var i=0; i < items.length; i++) {
+			items[i].EventId = eventID;
+		}
+
+		Item
 			.bulkCreate(items)
 			.then(function(newItems){
-				callback(newItems);
+				//callback(newItems);
 			});
 	}
 };
