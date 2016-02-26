@@ -11,8 +11,9 @@ module.exports = {
 	    });
   },
 
-  addOne: function(guest, callback) {
-	  Guest
+  addOne: function(eventID, guest, callback) {
+	  guest.EventId = eventID;
+    Guest
 	    .create(guest)
 	    .then(function(newGuest) {
 	    	callback(newGuest);
@@ -27,7 +28,6 @@ module.exports = {
     Guest
 	    .bulkCreate(guests)
 	    .then(function(newGuests) {
-        console.log(JSON.stringify(newGuests));
 	  	  callback(newGuests);
 	    });
   }

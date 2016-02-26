@@ -19,15 +19,16 @@ module.exports = {
         items: req.body.items
       };
       // Add event
-      EventQuery.addOne(data.userID, data.event, function(eventID) {
-        // Add event's items, currently not assigned to a basket
-        ItemQuery.addAll(eventID, data.items);
+      EventQuery.addOne(data.userID, data.event, function(event) {
         // Add event's guests
-        GuestQuery.addAll(eventID, data.guests, function(guests) {
+        GuestQuery.addAll(event.id, data.guests, function() {
           // Add a basket for each guest
-          BasketQuery.addAll(eventID, function() {
-            // End response and send nothing back
-            res.send(); 
+          BasketQuery.addAll(event.id, function() {
+            // Add event's items, currently not assigned to a basket
+            ItemQuery.addAll(event.id, data.items, function() {
+              // End response and send nothing back
+              res.send(); 
+            });
           });
         }); 
       });

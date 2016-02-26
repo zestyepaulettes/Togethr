@@ -8,7 +8,7 @@ module.exports = {
   	Event
   	  .create(event)
   	  .then(function(newEvent) {
-  	  	callback(newEvent.id);
+  	  	callback(newEvent);
   	  });
   },
 

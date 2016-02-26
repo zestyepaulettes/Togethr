@@ -20,6 +20,17 @@ module.exports = {
     });
   },
 
+  addOne: function(eventID, guestID, callback) {
+    Basket
+      .create({
+        EventId: eventID,
+        GuestId:guestID 
+      })
+      .then(function(newBasket) {
+        callback(newBasket);
+      });
+  },
+
   getAll: function(eventID, callback) {
     Basket
       .findAll({
