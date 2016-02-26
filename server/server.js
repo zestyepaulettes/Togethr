@@ -9,6 +9,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 var jwt = require('jwt-simple');
 var cookieParser = require('cookie-parser');
+var nodemailer = require('nodemailer')
 
 //router
 var router = require('./config/routes.js');
@@ -51,7 +52,7 @@ passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
     callbackURL: "http://localhost:3000/auth/facebook/callback",
-    profileFields: ['id', 'displayName','email']
+    profileFields: ['id', 'displayName','email', 'cover']
   },
   function(accessToken, refreshToken, profile, cb) {
     process.nextTick(function() {
@@ -80,7 +81,6 @@ app.get('/auth/facebook/callback',
     res.cookie('displayName', req.user.displayName);
     res.cookie('email', req.user.email);
 
-    // res.send(req.user)
     res.redirect('/');
   });
 
@@ -95,3 +95,4 @@ if(!module.parent) {
 }
 
 module.exports.app = app;
+module.exports.nodemailer = nodemailer;
