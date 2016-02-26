@@ -4,15 +4,16 @@ module.exports = {
   getAll: function(eventID, callback) {
 	  Guest
 	    .findAll({
-	  	  where: {eventID: eventID}
+	  	  where: {EventId: eventID}
 	    })
 	    .then(function(guests) {
 	  	  callback(guests);
 	    });
   },
 
-  addOne: function(guest, callback) {
-	  Guest
+  addOne: function(eventID, guest, callback) {
+	  guest.EventId = eventID;
+    Guest
 	    .create(guest)
 	    .then(function(newGuest) {
 	    	callback(newGuest);

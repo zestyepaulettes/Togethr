@@ -19,15 +19,16 @@ module.exports = {
         items: req.body.items
       };
       // Add event
-      EventQuery.addOne(data.userID, data.event, function(eventID) {
-        // Add event's items, currently not assigned to a basket
-        ItemQuery.addAll(eventID, data.items);
+      EventQuery.addOne(data.userID, data.event, function(event) {
         // Add event's guests
-        GuestQuery.addAll(eventID, data.guests, function(guests) {
+        GuestQuery.addAll(event.id, data.guests, function() {
           // Add a basket for each guest
-          BasketQuery.addAll(eventID, guests, function() {
-            // End response and send nothing back
-            res.send(); 
+          BasketQuery.addAll(event.id, function() {
+            // Add event's items, currently not assigned to a basket
+            ItemQuery.addAll(event.id, data.items, function() {
+              // End response and send nothing back
+              res.send(); 
+            });
           });
         }); 
       });
@@ -42,29 +43,27 @@ module.exports = {
 
       EventQuery.getByID(eventID, function(event) {
         data.event = event; // get event
-        if (Object.keys(data).length === 4) {
-          res.json(data);
-        }
+        checkQueries();
       });
       GuestQuery.getAll(eventID, function(guests) {
         data.guests = guests; // get event guests
-        if (Object.keys(data).length === 4) {
-          res.json(data);
-        }
+        checkQueries();
       });
       BasketQuery.getAll(eventID, function(baskets) {
         data.baskets = baskets; // get event baskets
-        if (Object.keys(data).length === 4) {
-          res.json(data);
-        }
+        checkQueries();
       });
-
       ItemQuery.getAll(eventID, function(items) {
         data.items = items; // get event items
-        if (Object.keys(data).length === 4) {
+        checkQueries();
+      });
+
+      // check if all queries are done and return data in response
+      function checkQueries() {
+        if (Object.keys(data).length === 4) { 
           res.json(data);
         }
-      });
+      }
     }
   }
 };
