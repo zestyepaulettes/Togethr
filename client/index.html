@@ -1,60 +1,210 @@
 <!DOCTYPE html>
- <html ng-app= "myApp">
-  <head>
-    
-    <!-- Compiled and minified CSS of Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<!-- ALL ANGULAR CONTROLLERS ARE DEFINED AT END OF BODY -->
-     
-  </head>
-
-  <body ng-app-'myApp'>
-  
-
-    <header ng-controller='AuthController'>
-      <nav class="navbar navbar-default">
-        <div class="container">
-          <div class="navbar-header">
-              <a class="navbar-brand" href="/">Beer and Chip</a>
-          </div>
-
-          <ul class="nav navbar-nav navbar-right">
-<!-- THE ROUTES HERE ARE NOT DEFINED AS OF YET -->
-<!-- The fa in the classes below are using bootstrap
-  font awesome, which help nav bar alignment
-  See: https://fortawesome.github.io/Font-Awesome/examples/
+<!--
+  Transit by TEMPLATED
+  templated.co @templatedco
+  Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
-<!-- NAV BAR ROUTES: -->
-      <!-- These have the nav bar ROUTES THAT MAY NEED TO BE CHANGED -->
-            <li><a href="#/"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="#/"><i class="fa fa-create"></i> Create</a></li> 
-            <li><a href="#/eventdetails"><i class="fa fa-eventdetails"></i> Events Details</a></li>
-            <li><a href="#/events"><i class="fa fa-events"></i> Events</a></li>
-            <li><a href="" ng-click='logout()' class='fa fa-signout'> SignOut</a></li>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Beer or Chip</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <!--[if lte IE 8]><script src="js/html5shiv.js"></script><![endif]-->
+<!--********************************************************-->
+<!-- These are the files that our template needs:        -->
+  
+    <script src="js/jquery.min.js"></script>
+    <script src="js/skel.min.js"></script>
+    <script src="js/skel-layers.min.js"></script>
+    <script src="js/init.js"></script>
+    <noscript>
+      <link rel="stylesheet" href="css/skel.css" />
+      <link rel="stylesheet" href="css/style.css" />
+      <link rel="stylesheet" href="css/style-xlarge.css" />
+    </noscript>
+ 
+<!-- ************************************************-->
+  </head>
+  <body class="landing" ng-app='myApp' >  
+    <!-- ng-app-'myApp' -->
 
+    <!-- Header -->
+      <header id="header">
+        <h1><a href="index.html">Beer Or Chip</a></h1>
+        <nav id="nav">
+          <ul>
+            <li><a href="#/">Home</a></li>
+            <li><a href="#/">Create</a></li>
+            <li><a href="#/eventdetails">Event Details</a></li>
+                        <li><a href="#/events">Events</a></li>
+            <li><a href=""  ng-click='logout()' >Sign Out</a></li>
           </ul>
+        </nav>
+      </header>
+
+    <!-- Banner -->
+<!--******************* THIS IS THE FRONT PAGE BANNER AND DESCRIPTION *******-->
+<!-- 
+      <section id="banner">
+        <h2>Beer or Chip</h2>
+        <p>everyone makes the party</p>
+        <ul class="actions">
+          <li>
+            <a href="#" class="button big">log in with facebook</a>
+          </li>
+        </ul>
+      </section>
+
+
+      <section id="one" class="wrapper style1 special">
+        <div class="container">
+          <header class="major">
+            <h2>Life is easy as the host</h2>
+            <p>Let people know what to bring or let them chip in</p>
+          </header>
+          <div class="row 150%">
+            <div class="4u 12u$(medium)">
+              <section class="box">
+                <i class="icon big rounded color1 fa-cloud"></i>
+                <h3>Guests and items</h3>
+                <p>Our system will distribute the items to your guests</p>
+              </section>
+            </div>
+            <div class="4u 12u$(medium)">
+              <section class="box">
+                <i class="icon big rounded color9 fa-desktop"></i>
+                <h3>See who brings what</h3>
+                <p>Our system  creates a great summary of your party plans</p>
+              </section>
+            </div>
+            <div class="4u$ 12u$(medium)">
+              <section class="box">
+                <i class="icon big rounded color6 fa-rocket"></i>
+                <h3>Notifying guests</h3>
+                <p>We notify your guests via email on what to bring</p>
+              </section>
+            </div>
+          </div>
         </div>
-      </nav>
-    </header>
+      </section>
+  --> 
 
-    
-    <!-- Angular Scripts  -->
-    <script src="https://code.angularjs.org/1.5.0/angular.js"></script>
-    <script src="https://code.angularjs.org/1.5.0/angular-route.js"></script>
-    <script src="https://code.angularjs.org/1.5.0/angular-cookies.js"></script>
-
-    <!-- THIS IS THE START OF THE ANGULAR APP.JS -->
-    <script src="/app/events/events.js"></script>
-    <script src="/app/create/create.js"></script>
-    <script src="/app/auth/auth.js"></script>
-    <script src="/app/eventDetails/eventDetails.js"></script>
-    <script src="/app/app.js"></script>
+<!--******************* ***************************** *******-->
 
 
-    <!-- THIS IS WHERE OUR ANGULAR VIEWS WILL BE INSERTED -->
-    <div ng-view>
-        
-    </div>
-    <!-- <button onclick="myFacebookLogin()">Login with Facebook</button> -->
+
+
+
+
+
+    <!-- Main -->
+
+          <!-- THIS IS WHERE OUR ANGULAR VIEWS WILL BE INSERTED -->
+          <div ng-view> </div>
+            
+
+
+
+
+
+<!--*******************************        -->
+
+
+    <!-- Footer -->
+      <footer id="footer">
+        <div class="container">
+          <section class="links">
+            <div class="row">
+              <section class="3u 6u(medium) 12u$(small)">
+                <h3>Contributors</h3>
+                <ul class="unstyled">
+                  <li><a href="#"></a></li>
+                  <li><a href="#">Alex S.</a></li>
+                  <li><a href="#">Deniz M.</a></li>
+                  <li><a href="#">Diamond W.</a></li>
+                  <li><a href="#">Saumitra S.</a></li>
+                </ul>
+              </section>
+              <!--
+              <section class="3u 6u$(medium) 12u$(small)">
+                <h3>Culpa quia, nesciunt</h3>
+                <ul class="unstyled">
+                  <li><a href="#">Lorem ipsum dolor sit</a></li>
+                  <li><a href="#">Reiciendis dicta laboriosam enim</a></li>
+                  <li><a href="#">Corporis, non aut rerum</a></li>
+                  <li><a href="#">Laboriosam nulla voluptas, harum</a></li>
+                  <li><a href="#">Facere eligendi, inventore dolor</a></li>
+                </ul>
+              </section>
+              <section class="3u 6u(medium) 12u$(small)">
+                <h3>Neque, dolore, facere</h3>
+                <ul class="unstyled">
+                  <li><a href="#">Lorem ipsum dolor sit</a></li>
+                  <li><a href="#">Distinctio, inventore quidem nesciunt</a></li>
+                  <li><a href="#">Explicabo inventore itaque autem</a></li>
+                  <li><a href="#">Aperiam harum, sint quibusdam</a></li>
+                  <li><a href="#">Labore excepturi assumenda</a></li>
+                </ul>
+              </section>
+              <section class="3u$ 6u$(medium) 12u$(small)">
+                <h3>Illum, tempori, saepe</h3>
+                <ul class="unstyled">
+                  <li><a href="#">Lorem ipsum dolor sit</a></li>
+                  <li><a href="#">Recusandae, culpa necessita nam</a></li>
+                  <li><a href="#">Cupiditate, debitis adipisci blandi</a></li>
+                  <li><a href="#">Tempore nam, enim quia</a></li>
+                  <li><a href="#">Explicabo molestiae dolor labore</a></li>
+                </ul>
+              </section>
+
+            -->  
+            </div>
+          </section>
+          <div class="row">
+            <div class="8u 12u$(medium)">
+              <ul class="copyright">
+                <li>&copy; Untitled. All rights reserved.</li>
+                <li>Design: <a href="http://templated.co">TEMPLATED</a></li>
+                <li>Images: <a href="http://unsplash.com">Unsplash</a></li>
+              </ul>
+            </div>
+            <div class="4u$ 12u$(medium)">
+              <ul class="icons">
+                <li>
+                  <a class="icon rounded fa-facebook"><span class="label">Facebook</span></a>
+                </li>
+                <li>
+                  <a class="icon rounded fa-twitter"><span class="label">Twitter</span></a>
+                </li>
+                <li>
+                  <a class="icon rounded fa-google-plus"><span class="label">Google+</span></a>
+                </li>
+                <li>
+                  <a class="icon rounded fa-linkedin"><span class="label">LinkedIn</span></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+
+      <!-- Angular Scripts  -->
+<script src="https://code.angularjs.org/1.5.0/angular.js"></script>
+<script src="https://code.angularjs.org/1.5.0/angular-route.js"></script>
+<script src="https://code.angularjs.org/1.5.0/angular-cookies.js"></script>
+
+<!-- THIS IS THE START OF THE ANGULAR APP.JS -->
+<script src="/app/events/events.js"></script>
+<script src="/app/create/create.js"></script>
+<script src="/app/auth/auth.js"></script>
+<script src="/app/eventDetails/eventDetails.js"></script>
+<script src="/app/app.js"></script>
+
+
+
+
   </body>
 </html>
