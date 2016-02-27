@@ -1,6 +1,7 @@
 {
   "name": "beer-and-chip",
   "version": "0.0.1",
+  "main": "server.js",
   "engines": {
     "node": "5.4.1"
   },
@@ -21,7 +22,7 @@
     "url": "https://github.com/CantillatingZygote/beer-and-chip/issues"
   },
   "scripts": {
-    "postinstall": "bower cache clean && bower install",
+    // "postinstall": "bower cache clean && bower install",
     "createDB": "mysql -u root -p < server/createDB.sql",
     "openDB": "mysql -u root -p beerandchip",
     "start": "nodemon server/server.js",
