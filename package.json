@@ -1,6 +1,9 @@
 {
   "name": "beer-and-chip",
   "version": "0.0.1",
+  "engines": {
+    "node": "5.4.1"
+  },
   "description": "Event organizing application",
   "homepage": "https://github.com/CantillatingZygote/beer-and-chip#readme",
   "license": "UNLICENSED",
@@ -18,7 +21,7 @@
     "url": "https://github.com/CantillatingZygote/beer-and-chip/issues"
   },
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "bower cache clean && bower install",
     "createDB": "mysql -u root -p < server/createDB.sql",
     "openDB": "mysql -u root -p beerandchip",
     "start": "nodemon server/server.js",
