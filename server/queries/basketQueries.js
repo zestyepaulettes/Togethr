@@ -1,5 +1,5 @@
 var Basket = require('../models/models').Basket;
-var GuestQuery = require('./GuestQueries');
+var GuestQuery = require('./guestQueries');
 
 module.exports = {
   // Create/assign a basket for each guest at the event
