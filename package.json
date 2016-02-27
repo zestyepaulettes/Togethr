@@ -18,6 +18,7 @@
     "url": "https://github.com/CantillatingZygote/beer-and-chip/issues"
   },
   "scripts": {
+    "postinstall": "bower install",
     "createDB": "mysql -u root -p < server/createDB.sql",
     "openDB": "mysql -u root -p beerandchip",
     "start": "nodemon server/server.js",
