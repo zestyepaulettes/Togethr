@@ -9,9 +9,7 @@ var itemsController = require('../controllers/itemsController');
 // router.get('/users', usersController.getAll);
 // router.post('/users', usersController.addOne);
 
-
 router.get('/events/:userID', eventsController.events.get);
-
 router.post('/events', eventsController.events.post);
 router.get('/eventDetails/:eventID', eventsController.eventDetails.get);
 
@@ -19,13 +17,13 @@ router.get('/eventDetails/:eventID', eventsController.eventDetails.get);
 // router.post('/guests', guestsController.post);
 // router.delete('/guests', guestsController.delete);
 
+// router.get('/items/:eventID', itemsController.get);
+// router.post('/items', itemsController.post);
+// router.delete('/items/:itemID', itemsController.delete);
+// router.put('/items/:itemID', itemsController.put);
+
+module.exports = router;
 
 // router.get('/baskets', basketsController.get);
 // router.post('/baskets', basketsController.post);
 // router.delete('/baskets', basketsController.delete);
-
-// router.get('/items', itemsController.get);
-// router.post('/items', itemsController.post);
-// router.delete('/items', itemsController.delete);
-
-module.exports = router;
