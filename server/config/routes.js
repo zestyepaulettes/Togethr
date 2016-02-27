@@ -5,6 +5,7 @@ var eventsController = require('../controllers/eventsController');
 // var setsController = require('');
 var itemsController = require('../controllers/itemsController');
 
+
 // router.get('/users', usersController.getAll);
 // router.post('/users', usersController.addOne);
 
@@ -17,6 +18,7 @@ router.get('/eventDetails/:eventID', eventsController.eventDetails.get);
 // router.get('/guests', guestsController.get);
 // router.post('/guests', guestsController.post);
 // router.delete('/guests', guestsController.delete);
+
 
 // router.get('/baskets', basketsController.get);
 // router.post('/baskets', basketsController.post);
