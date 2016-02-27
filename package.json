@@ -18,7 +18,6 @@
     "url": "https://github.com/CantillatingZygote/beer-and-chip/issues"
   },
   "scripts": {
-    "postinstall": "bower install",
     "createDB": "mysql -u root -p < server/createDB.sql",
     "openDB": "mysql -u root -p beerandchip",
     "start": "nodemon server/server.js",
@@ -26,13 +25,22 @@
   },
   "devDependencies": {
     "chai": "^3.4.1",
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^1.0.0",
+    "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-uglify": "^0.11.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-git": "^0.3.7",
+    "grunt-nodemon": "^0.4.1",
+    "grunt-shell": "^1.1.2",
+    "karma": "^0.13.15",
     "mocha": "^2.3.4",
-    "sinon": "^1.17.2",
-    "karma": "^0.13.15"
+    "sinon": "^1.17.2"
   },
   "dependencies": {
     "body-parser": "^1.4.3",
     "bookshelf": "^0.9.1",
+    "bower": "^1.7.7",
     "cookie-parser": "^1.4.1",
     "express": "^4.4.5",
     "jwt-simple": "^0.4.1",
@@ -40,6 +48,7 @@
     "morgan": "^1.1.1",
     "mysql": "^2.10.2",
     "nodemailer": "^2.2.1",
+    "nodemon": "^1.9.1",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
     "passport-local": "^1.0.0",
