@@ -1,14 +1,13 @@
 angular.module('eventDetails', ['eventList'])
 .controller('eventDetailsController', ['$scope', 'eventDetailsFactory','EventFactory', 'storeFactory', function($scope, eventDetailsFactory, EventFactory, storeFactory) {
   //this controller controls the page where the eventDetails will be displayed	
-  $scope.details = storeFactory.eventId;
-
+  $scope.details = {};
   //we fill in $scope.details with the event stored in 
   //the storeFactory factory and we then show it on the screen:
   var initializeDetails = function() {
     eventDetailsFactory.getEvents(storeFactory.eventId)
       .then(function(details) {
-      	$scope.details = details;
+      	$scope.details.data = details;
       })
       .catch(function(err) {
       	console.error("eventDetails", err)
@@ -23,7 +22,7 @@ angular.module('eventDetails', ['eventList'])
   var getEvents = function() {
     return $http({
       method: 'GET',
-      url: '/api/events/' + storeFactory.eventID
+      url: '/api/eventDetails/' + storeFactory.eventID
     })
     .then(function(resp) {
       return resp.data;
