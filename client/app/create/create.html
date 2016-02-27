@@ -22,51 +22,57 @@
 </style>
   -->
 
-    <!-- Main -->
-      <section id="main" class="wrapper">
-        <div class="container">
+       <section id="banner" >
+        <h2>Beer or Chip</h2>
+        <p>everyone makes the party</p>
+
+      </section> 
+ 
+<!-- Main -->
+<section id="main" class="wrapper">
+  <div class="container">
 
         
 
 
-<header class="major">
-  <h2>Create Event</h2>
-  <p>Tell us about your event</p>
-</header>
+    <header class="major">
+      <h2>Create Event</h2>
+      <p>Tell us about your event</p>
+    </header>
 
 
-<div>
-  <form novalidate class="event-form">
-    <label>Event Name:</label> 
-    <input type="text" ng-model="event.name" />
-    <br />
+    <div>
+      <form novalidate class="event-form">
+        <label>Event Name:</label> 
+        <input type="text" ng-model="event.name" />
+        <br />
 
-    <label>Event Date:</label> 
-    <input type="date" id="exampleInput" name="input" ng-model="event.date"
-       placeholder="yyyy-MM-dd" min="2016-01-01" max="2016-12-31" required />
-    <br />
+        <label>Event Date:</label> 
+        <input type="date" id="exampleInput" name="input" ng-model="event.date"
+           placeholder="yyyy-MM-dd" min="2016-01-01" max="2016-12-31" required />
+        <br />
 
-    <label>Event Location:</label> 
-    <input type="text" ng-model="event.location" />
-    <br />
+        <label>Event Location:</label> 
+        <input type="text" ng-model="event.location" />
+        <br />
 
-    <label>Guests:</label> 
-    <textarea ng-model="hold.guests" ng-list="&#10;" ng-trim="false"></textarea>
-    <br />
+        <label>Guests:</label> 
+        <textarea ng-model="hold.guests" ng-list="&#10;" ng-trim="false"></textarea>
+        <br />
 
-    <label>Stuff you need for your party:</label>
-    <textarea ng-model="hold.items" ng-list="&#10;" ng-trim="false"></textarea><br />
+        <label>Stuff you need for your party:</label>
+        <textarea ng-model="hold.items" ng-list="&#10;" ng-trim="false"></textarea><br />
 
-    <input type="button" ng-click="reset()" value="Reset" />
-
-
-    <input type="submit" ng-click="update(event, hold)" value="Submit" />
+        <input type="button" ng-click="reset()" value="Reset" />
 
 
-  </form>
-</div>
+        <input type="submit" ng-click="update(event, hold)" value="Submit" />
+
+
+      </form>
+    </div>
 
 
 
-        </div>
-      </section> 
+  </div>
+</section> 
