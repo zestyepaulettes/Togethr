@@ -19,6 +19,7 @@ var Event = db.define('Event', {
 });
 
 var Guest = db.define('Guest', {
+  email: Sequelize.STRING,
   name: Sequelize.STRING
 });
 
