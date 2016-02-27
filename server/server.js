@@ -9,7 +9,7 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 var jwt = require('jwt-simple');
 var cookieParser = require('cookie-parser');
-var nodemailer = require('nodemailer')
+var nodemailer = require('nodemailer');
 
 //router
 var router = require('./config/routes.js');
@@ -17,7 +17,10 @@ var router = require('./config/routes.js');
 var app = express();
 
 //set port and listen
-app.set('port', 3000);
+var port = process.env.PORT || 3000;
+app.listen(port, function(){
+  console.log('Listening on port:'+port);
+});
 
 //logging and parsing
 app.use(morgan('dev'));
