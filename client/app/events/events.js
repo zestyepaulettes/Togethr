@@ -8,7 +8,6 @@ angular.module('eventList', [])
   	EventFactory.getEvents()
   	  .then(function (events) {
   	  	$scope.data.events = events;
-        console.log("WORKS");
   	  })
   	  .catch(function(error) {
   	  	console.error("EventsController", error);
@@ -19,7 +18,7 @@ angular.module('eventList', [])
   //event this function is fired:
   $scope.getEvent = function( event ) {
     console.log("EVENT", event);
-    storeFactory.eventID = event.eventID;
+    storeFactory.eventID = event.id;
     $location.path('/eventdetails');
   }
 
