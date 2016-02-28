@@ -10,7 +10,8 @@ angular.module('eventDetails', ['eventList'])
       .then(function(details) {
       	
         //add a bringStuff category for each guest
-        //which puts in array what they are bringing
+        //which puts in an object what each person 
+        //is assigned to bringing. 
         for (var i = 0; i < details.guests.length; i++){
           details.guests[i].bringStuff = {};
         }
