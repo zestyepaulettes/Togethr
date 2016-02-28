@@ -1,15 +1,50 @@
+<section id="banner" >
+	<h2>Beer or Chip</h2>
+	<p>everyone makes the party</p>
+</section> 
+
 <section id="main" class="wrapper">
   <div class="container">
 
-<div>
-  {{details.data.event.name}} <br>
-  {{details.data.event.location}} <br>
-  {{details.data.event.date}} <br>
-  <div ng-repeat="name in details.data.guests"> 
+    <header class="major">
+      <h2>Event Details</h2>
+    </header>
+
+	<div>
+		<div>		
+		  <h4>{{details.data.event.name}}</h4> 
+		  <h5>{{details.data.event.location}}</h5>
+		  <h5>{{details.data.event.date}}</h5> 
+		</div>
+	<div class="table-wrapper">
+		<table class="alt">
+			<thead>
+				<tr>
+					<th>Guest Name</th>
+					<th>Items to bring</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="guest in details.data.guests">
+					<td >
+						{{guest.name}}
+					</td>
+					<td ng-repeat="stuff in guest.bringStuff">
+						{{stuff}}
+					</td>
+				</tr>
+			</tbody>
+
+
+	</div>
+
+  </div>
+</section> 
+
+
+<!--   <div ng-repeat="name in details.data.guests"> 
     <div>{{name.name}}</div>
   </div>
   <div ng-repeat="item in details.data.items"> 
     <div>{{item.name}}</div>
-  </div>
-</div>
-
+  </div> -->
