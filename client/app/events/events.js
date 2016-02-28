@@ -1,5 +1,5 @@
 angular.module('eventList', [])
-.controller('EventsController', ['$scope', 'EventFactory', '$location','storeFactory','$cookies', function($scope, EventFactory, $location, storeFactory, $cookies) {
+.controller('EventsController', ['$scope', 'EventFactory', '$location','$cookies', function($scope, EventFactory, $location, $cookies) {
   //this is where we will store our data after our initializeEvents
   //api request, $scope.data: 
   $scope.data = { };
@@ -18,8 +18,9 @@ angular.module('eventList', [])
   //event this function is fired:
   $scope.getEvent = function( event ) {
     console.log("EVENT", event);
-    storeFactory.eventID = event.id;
-    $location.path('/eventdetails');
+    // storeFactory.eventID = event.id;
+    $cookies.put('eventID', event.id);
+    $location.path('/eventdetails/' + event.id);
   }
 
   //when the page is requested by the user, the initialize
@@ -41,10 +42,4 @@ angular.module('eventList', [])
   return {
     getEvents: getEvents
   }
-})
-.factory('storeFactory', function() {
-  var eventID = '';
-  return {
-    eventId: eventID
-  }
-})
+});

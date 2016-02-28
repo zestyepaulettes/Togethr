@@ -16,13 +16,12 @@ angular.module('myApp', [
     templateUrl: 'app/eventdetails/eventdetails.html',
     controller: 'eventDetailsController'
   });
+  $routeProvider.when('/eventdetails/:eventID', {
+    templateUrl: 'app/eventdetails/eventdetails.html',
+    controller: 'eventDetailsController'
+  })
   $routeProvider.when('/signin',{
     templateUrl: 'app/auth/signin.html',
-    controller: 'AuthController'
-  });
-  $routeProvider.when('/signout',{
-    templateUrl: 'app/auth/signout.html',
-    //WARNING: THIS HAS THE SAME CONTROLLER AS Signin
     controller: 'AuthController'
   });
   $routeProvider.otherwise({redirectTo: '/'});
