@@ -20,6 +20,9 @@ angular.module('auth', ['ngCookies'])
     $cookies.remove('facebookID');
     $cookies.remove('displayName');
     $cookies.remove('email');
+    if ($cookies.get('eventID')) {
+      $cookies.remove('eventID');
+    }
 
     $location.path('/signin');
   };
