@@ -22,9 +22,12 @@ angular.module('createEvent', [])
         name: hold.items[j]
       })
     }
+
+
     $scope.data.event = event;
     $scope.data.guests = guestArray;
     $scope.data.items = itemArray;
+
     // $scope.master = angular.copy(event);
     CreateFactory.addEvent($scope.data)
     .then(function () {

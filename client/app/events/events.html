@@ -1,8 +1,61 @@
-<div>
-  <ul>
-  	<li ng-repeat="event in data.events">
+       <section id="banner" >
+        <h2>Beer or Chip</h2>
+        <p>everyone makes the party</p>
 
-  		<a href='' ng-click='getEvent(event)'> {{event.name}} -- {{event.date }} </a>
-  	</li>
-  </ul>
-</div>
+      </section> 
+
+
+
+<section id="main" class="wrapper">
+  <div class="container">
+
+    <header class="major">
+      <h2>Your Upcoming Events</h2>
+    </header>
+
+
+	<div class="table-wrapper">
+		<table class="alt">
+			<thead>
+				
+			</thead>
+			<tbody>
+				<tr ng-repeat="event in data.events">
+					<td >
+						<h1>
+						<a href='' ng-click='getEvent(event)'> {{event.name}} -- {{event.date }} </a>
+						</h1>
+					</td>
+				</tr>
+			</tbody>
+
+
+
+	
+
+		</table>
+
+	 </div>
+  </div>
+</section> 
+
+
+<!-- Back up: 
+
+	<div>
+	  <ul>
+	  	<li ng-repeat="event in data.events">
+
+	  		<a href='' ng-click='getEvent(event)'> {{event.name}} -- {{event.date }} </a>
+	  	</li>
+	  </ul>
+	</div>
+
+  </div>
+
+
+
+
+
+
+-->
