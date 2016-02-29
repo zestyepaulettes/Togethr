@@ -39,12 +39,31 @@
         <br />
 
         <label>Guests:</label> 
-        <textarea ng-model="hold.guests" ng-list="&#10;" ng-trim="false"></textarea>
+        <!-- <textarea ng-model="hold.guests" ng-list="&#10;" ng-trim="false"></textarea> -->
+
+        <div ng-repeat="guest in guests">
+          <label>
+            <span style="display:inline-block"><input type="text" ng-model="guest.name" placeholder="Enter Name"></span>
+            <span style="display:inline-block"><input type="text" ng-model="guest.email" placeholder="Enter Email"></span>
+            <input type="button" value="X" ng-click="removeGuest($index)">
+          </label>
+        </div>
+        
+        <button ng-click="addGuest()">Add another guest</button>
         <br />
 
 
         <label>Stuff you need for your party:</label>
-        <textarea ng-model="hold.items" ng-list="&#10;" ng-trim="false"></textarea><br />
+        <!-- <textarea ng-model="hold.items" ng-list="&#10;" ng-trim="false"></textarea> -->
+        <div ng-repeat="item in items">
+          <label>
+            <input type="text" ng-model="item.name" placeholder="Enter Item">
+            <button type="button" ng-click="removeGuest()">X</button>
+          </label>
+        </div>
+        <button ng-click="addItem()">Add another item</button>
+        <br />
+        <br />
 
         <input type="button" ng-click="reset()" value="Reset" />
 
@@ -54,8 +73,6 @@
 
       </form>
     </div>
-
-
 
   </div>
 </section> 
