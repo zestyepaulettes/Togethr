@@ -39,12 +39,33 @@
         <br />
 
         <label>Guests:</label> 
-        <textarea ng-model="hold.guests" ng-list="&#10;" ng-trim="false"></textarea>
+        <!-- <textarea ng-model="hold.guests" ng-list="&#10;" ng-trim="false"></textarea> -->
+
+        <div ng-repeat="guest in guests">
+          <label>
+            <span style="display:inline-block; width:45%;"><input type="text" ng-model="guest.name" placeholder="Enter Name..."></span>
+            <span style="display:inline-block; width: 45%;"><input type="text" ng-model="guest.email" placeholder="Enter Email..."></span>
+            <input type="button" value="X" ng-click="removeGuest($index)" class="button special small">
+          </label>
+        </div>
+        <input ng-click="addGuest()" type="button" class="button alt small" value="Add Guest" style="width:10%">
+        <!-- <button ng-click="addGuest()">Add another guest</button> -->
+        <br />
         <br />
 
 
         <label>Stuff you need for your party:</label>
-        <textarea ng-model="hold.items" ng-list="&#10;" ng-trim="false"></textarea><br />
+        <!-- <textarea ng-model="hold.items" ng-list="&#10;" ng-trim="false"></textarea> -->
+        <div ng-repeat="item in items">
+          <label>
+            <span style="display:inline-block; width:90%"><input type="text" ng-model="item.name" placeholder="Enter Item..."></span>
+            <input type="button" value="X" ng-click="removeItem($index)" class="button special small" >
+          </label>
+        </div>
+        <!-- <button ng-click="addItem()">Add another item</button> -->
+        <input value="Add Item" ng-click="addItem()" class="button alt small" style="width:10%">
+        <br />
+        <br />
 
         <input type="button" ng-click="reset()" value="Reset" />
 
@@ -54,8 +75,6 @@
 
       </form>
     </div>
-
-
 
   </div>
 </section> 

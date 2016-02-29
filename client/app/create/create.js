@@ -6,21 +6,41 @@ angular.module('createEvent', [])
   $scope.hold = {};
   $scope.data = {};
 
+  $scope.guests = [{}];
+  $scope.items = [{}];
+
+  $scope.addGuest = function() {
+    $scope.guests.push({});
+  };
+
+  $scope.removeGuest = function(guest) {
+    $scope.guests.splice(guest, 1);
+  };
+
+  $scope.addItem = function() {
+    $scope.items.push({});
+  };
+
+  $scope.removeItem = function(item) {
+    $scope.items.splice(item, 1);
+  };
+
+
 //Update function is invoked in submit button in create.html
   $scope.update = function(event, hold) {
     $scope.data.userID = $cookies.get('userID');
     var guestArray = [];
-    for (var i = 0; i < hold.guests.length; i++) {
-      guestArray.push({
-        name: hold.guests[i]
-      })
+    for (var i = 0; i < $scope.guests.length; i++) {
+      if($scope.guests[i].name && $scope.guests[i].email) {
+        guestArray.push($scope.guests[i]);
+      }
     }
     var itemArray = [];
-    console.log("ITEMS", hold);
-    for (var j=0; j < hold.items.length; j++) {
-      itemArray.push({
-        name: hold.items[j]
-      })
+    // console.log("ITEMS", hold);
+    for (var j=0; j < $scope.items.length; j++) {
+      if($scope.items[j] && $scope.items[j].name) {
+        itemArray.push($scope.items[j]);
+      }
     }
 
 
@@ -38,6 +58,8 @@ angular.module('createEvent', [])
   $scope.reset = function() {
     $scope.event = {};
     $scope.hold = {};
+    $scope.guests = [{}];
+    $scope.items = [{}];
     $scope.data = {};
   };
 
