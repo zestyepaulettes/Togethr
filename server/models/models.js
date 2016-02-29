@@ -23,10 +23,6 @@ var Guest = db.define('Guest', {
   name: Sequelize.STRING
 });
 
-var Basket = db.define('Basket', {
-  name: Sequelize.STRING
-});
-
 var Item = db.define('Item', {
   name: Sequelize.STRING,
   category: Sequelize.STRING,
@@ -44,14 +40,8 @@ Guest.belongsTo(Event);
 Event.hasMany(Item);
 Item.belongsTo(Event);
 
-Event.hasMany(Basket);
-Basket.belongsTo(Event);
-
-Guest.hasOne(Basket);
-Basket.belongsTo(Guest);
-
-Basket.hasMany(Item);
-Item.belongsTo(Basket);
+Guest.hasMany(Item);
+Item.belongsTo(Guest);
 
 //create tables in MySql if they don't already exist
 User.sync()
@@ -60,10 +50,7 @@ User.sync()
       .then(function() {
         Guest.sync()
           .then(function() {
-            Basket.sync()
-              .then(function() {
-                Item.sync();
-              });
+            Item.sync();
           });
       });
   });
@@ -73,6 +60,5 @@ module.exports = {
   User: User,
   Event: Event,
   Guest: Guest,
-  Basket: Basket,
   Item: Item
 };
