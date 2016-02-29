@@ -12,10 +12,6 @@ angular.module('myApp', [
     templateUrl: 'app/events/events.html',
     controller: 'EventsController'
   });
-  $routeProvider.when('/eventdetails', {
-    templateUrl: 'app/eventdetails/eventdetails.html',
-    controller: 'eventDetailsController'
-  });
   $routeProvider.when('/eventdetails/:eventID', {
     templateUrl: 'app/eventdetails/eventdetails.html',
     controller: 'eventDetailsController'
