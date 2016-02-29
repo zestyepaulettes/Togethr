@@ -16,13 +16,10 @@ angular.module('auth', ['ngCookies'])
   };
 
   var signout = function () {
-    $cookies.remove('userID');
-    $cookies.remove('facebookID');
-    $cookies.remove('displayName');
-    $cookies.remove('email');
-    if ($cookies.get('eventID')) {
-      $cookies.remove('eventID');
-    }
+    var cookies = $cookies.getAll();
+    angular.forEach(cookies, function (v, k) {
+        $cookies.remove(k);
+    });
 
     $location.path('/signin');
   };
