@@ -9,41 +9,43 @@
     <header class="major">
       <h2>Event Details</h2>
     </header>
+  	<div>
+  		<div>		
+  		  <h4>{{details.data.event.name}}</h4> 
+  		  <h5>{{details.data.event.location}}</h5>
+  		  <h5>{{details.data.event.date| date: 'fullDate'}}</h5> 
+  		</div>
+    	<div class="table-wrapper">
+    		<table class="alt">
+    			<thead>
+    				<tr>
+    					<th>Guest Name</th>
+    					<th>Items to bring</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				<tr ng-repeat="guest in details.data.guests">
+    					<td >
+    						{{guest.name}}
+    					</td>
 
-	<div>
-		<div>		
-		  <h4>{{details.data.event.name}}</h4> 
-		  <h5>{{details.data.event.location}}</h5>
-		  <h5>{{details.data.event.date | date: 'fullDate'}}</h5> 
-		</div>
-	<div class="table-wrapper">
-		<table class="alt">
-			<thead>
-				<tr>
-					<th>Guest Name</th>
-					<th>Items to bring</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="guest in details.data.guests">
-					<td >
-						{{guest.name}}
-					</td>
 <!-- the line below was if you wanted to send each item as an individual column. This is if you want to display each item as a nice table 
 where everything has it's own box
- -->
-<!-- 					<td ng-repeat="stuff in guest.bringStuff">
-						{{stuff}}
-					    </td> -->
-					<td>
-						{{guest.bringStuffString}}
-					</td>
-				</tr>
-			</tbody>
-
-
-	</div>
-
+--------------------------------------------------------
+    					<td ng-repeat="stuff in guest.bringStuff">
+    						{{stuff}}
+    					</td> -->
+              <td>
+                {{guest.bringStuffString}}
+              </td>
+    				</tr>
+    			</tbody>
+        </table>
+      </div>
+    </div>    
+    <button type="button" class="nodemailer" ng-click="email()">
+      Send Event Details to Guests
+    </button> 
   </div>
 </section> 
 
