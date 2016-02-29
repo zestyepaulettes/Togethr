@@ -1,5 +1,6 @@
 angular.module('eventDetails', ['eventList'])
-.controller('eventDetailsController', ['$scope', '$log' ,'eventDetailsFactory','EventFactory', '$cookies', '$routeParams', function($scope, $log, eventDetailsFactory, EventFactory, $cookies, $routeParams) {
+.controller('eventDetailsController', ['$scope', '$log', '$filter','eventDetailsFactory','EventFactory', '$cookies', '$routeParams', function($scope, $log, $filter, eventDetailsFactory, EventFactory, $cookies, $routeParams) {
+
   //this controller controls the page where the eventDetails will be displayed	
   $scope.details = {};
   $scope.parsed; 
@@ -15,14 +16,19 @@ angular.module('eventDetails', ['eventList'])
         //is assigned to bringing. 
         for (var i = 0; i < details.guests.length; i++){
           details.guests[i].bringStuff = {};
+          details.guests[i].bringStuffString = "";
         }
 
         for (var i = 0; i < details.guests.length; i++){
           for (var j = 0; j < details.items.length; j++){
             if (details.guests[i].id === details.items[j].BasketId){
               details.guests[i].bringStuff[details.items[j].name] = details.items[j].name;
+              details.guests[i].bringStuffString += details.items[j].name + "," + " ";
             }
           }
+          //slice off the last comma of the string
+          var len = details.guests[i].bringStuffString.length;
+          details.guests[i].bringStuffString =details.guests[i].bringStuffString.slice(0, len-2);  
         }        
         $scope.details.data = details;
       })

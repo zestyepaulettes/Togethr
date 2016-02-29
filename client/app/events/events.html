@@ -23,7 +23,7 @@
 				<tr ng-repeat="event in data.events">
 					<td >
 						<h1>
-						<a href='' ng-click='getEvent(event)'> {{event.name}} -- {{event.date }} </a>
+						<a href='' ng-click='getEvent(event)'> {{event.name}} -- {{event.date | date: 'fullDate'}} </a>
 						</h1>
 					</td>
 				</tr>
@@ -40,22 +40,4 @@
 </section> 
 
 
-<!-- Back up: 
 
-	<div>
-	  <ul>
-	  	<li ng-repeat="event in data.events">
-
-	  		<a href='' ng-click='getEvent(event)'> {{event.name}} -- {{event.date }} </a>
-	  	</li>
-	  </ul>
-	</div>
-
-  </div>
-
-
-
-
-
-
--->
