@@ -9,9 +9,24 @@ module.exports = {
   },
 
   post: function(req, res) {
-    var guest = req.body.guest;
+    var guest = req.body;
     GuestQuery.addOne(guest, function(newGuest) {
       res.json(newGuest);
+    });
+  },
+
+  put: function(req, res) {
+    var guestID = req.params.guestID;
+    var newAttrs = req.body;
+    GuestQuery.updateOne(guestID, newAttrs, function() {
+      res.send();
+    })
+  },
+
+  delete: function(req, res) {
+    var guestID = req.params.guestID; 
+    GuestQuery.deleteOne(guestID, function(){
+      res.send();
     });
   }
 }

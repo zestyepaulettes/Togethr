@@ -2,6 +2,7 @@ var EventQuery = require('../queries/eventQueries');
 var GuestQuery = require('../queries/guestQueries');
 var ItemQuery = require('../queries/itemQueries');
 var BasketQuery = require('../queries/basketQueries');
+var nodemailer = require('../config/nodemailer');
 
 module.exports = {
   events: {
