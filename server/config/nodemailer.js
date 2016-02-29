@@ -1,27 +1,18 @@
-var nodemailer = require('../server');
+var nodemailer = require('nodemailer');
 
-
-var transporter = nodemailer.createTransport({
-  service: 'Gmail',
-  auth: {
-    user: 'beerandchip@gmail.com',
-    pass: 'zygote123'
-  }
-});
-
-// setup e-mail data with unicode symbols
-var mailOptions = {
-    from: '"Cantillating Zygote 👥" <beerandchip@gmail.com>', // sender address
-    to: 'alexsu91@gmail.com, beerandchip@gmail.com', // list of receivers
-    subject: 'Hello ✔', // Subject line
-    text: 'Hello world 🐴', // plaintext body
-    html: '<b>Hello world 🐴</b>' // html body
-};
-
-// send mail with defined transport object
-transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        return console.log(error);
+exports.transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: 'beerandchip@gmail.com',
+      pass: 'zygote123'
     }
-    console.log('Message sent: ' + info.response);
-});
+  });
+
+exports.createMailOptions = function(receivers, eventDetailsURL) {
+  return {
+    from: '"BeerOrChip" <beerandchip@gmail.com>', // sender address
+    to: receivers, // list of receivers
+    subject: 'Event Information!', // Subject line
+    text: eventDetailsURL
+  }
+};

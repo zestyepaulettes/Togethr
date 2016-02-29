@@ -11,8 +11,7 @@ module.exports = {
 	    });
   },
 
-  addOne: function(eventID, guest, callback) {
-	  guest.EventId = eventID;
+  addOne: function(guest, callback) {
     Guest
 	    .create(guest)
 	    .then(function(newGuest) {

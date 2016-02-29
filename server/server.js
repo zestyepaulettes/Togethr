@@ -9,7 +9,6 @@ var FacebookStrategy = require('passport-facebook').Strategy;
 var LocalStrategy = require('passport-local').Strategy;
 var jwt = require('jwt-simple');
 var cookieParser = require('cookie-parser');
-var nodemailer = require('nodemailer');
 
 //router
 var router = require('./config/routes.js');
@@ -87,15 +86,11 @@ app.get('/auth/facebook/callback',
     res.redirect('/');
   });
 
-
-
-
-
 //if we are being rung directly, run the server
 if(!module.parent) {
   app.listen(app.get('port'));
   console.log('Listening on', app.get('port'));
 }
 
+
 module.exports.app = app;
-module.exports.nodemailer = nodemailer;
