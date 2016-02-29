@@ -1,6 +1,6 @@
 // Require sql models
 var Item = require('../models/models.js').Item;
-var Basket = require('../models/models.js').Basket;
+var Guest = require('../models/models.js').Guest;
 
 module.exports = {
 	//get all items for an event 
@@ -25,17 +25,17 @@ module.exports = {
 	},
 	//add multiple items to one event
 	addAll: function(eventID, items, callback) {
-		Basket
+		Guest
 			.findAll({
 				where: {EventId: eventID}
 			})
-			.then(function(baskets) {
-				// Distribute items among baskets
-				if (baskets.length) {
+			.then(function(guests) {
+				// Distribute items among guests
+				if (guest.length) {
 					for (var i=0, j = 0; i < items.length; i++, j++) {
-						j = (j === baskets.length) ? 0 : j;
+						j = (j === guests.length) ? 0 : j;
 						items[i].EventId = eventID;
-						items[i].BasketId = baskets[j].id;
+						items[i].GuestId = guests[j].id;
 					}
 				}
 				Item
