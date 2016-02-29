@@ -1,28 +1,32 @@
-var ItemsQueries = require('../queries/itemQueries');
+var ItemQuery = require('../queries/itemQueries');
 
 module.exports = {
-
-	getAll: function(req, res){
+	get: function(req, res) {
 		var eventID = req.params.eventID; 
-		ItemsQueries.getAllItems(eventID, function(items){
+		ItemQuery.getAll(eventID, function(items){
 			res.json(items);
 		});
 	},
 
-	addOne: function(req, res){
-		var item = req.body.item; 
-		ItemsQueries.addOneItem(item, function(newItem){
+	post: function(req, res) {
+		var item = req.body;
+		ItemQuery.addOne(item, function(newItem){
 			res.json(newItem); 
 		});
-
 	},
 
-	addAll: function(req, res){
-		var items= req.body.items; 
-		ItemsQueries.addAllItems(items, function(newItems){
-			res.json(newItems);
+	put: function(req, res) {
+		var itemID = req.params.itemID;
+		var newAttrs = req.body;
+		ItemQuery.updateOne(itemID, newAttrs, function() {
+			res.send();
+		})
+	},
+
+	delete: function(req, res) {
+		var itemID = req.params.itemID; 
+		ItemQuery.deleteOne(itemID, function(){
+			res.send();
 		});
 	}
-
-
-};
+}

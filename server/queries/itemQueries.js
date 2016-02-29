@@ -1,11 +1,9 @@
-//we are going to have to require the sequelize models file
-//specifically the items table 
+// Require sql models
 var Item = require('../models/models.js').Item;
 var Basket = require('../models/models.js').Basket;
 
-
 module.exports = {
-	//get all items from the database 
+	//get all items for an event 
 	getAll: function(eventID, callback) {
 		Item
 			.findAll({
@@ -16,7 +14,7 @@ module.exports = {
 			});
 
 	},
-	//add one item to database 
+	//add one item
 	addOne: function(item, callback) {
 		Item
 			.create(item)
@@ -25,7 +23,7 @@ module.exports = {
 			});
 		
 	},
-	//add all items to database 
+	//add multiple items to one event
 	addAll: function(eventID, items, callback) {
 		Basket
 			.findAll({
@@ -34,12 +32,10 @@ module.exports = {
 			.then(function(baskets) {
 				// Distribute items among baskets
 				if (baskets.length) {
-					var j = 0;
-					for (var i=0; i < items.length; i++) {
+					for (var i=0, j = 0; i < items.length; i++, j++) {
 						j = (j === baskets.length) ? 0 : j;
 						items[i].EventId = eventID;
 						items[i].BasketId = baskets[j].id;
-						j++;
 					}
 				}
 				Item
@@ -48,5 +44,27 @@ module.exports = {
 						callback(newItems);
 					});
 			});
+	},
+
+	// update attributes of one item
+	updateOne: function(itemID, newAttrs, callback) {
+		Item
+			.update(newAttrs, {
+				where: {id: itemID}
+			})
+			.then(function() {
+				callback();
+			})
+	},
+
+	// delete one item
+	deleteOne: function(itemID, callback) {
+		Item
+			.destroy({
+				where: {id: itemID}
+			})
+			.then(function() {
+				callback();
+			})
 	}
 };
