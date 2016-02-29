@@ -1056,6 +1056,19 @@
 			margin-bottom: 1.75em;
 		}
 
+
+/* Banner for nav bar on non-landing pages */
+/*	#banner2 {
+		background-image: url(../images/dark_tint.png), url(../images/navBackground.png);
+		background-position: center center;
+		background-size: cover;
+		color: #ffffff;
+		padding: 14em 0em 14em;
+		text-align: center;
+	}*/
+
+
+
 /* Wrapper */
 
 	.wrapper {
