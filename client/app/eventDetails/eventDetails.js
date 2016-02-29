@@ -1,13 +1,11 @@
 angular.module('eventDetails', ['eventList'])
-.controller('eventDetailsController', ['$scope', '$log', '$filter','eventDetailsFactory','EventFactory', '$cookies', '$routeParams', function($scope, $log, $filter, eventDetailsFactory, EventFactory, $cookies, $routeParams) {
-
+.controller('eventDetailsController', ['$scope', '$http', '$filter', '$log' ,'eventDetailsFactory','EventFactory', '$cookies', '$routeParams', function($scope, $http, $filter, $log, eventDetailsFactory, EventFactory, $cookies, $routeParams) {
   //this controller controls the page where the eventDetails will be displayed	
   $scope.details = {};
   $scope.parsed; 
   //we fill in $scope.details with the event stored in 
   //the storeFactory factory and we then show it on the screen:
   var initializeDetails = function() {
-    console.log($routeParams,'<-----')
     eventDetailsFactory.getEvents($routeParams.eventID)
       .then(function(details) {
       	
@@ -35,7 +33,14 @@ angular.module('eventDetails', ['eventList'])
       .catch(function(err) {
       	console.error("eventDetails", err)
       })
-  	
+  }
+
+  $scope.email = function() {
+    var eventID = $cookies.get("eventID")
+    return $http({
+      method: 'GET',
+      url: '/api/email/' + eventID
+    });
   }
 
   initializeDetails();
@@ -50,8 +55,9 @@ angular.module('eventDetails', ['eventList'])
     .then(function(resp) {
       return resp.data;
     })
-  }
+  };
+
   return {
-    getEvents: getEvents
+    getEvents: getEvents,
   }
 })
