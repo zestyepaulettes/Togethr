@@ -1,12 +1,13 @@
 angular.module('eventDetails', ['eventList'])
-.controller('eventDetailsController', ['$scope', '$log' ,'eventDetailsFactory','EventFactory', '$cookies', function($scope, $log, eventDetailsFactory, EventFactory, $cookies) {
+.controller('eventDetailsController', ['$scope', '$log' ,'eventDetailsFactory','EventFactory', '$cookies', '$routeParams', function($scope, $log, eventDetailsFactory, EventFactory, $cookies, $routeParams) {
   //this controller controls the page where the eventDetails will be displayed	
   $scope.details = {};
   $scope.parsed; 
   //we fill in $scope.details with the event stored in 
   //the storeFactory factory and we then show it on the screen:
   var initializeDetails = function() {
-    eventDetailsFactory.getEvents($cookies.get('eventID'))
+    console.log($routeParams,'<-----')
+    eventDetailsFactory.getEvents($routeParams.eventID)
       .then(function(details) {
       	
         //add a bringStuff category for each guest
@@ -35,10 +36,10 @@ angular.module('eventDetails', ['eventList'])
 
 }])
 .factory('eventDetailsFactory', function($http, $cookies) {
-  var getEvents = function() {
+  var getEvents = function(eventID) {
     return $http({
       method: 'GET',
-      url: '/api/eventDetails/' + $cookies.get('eventID')
+      url: '/api/eventDetails/' + eventID
     })
     .then(function(resp) {
       return resp.data;

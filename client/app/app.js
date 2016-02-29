@@ -35,13 +35,14 @@ angular.module('myApp', [
 
 .run(['$rootScope', '$location', 'AuthFactory', function($rootScope, $location, AuthFactory) {
   $rootScope.$on('$routeChangeStart', function(event, toState) {
-    if(!toState.$$route) {
-      $location.path('/')
+    console.log(toState)
+    if(toState.$$route && toState.$$route.originalPath === '/events' && !AuthFactory.isAuth()) {
+      $location.path('/signin');
+    }
+    if(toState.$$route && toState.$$route.originalPath === '/' && !AuthFactory.isAuth()) {
+      $location.path('/signin');
     }
     if(toState.$$route && toState.$$route.originalPath === '/signin') {
-      $location.path('/signin');
-    } else if (!AuthFactory.isAuth()) {
-      event.preventDefault();
       $location.path('/signin');
     }
   });
