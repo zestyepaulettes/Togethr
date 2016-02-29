@@ -21,6 +21,10 @@ angular.module('createEvent', [])
     $scope.items.push({});
   };
 
+  $scope.removeItem = function(item) {
+    $scope.items.splice(item, 1);
+  };
+
 
 //Update function is invoked in submit button in create.html
   $scope.update = function(event, hold) {

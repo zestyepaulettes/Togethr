@@ -894,8 +894,9 @@
 		input[type="reset"].special,
 		input[type="button"].special,
 		.button.special {
-			background-color: #383b43;
+			background-color: pink;
 			color: #ffffff !important;
+			font-weight: bold;
 		}
 
 			input[type="submit"].special:hover,
