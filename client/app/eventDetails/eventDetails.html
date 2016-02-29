@@ -14,7 +14,7 @@
 		<div>		
 		  <h4>{{details.data.event.name}}</h4> 
 		  <h5>{{details.data.event.location}}</h5>
-		  <h5>{{details.data.event.date}}</h5> 
+		  <h5>{{details.data.event.date | date: 'fullDate'}}</h5> 
 		</div>
 	<div class="table-wrapper">
 		<table class="alt">
@@ -29,8 +29,12 @@
 					<td >
 						{{guest.name}}
 					</td>
-					<td ng-repeat="stuff in guest.bringStuff">
+<!-- the line below was if you wanted to send each item as an individual column -->
+<!-- 					<td ng-repeat="stuff in guest.bringStuff">
 						{{stuff}}
+					    </td> -->
+					<td>
+						{{guest.bringStuffString}}
 					</td>
 				</tr>
 			</tbody>
