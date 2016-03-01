@@ -1,19 +1,21 @@
 angular.module('eventDetails', ['eventList'])
-.controller('eventDetailsController', ['$scope', '$http', '$filter', '$log' ,'eventDetailsFactory','EventFactory', '$cookies', '$routeParams', function($scope, $http, $filter, $log, eventDetailsFactory, EventFactory, $cookies, $routeParams) {
-  //this controller controls the page where the eventDetails will be displayed	
+.controller('eventDetailsController', ['$scope', '$http', '$filter', '$log' ,'eventDetailsFactory','EventFactory', '$cookies', '$routeParams', function($scope, $http, $filter, $log, eventDetailsFactory, EventFactory, $cookies, $routeParams) {	
+  $scope.newItem;
+  $scope.newGuest; 
+  $scope.newEmail; 
   $scope.models = {
     selected: null,
     guests: {}
   };
   var guests =  $scope.models.guests;
-  //we fill in $scope.details with the event stored in 
-  //the storeFactory factory and we then show it on the screen:
+
   var initializeDetails = function() {
     eventDetailsFactory.getEvents($routeParams.eventID)
       .then(function(details) {
       	
         var temp = {};
 
+        // Assign items to 
         for (var j = 0; j < details.items.length; j++) {
           var GuestId = details.items[j].GuestId;
           var item = details.items[j];
@@ -24,31 +26,11 @@ angular.module('eventDetails', ['eventList'])
           }
         }        
 
-        //add a bringStuff category for each guest
-        //which puts in an object what each person 
-        //is assigned to bringing. 
-
         for (var i = 0; i < details.guests.length; i++){
           var guestName = details.guests[i].name;
           var guestId = details.guests[i].id;
           guests[guestName + ' ' + guestId] = temp[guestId] ? temp[guestId] : [];
         }
-
-      //   for (var i = 0; i < details.guests.length; i++){
-      //     for (var j = 0; j < details.items.length; j++){
-      //       if (details.guests[i].id === details.items[j].BasketId){
-      //         details.guests[i].bringStuff[details.items[j].name] = details.items[j].name;
-      //         details.guests[i].bringStuffString += details.items[j].name + "," + " ";
-      //       }
-      //     }
-      //     //slice off the last comma of the string
-      //     var len = details.guests[i].bringStuffString.length;
-      //     details.guests[i].bringStuffString =details.guests[i].bringStuffString.slice(0, len-2);  
-      //   }        
-      //   $scope.details.data = details;
-      // })
-      // .catch(function(err) {
-      // 	console.error("eventDetails", err)
       })
   }
 
@@ -84,7 +66,53 @@ angular.module('eventDetails', ['eventList'])
     });
   }
 
+  //resets the forms:  
+  $scope.resetGuest = function() {
+    $scope.newGuest = "";
+    $scope.newEmail = "";
+  };
+
+  $scope.resetItem = function() {
+    $scope.newItem = "";
+  };
+
+  //this function is for the addd Item form 
+  $scope.addItemFunc = function(newItem){
+    //console.log("newItem", newItem);
+    var toPost = {
+      EventId: $cookies.get('eventID'),
+      name: newItem //this is coming from ng-model
+    };
+    return $http({
+      method: 'POST',
+      url: '/api/items',
+      data: toPost
+    }).then(function(){
+        $scope.resetItem();
+    });
+
+  };
+
+  //this function is for the add Guest form 
+  $scope.addGuestFunc = function(newGuest, newEmail){
+    console.log("newGuest", newGuest);
+    var toPost = {
+      EventId: $cookies.get('eventID'),
+      name: newGuest, //this is coming from ng-model
+      email: newEmail
+    };
+    return $http({
+      method: 'POST',
+      url: '/api/guests',
+      data: toPost
+    }).then(function(){
+
+        $scope.resetGuest(); 
+    });
+
+  };
   initializeDetails();
+  setInterval(initializeDetails, 5000)
 }])
 .factory('eventDetailsFactory', function($http, $cookies) {
   var getEvents = function(eventID) {
