@@ -6,7 +6,7 @@ module.exports = {
   get: function(req, res) {
     var eventID = req.params.eventID;
     var emails = '';
-    var url = "http://localhost:3000/#/eventdetails/" + eventID;
+    var url = "http://http://162.243.220.237:3000/#/eventdetails/" + eventID;
     
     // Get and format all guest emails for nodemailer
     GuestQuery.getAll(eventID, function(guests) {
