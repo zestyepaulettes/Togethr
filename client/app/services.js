@@ -76,3 +76,38 @@ angular.module('Services', [])
   }
 })
 
+.factory('CreateFactory', function($http, $cookies) {
+  //send a post request to server
+  var addEvent = function(event) {
+    console.log("EVENT", event);
+    return $http({
+      method: 'POST',
+      url: '/api/events',
+      data: event
+    });
+  }
+  return{
+    addEvent: addEvent
+  };
+})
+
+.factory('AuthFactory', function($http, $window, $location, $cookies) {
+  var isAuth = function () {
+    return !!$cookies.get('displayName');
+  };
+
+  var signout = function () {
+    var cookies = $cookies.getAll();
+    angular.forEach(cookies, function (v, k) {
+        $cookies.remove(k);
+    });
+
+    $location.path('/signin');
+  };
+
+  return {
+    isAuth: isAuth,
+    signout: signout
+  };
+});
+
