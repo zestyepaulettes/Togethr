@@ -31,6 +31,7 @@ angular.module('createEvent', [])
   };
 
   $scope.select = function($event, day){
+    console.log($event);
     console.log(day);
   };
 
