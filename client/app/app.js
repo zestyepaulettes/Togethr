@@ -5,7 +5,7 @@ angular.module('myApp', [
 ])
 .config(['$routeProvider', '$httpProvider',function($routeProvider, $httpProvider) {
   $routeProvider.when('/', {
-    templateUrl: '/app/create/create.html',
+    templateUrl: 'app/create/create.html',
     controller: 'CreateController'
   });
   $routeProvider.when('/events', {
@@ -13,9 +13,9 @@ angular.module('myApp', [
     controller: 'EventsController'
   });
   $routeProvider.when('/eventdetails/:eventID', {
-    templateUrl: 'app/eventdetails/eventdetails.html',
+    templateUrl: 'app/eventdetails/eventDetails.html',
     controller: 'eventDetailsController'
-  })
+  });
   $routeProvider.when('/signin',{
     templateUrl: 'app/auth/signin.html',
     controller: 'AuthController'
@@ -23,7 +23,7 @@ angular.module('myApp', [
   $routeProvider.otherwise({redirectTo: '/'});
 
 
-  //THis was in Fred's code, but we don't have tokens. 
+  //THis was in Fred's code, but we don't have tokens.
     // We add our $httpInterceptor into the array
     // of interceptors. Think of it like middleware for your ajax calls
     // $httpProvider.interceptors.push('AttachTokens');
