@@ -21,7 +21,7 @@ var app = express();
 //set port and listen
 var port = 3000;
 app.listen(port, function(){
-  console.log('Listening on port:'+ port);
+  console.log('Listening on port:' + port);
 });
 
 //logging and parsing
@@ -87,9 +87,9 @@ app.get('/auth/facebook/callback',
   });
 
 //if we are being rung directly, run the server
-if(!module.parent) {
-  app.listen(app.get('port'));
-  console.log('Listening on', app.get('port'));
-}
+// if(!module.parent) {
+//   app.listen(app.get('port'));
+//   console.log('Listening on', app.get('port'));
+// }
 
 module.exports.app = app;
