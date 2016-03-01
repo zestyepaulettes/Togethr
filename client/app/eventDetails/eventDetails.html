@@ -15,7 +15,9 @@
   		  <h5>{{details.data.event.location}}</h5>
   		  <h5>{{details.data.event.date| date: 'fullDate'}}</h5> 
   		</div>
-    	<div class="table-wrapper">
+    	
+      <!-- Drag-and-Drop Table -->
+      <div class="table-wrapper">
     		<div class="itemsTable row">
           <div ng-repeat="(guestInfo, list) in models.guests" class="col-md-6">
             <div class="panel panel-info">
@@ -40,36 +42,40 @@
           </div>
         </div>
       </div>
-    </div>   
-    <button type="button" class="nodemailer" ng-click="email()">
+
+    </div>
+
+    <div>
+      <h5>Forget anything?</h5>
+      <!-- add item field -->
+      <span style="display:inline-block">
+        <input type="text" ng-model="newItem" name="addItem" id="addItem" value="" placeholder="Enter Item" />
+      </span> 
+      <!-- add item button -->
+      <span class="button alt disabled" ng-click="addItemFunc(newItem)">
+        Add item
+      </span>
+
+      <!-- add guest field  -->
+      <span style="display:inline-block">
+        <input type="text"  ng-model="newGuest" name="addGuest" id="addGuest" value="" placeholder="Enter Guest" />
+      </span>
+      <span style="display:inline-block">
+        <input type="text"  ng-model="newEmail" name="addEmail" id="addEmail" value="" placeholder="Enter Email" />
+      </span>
+      
+
+      <!--add guest button  -->
+      <span class="button alt disabled" ng-click="addGuestFunc(newGuest, newEmail)">
+        Add guest
+      </span>
+    </div>
+
+    <br><br>
+
+    <!-- Send email button -->  
+    <button type="button" class="nodemailer button" ng-click="email()">
       Send Event Details to Guests
     </button>
   </div>
 </section> 
-
-
-        <!-- <table class="alt"> -->
-    			<!-- <thead>
-    				<tr>
-    					<th>Guest Name</th>
-    					<th>Items to bring</th>
-    				</tr>
-    			</thead>
-    			<tbody>
-    				<tr ng-repeat="guest in details.data.guests">
-    					<td >
-    						{{guest.name}}
-    					</td> -->
-
-<!-- the line below was if you wanted to send each item as an individual column. This is if you want to display each item as a nice table 
-where everything has it's own box
---------------------------------------------------------
-    					<td ng-repeat="stuff in guest.bringStuff">
-    						{{stuff}}
-    					</td> -->
-<!--               <td>
-                {{guest.bringStuffString}}
-              </td>
-    				</tr>
-    			</tbody> -->
-        <!-- </table> -->
