@@ -30,18 +30,4 @@ angular.module('eventList', [])
   //*@*@*@*WARNING NEED TO COMMENT THIS LINE AFTER DATABASE FUNCTIONS
   initializeEvents();
 
-}])
-.factory('EventFactory', function($http, $cookies) {
-	var getEvents = function() {
-    return $http({
-			method: 'GET',
-			url: '/api/events/' + $cookies.get('userID')
-		})
-		.then(function(resp) {
-			return resp.data;
-		})
-	}
-  return {
-    getEvents: getEvents
-  }
-});
+}]);
