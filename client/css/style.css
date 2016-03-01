@@ -1293,29 +1293,4 @@
 .itemsTable ul[dnd-list] li.selected {
     background-color: #dff0d8;
     color: #3c763d;
-
-.message {
-  margin: 20px;
-  color: green;
-  font-size: 30px;
-  font-weight: bold;
-}
-
-.fadein.ng-hide-remove,
-.fadeout.ng-hide-add {
-    -webkit-transition: 400ms ease-in-out all;
-    -moz-transition: 400ms ease-in-out all;
-    -o-transition: 400ms ease-in-out all;
-    transition: 400ms ease-in-out all;
-    display: block !important;
-}
-
-.fadein.ng-hide-remove,
-.fadeout.ng-hide-add.ng-hide-add-active {
-    opacity: 0;
-}
-
-.fadeout.ng-hide-add,
-.fadein.ng-hide-remove.ng-hide-remove-active {
-    opacity: 1;
 }
