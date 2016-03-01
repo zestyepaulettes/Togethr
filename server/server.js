@@ -53,7 +53,7 @@ var User = db.User;
 passport.use(new FacebookStrategy({
     clientID: keys.FB_APP_ID,
     clientSecret: keys.FB_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    callbackURL: "/auth/facebook/callback",
     profileFields: ['id', 'displayName','email', 'cover']
   },
   function(accessToken, refreshToken, profile, cb) {
