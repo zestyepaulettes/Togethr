@@ -14,17 +14,14 @@ angular.module('eventDetails', ['eventList'])
 
   // sends a POST request to insert a new item 
   $scope.addItemFunc = function(itemName){
+    //console.log('inside addItemFunc!');
     var newItem = {
       EventId: $cookies.get('eventID'),
       name: itemName // this is coming from ng-model
     };
-    return $http({
-      method: 'POST',
-      url: '/api/items',
-      data: newItem
-    }).then(function(){
-        $scope.resetField('newItem'); // reset text field
-    });
+  requestFactory.addItem(newItem).then(function(res) {
+    $scope.resetField('newItem'); // reset text field
+  });
 
   };
 
@@ -35,11 +32,7 @@ angular.module('eventDetails', ['eventList'])
       name: guestName, //this is coming from ng-model
       email: guestEmail
     };
-    return $http({
-      method: 'POST',
-      url: '/api/guests',
-      data: newGuest
-    }).then(function(){
+    requestFactory.addGuest(newGuest).then(function(res){
         $scope.resetField('guestName'); 
         $scope.resetField('guestEmail'); 
     });
@@ -124,40 +117,5 @@ angular.module('eventDetails', ['eventList'])
 
 /** INITIALIZE ON PAGE LOAD **/
   initializeDetails();
-}])
+}]);
 
-.factory('requestFactory', function($http, $cookies) {
-  var getEvents = function(eventID) {
-    return $http({
-      method: 'GET',
-      url: '/api/eventDetails/' + eventID
-    })
-    .then(function(res) {
-      return res.data;
-    })
-  };
-
-  var sendEmails = function(eventID) {
-    return $http({
-      method: 'GET',
-      url: '/api/email/' + eventID
-    });
-  };
-
-  var updateItem = function(item, guestId) {
-    return $http({
-      method: 'PUT',
-      url: '/api/items/' + item.id,
-      data: {GuestId: guestId}
-    })
-    .then(function() {
-      console.log("UPDATED DB");
-    })
-  };
-
-  return {
-    getEvents: getEvents,
-    sendEmails: sendEmails,
-    updateItem: updateItem
-  }
-})
