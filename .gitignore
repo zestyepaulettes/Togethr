@@ -2,4 +2,5 @@
 node_modules/
 client/lib
 server/keys.js
+client/dist
 
