@@ -16,8 +16,40 @@
   		  <h5>{{details.data.event.date| date: 'fullDate'}}</h5> 
   		</div>
     	<div class="table-wrapper">
-    		<table class="alt">
-    			<thead>
+    		<div class="itemsTable row">
+          <div ng-repeat="(guestInfo, list) in models.guests" class="col-md-6">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                  <h3 class="panel-title">{{getName(guestInfo)}}</h3>
+              </div>
+              <div class="panel-body" >
+                <ul dnd-list="list"
+                    dnd-drop="reassignItem(item, guestInfo)">
+                  <li ng-repeat="item in list"
+                      dnd-draggable="item"
+                      dnd-moved="list.splice($index, 1)"
+                      dnd-effect-allowed="move"
+                      dnd-selected="models.selected = item"
+                      ng-class="{'selected': models.selected === item}"
+                      >
+                      {{item.name}}
+                  </li>
+                </ul>
+              </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>   
+    <button type="button" class="nodemailer" ng-click="email()">
+      Send Event Details to Guests
+    </button>
+  </div>
+</section> 
+
+
+        <!-- <table class="alt"> -->
+    			<!-- <thead>
     				<tr>
     					<th>Guest Name</th>
     					<th>Items to bring</th>
@@ -27,7 +59,7 @@
     				<tr ng-repeat="guest in details.data.guests">
     					<td >
     						{{guest.name}}
-    					</td>
+    					</td> -->
 
 <!-- the line below was if you wanted to send each item as an individual column. This is if you want to display each item as a nice table 
 where everything has it's own box
@@ -35,18 +67,9 @@ where everything has it's own box
     					<td ng-repeat="stuff in guest.bringStuff">
     						{{stuff}}
     					</td> -->
-              <td>
+<!--               <td>
                 {{guest.bringStuffString}}
               </td>
     				</tr>
-    			</tbody>
-        </table>
-      </div>
-    </div>    
-    <button type="button" class="nodemailer" ng-click="email()">
-      Send Event Details to Guests
-    </button> 
-  </div>
-</section> 
-
-
+    			</tbody> -->
+        <!-- </table> -->

@@ -7,8 +7,8 @@ var itemsController = require('../controllers/itemsController');
 var nodemailerController = require('../controllers/nodemailerController'); 
 
 
-// router.get('/users', usersController.getAll);
-// router.post('/users', usersController.addOne);
+// router.get('/auth/facebook', usersController.getAll);
+// router.get('/auth/facebook/callback', usersController.addOne);
 
 router.get('/events/:userID', eventsController.events.get);
 router.post('/events', eventsController.events.post);
