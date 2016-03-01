@@ -53,7 +53,7 @@ var FACEBOOK_APP_SECRET = '6d6d7fe25752c6bb43490d4d915f42af';
 passport.use(new FacebookStrategy({
     clientID: FACEBOOK_APP_ID,
     clientSecret: FACEBOOK_APP_SECRET,
-    callbackURL: "http://localhost:3000/auth/facebook/callback",
+    callbackURL: "https://enigmatic-fjord-86696.herokuapp.com/auth/facebook/callback",
     profileFields: ['id', 'displayName','email', 'cover']
   },
   function(accessToken, refreshToken, profile, cb) {
