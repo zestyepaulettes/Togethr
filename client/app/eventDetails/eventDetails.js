@@ -1,5 +1,6 @@
-angular.module('eventDetails', ['eventList'])
-.controller('eventDetailsController', ['$scope', '$http', '$filter', '$log' ,'eventDetailsFactory','EventFactory', '$cookies', '$routeParams', function($scope, $http, $filter, $log, eventDetailsFactory, EventFactory, $cookies, $routeParams) {	
+
+angular.module('eventDetails', ['eventList', 'ngAnimate'])
+.controller('eventDetailsController', ['$scope', '$http', '$filter', '$log' ,'eventDetailsFactory','EventFactory', '$cookies', '$routeParams', '$timeout', function($scope, $http, $filter, $log, eventDetailsFactory, EventFactory, $cookies, $routeParams, $timeout) {	
   $scope.newItem;
   $scope.newGuest; 
   $scope.newEmail; 
@@ -59,6 +60,11 @@ angular.module('eventDetails', ['eventList'])
   }
 
   $scope.email = function() {
+    $scope.message = "Emails Sent!";
+    $scope.showMessage = true;
+    $timeout(function() {
+      $scope.showMessage = false;
+    }, 2000);
     var eventID = $cookies.get("eventID")
     return $http({
       method: 'GET',
