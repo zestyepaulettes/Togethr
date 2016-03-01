@@ -9,7 +9,7 @@ angular.module('eventDetails', ['eventList'])
 
   // clear text in text field, takes a string as input
   $scope.resetField = function(field) {
-    $scope[field] = "";
+    $scope[field] = '';
   };
 
   // sends a POST request to insert a new item 
