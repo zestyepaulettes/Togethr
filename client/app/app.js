@@ -31,7 +31,7 @@ angular.module('myApp', [
 
 .run(['$rootScope', '$location', 'AuthFactory', function($rootScope, $location, AuthFactory) {
   $rootScope.$on('$routeChangeStart', function(event, toState) {
-    console.log(toState)
+    console.log(toState);
     if(toState.$$route && toState.$$route.originalPath === '/events' && !AuthFactory.isAuth()) {
       $location.path('/signin');
     }
