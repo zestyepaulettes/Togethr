@@ -1,6 +1,9 @@
 var express = require('express');
 var db = require('./models/models');
 
+//facebook keys
+var keys = require('./keys');
+
 //middleware
 var parser = require('body-parser');
 var morgan = require('morgan');
@@ -47,12 +50,9 @@ passport.deserializeUser(function(obj, cb) {
 
 /***** FACEBOOK AUTH *****/
 var User = db.User;
-var FACEBOOK_APP_ID = '553060631520944';
-var FACEBOOK_APP_SECRET = '6d6d7fe25752c6bb43490d4d915f42af';
-
 passport.use(new FacebookStrategy({
-    clientID: FACEBOOK_APP_ID,
-    clientSecret: FACEBOOK_APP_SECRET,
+    clientID: keys.FB_APP_ID,
+    clientSecret: keys.FB_APP_SECRET,
     callbackURL: "http://localhost:3000/auth/facebook/callback",
     profileFields: ['id', 'displayName','email', 'cover']
   },
