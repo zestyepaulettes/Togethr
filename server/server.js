@@ -19,9 +19,9 @@ var router = require('./config/routes.js');
 var app = express();
 
 //set port and listen
-var port = process.env.PORT || 3000;
+var port = 3000;
 app.listen(port, function(){
-  console.log('Listening on port:'+port);
+  console.log('Listening on port:'+ port);
 });
 
 //logging and parsing
