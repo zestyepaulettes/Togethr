@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var keys = require('../keys');
 
-module.exports = new Sequelize('BeerAndChip', 'root', keys.DB_PASSWORD, {
+module.exports = new Sequelize('beerandchip', 'root', keys.DB_PASSWORD, {
   host: 'localhost',
   dialect: 'mysql',
   define: {
