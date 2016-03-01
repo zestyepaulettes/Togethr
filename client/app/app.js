@@ -1,6 +1,6 @@
 // Declare app level module which depends on filters, and services
 angular.module('myApp', [
-  'createEvent', 'eventList', 'eventDetails', 'ngRoute', 'auth', 'dndLists'
+  'createEvent', 'eventList', 'eventDetails', 'ngRoute', 'auth', 'dndLists', 'Services'
 
 ])
 .config(['$routeProvider', '$httpProvider',function($routeProvider, $httpProvider) {
