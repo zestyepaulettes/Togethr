@@ -1,9 +1,9 @@
 angular.module('createEvent', [])
 
-.controller('CreateController', ['$scope', 'CreateEventFactory', '$location', '$cookies', function($scope, CreateEventFactory, $location, $cookies) {
+.controller('CreateController', ['$scope', 'CreateFactory', '$location', '$cookies', function($scope, CreateFactory, $location, $cookies) {
   
 
-  $scope.days = CreateEventFactory.getNextDaysNameAndInfo();
+  // $scope.days = CreateFactory.getNextDaysNameAndInfo();
   $scope.event = {};
   $scope.hold = {};
   $scope.data = {};
@@ -73,41 +73,41 @@ angular.module('createEvent', [])
   };
 
   $scope.reset();
-}])
-.factory('CreateEventFactory', function($http, $cookies) {
-  //send a post request to server
-  var getNextDaysArray = function(){
-    var today = Date.now();
-    var result = [];
-    result.push()
-    return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
-  }
+}]);
+// .factory('CreateFactory', function($http, $cookies) {
+//   //send a post request to server
+//   var getNextDaysArray = function(){
+//     var today = Date.now();
+//     var result = [];
+//     result.push()
+//     return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+//   }
 
-  var getHours = function(){
-    return ['10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'];
-  }
+//   var getHours = function(){
+//     return ['10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'];
+//   }
 
-  var getNextDaysNameAndInfo = function(){
-    var days = getNextDaysArray();
-    var res = [];
-    for(var i=0;i<days.length; i++){
-      var day = {};
-      day.dayName = days[i];
-      day.hours = getHours();
-      res.push(day);
-    }
-    return res;
-  }
+//   var getNextDaysNameAndInfo = function(){
+//     var days = getNextDaysArray();
+//     var res = [];
+//     for(var i=0;i<days.length; i++){
+//       var day = {};
+//       day.dayName = days[i];
+//       day.hours = getHours();
+//       res.push(day);
+//     }
+//     return res;
+//   }
 
-  var addEvent = function(event) {
-    return $http({
-      method: 'POST',
-      url: '/api/events',
-      data: event
-    });
-  }
-  return{
-    addEvent: addEvent,
-    getNextDaysNameAndInfo: getNextDaysNameAndInfo
-  };
-});
+//   var addEvent = function(event) {
+//     return $http({
+//       method: 'POST',
+//       url: '/api/events',
+//       data: event
+//     });
+//   }
+//   return{
+//     addEvent: addEvent,
+//     getNextDaysNameAndInfo: getNextDaysNameAndInfo
+//   };
+// });
