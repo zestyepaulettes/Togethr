@@ -16,6 +16,7 @@ angular.module('Services', [])
 })
 
 .factory('requestFactory', function($http, $cookies) {
+  
   var getEvents = function(eventID) {
     return $http({
       method: 'GET',
@@ -55,7 +56,6 @@ angular.module('Services', [])
         console.log('inside addItem func ', res.data);
         return res.data;
     });
-
   };
 
   var addGuest = function(guest) {
@@ -81,7 +81,6 @@ angular.module('Services', [])
 .factory('CreateFactory', function($http, $cookies) {
   //send a post request to server
   var addEvent = function(event) {
-    console.log("EVENT", event);
     return $http({
       method: 'POST',
       url: '/api/events',

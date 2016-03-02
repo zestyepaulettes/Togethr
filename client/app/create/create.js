@@ -11,7 +11,17 @@ angular.module('createEvent', [])
   $scope.items = [{}];
   $scope.myFriends = [];
 
-  
+  $scope.init = function(){
+    //create an empty event
+    CreateFactory.addEvent({
+      name: 'Event',
+      description: 'Event description',
+      location: 'Event location',
+      total: 9999
+    });
+  }
+  $scope.init();
+
   $scope.loadFriends = function() {
     FB.api('/me/friends', function(response) {
       $scope.$apply(function() {
@@ -21,7 +31,6 @@ angular.module('createEvent', [])
       });
     });
   };
-  
 
   $scope.addGuest = function (guest) {
     console.log("inside addGuest function ", guest.id);

@@ -15,21 +15,18 @@ module.exports = {
     },
     post: function (req, res) {
       var data = {
-        userID: req.body.userID,
-        event: req.body.event,
-        guests: req.body.guests,
-        items: req.body.items
+        name: req.body.name,
+        description: req.body.description,
+        location: req.body.location,
+        total: req.body.total
       };
       // Add event
-      EventQuery.addOne(data.userID, data.event, function(event) {
-        // Add event's guests
-        GuestQuery.addAll(event.id, data.guests, function() {
-          // Add event's items and assign to guests
-          ItemQuery.addAll(event.id, data.items, function() {
-            // End response and send nothing back
-            res.send(); 
-          });
-        }); 
+      EventQuery.addOne(data)
+      .then(function(data){
+        res.json(data);
+      })
+      .catch(function(error){
+        res.json(error);
       });
     }
   },

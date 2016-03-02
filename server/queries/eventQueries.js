@@ -3,13 +3,10 @@ var UserQueries = require('./userQueries');
 
 module.exports = {
 // create and add one event and passes the new event to a callback
-  addOne: function(userID, event, callback) {
-    event.UserId = userID;
-  	Event
-  	  .create(event)
-  	  .then(function(newEvent) {
-  	  	callback(newEvent);
-  	  });
+  addOne: function(data) {
+    console.log('EVENTSQUERIES DATA');
+    console.log(data);
+  	return Event.create(data);
   },
 
 // passes all events from a user to a callback
