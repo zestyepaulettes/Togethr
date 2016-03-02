@@ -9,6 +9,7 @@ module.exports = {
   },
 
   post: function(req, res) {
+    console.log("inside post req for guests ",req.body);
     var guest = req.body;
     GuestQuery.addOne(guest, function(newGuest) {
       res.json(newGuest);

@@ -115,7 +115,7 @@ angular.module('Services', [])
     return guests;
   }
 
-  return {
+  return{
     addEvent: addEvent,
     addGuest: addGuest,
     getGuests: getGuests,
