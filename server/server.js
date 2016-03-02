@@ -27,6 +27,10 @@ io.on('connect', function(socket){
   });
 });
 
+<<<<<<< HEAD
+=======
+var q
+>>>>>>> Added friends table to model and added code to add friends to database
 
 //set port and listen
 var port = 3000;
