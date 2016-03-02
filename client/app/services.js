@@ -86,8 +86,19 @@ angular.module('Services', [])
       data: event
     });
   }
+
+  var addGuest = function(id) {
+    return $http({
+      method: 'POST',
+      url: '/api/guests',
+      data: id
+    }).then(function(res) {
+      return res.data;
+    })
+  }
   return{
-    addEvent: addEvent
+    addEvent: addEvent,
+    addGuest: addGuest
   };
 })
 

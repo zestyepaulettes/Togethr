@@ -88,7 +88,11 @@
         <br />
         <button ng-click="loadFriends()"> facebook friends </button>
         <br />
-        <div ng-repeat="friend in myFriends"> {{ friend.name }} 
+        <br />
+        <div ng-repeat="friend in myFriends"> 
+          <br /> 
+          <input type="button" value="{{ friend.name }}" ng-click="addGuest(friend)" class="button special small"> 
+          <br /> 
         </div>
         <br/>
         <br/>
