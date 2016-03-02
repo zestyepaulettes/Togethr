@@ -1,5 +1,7 @@
 var express = require('express');
 var db = require('./models/models');
+var cors = require('cors');
+var request = require('request');
 
 //facebook keys
 var keys = require('./keys');
@@ -25,6 +27,15 @@ io.on('connect', function(socket){
     io.emit('updateItems', msg);
   });
 });
+
+//sets cors headers
+// app.use(cors());
+
+// app.use( function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+//  });
 
 //set port and listen
 var port = 3000;
@@ -90,6 +101,22 @@ passport.use(new FacebookStrategy({
   }
 ));
 
+app.post('/venmo', function(req, res) {
+  req.body.access_token =  keys.ACCESS_TOKEN;
+  var requestObj = {
+    uri: "https://api.venmo.com/v1/payments",
+    method:"POST",
+    json: req.body
+  };
+  request(requestObj, function (error, response, body) {
+    if(error) {
+      res.send(404, error);
+    }
+    res.send(200, response);
+  });
+});
+
+
 app.get('/auth/facebook',
   passport.authenticate('facebook', {scope: ['email','user_friends']}));
 
@@ -103,11 +130,5 @@ app.get('/auth/facebook/callback',
     res.cookie('email', req.user.email);
     res.redirect('/');
   });
-
-//if we are being rung directly, run the server
-// if(!module.parent) {
-//   app.listen(app.get('port'));
-//   console.log('Listening on', app.get('port'));
-// }
 
 module.exports.app = app;
