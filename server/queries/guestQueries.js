@@ -25,14 +25,14 @@ module.exports = {
   // add multiple guests to one event
   addAll: function(eventID, guests, callback) {
     // Add dummy guest to hold all unassigned items
-    guests.push({name: "Unassigned", EventId: eventID});
+    guests.push({user: "Unassigned", EventId: eventID});
 
     // Add eventId to all guesets
     for (var i=0; i < guests.length; i++) {
     	guests[i].EventId = eventID;
     }
 
-    Guest
+    User_Event
 	    .bulkCreate(guests)
 	    .then(function(newGuests) {
 	  	  callback(newGuests);

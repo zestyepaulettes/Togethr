@@ -1,12 +1,4 @@
-<!-- 
-<style>
-
-
-</style>
-
- -->
   
-
 <!-- Banner is here b/c of problems with keeping clear nav bar showing -->
 <section id="banner" >
     <h2>Beer or Chip</h2>
@@ -28,12 +20,17 @@
         <label>Event Name:</label> 
         <input type="text" ng-model="event.name" />
         <br />
-
         <label>Event Date:</label> 
         <input type="datetime-local" id="exampleInput" name="input" ng-model="event.date"
            placeholder="yyyy-MM-dd" min="2016-01-01" max="2016-12-31" required />
-        <br />
-
+        <br/>
+        <!-- <table>
+          <tr ng-repeat='day in days'>
+            <td>{{day.dayName}}</td>
+            <td ng-repeat='hour in day.hours' ng-click="select($event, day)">{{hour}}</td>
+          </tr>
+        </table> -->
+        
         <label>Event Location:</label> 
         <input type="text" ng-model="event.location" />
         <br />
@@ -56,23 +53,21 @@
 
         <label>Stuff you need for your party:</label>
         <!-- <textarea ng-model="hold.items" ng-list="&#10;" ng-trim="false"></textarea> -->
+        <div class="add-items">
         <div ng-repeat="item in items">
           <label>
-            <span style="display:inline-block; width:90%"><input type="text" ng-model="item.name" placeholder="Enter Item..."></span>
-            <input type="button" value="X" ng-click="removeItem($index)" class="button special small" >
+            <span>
+            <input type="text" ng-model="item.name" placeholder="Enter Item..." ng-keypress="addItem($event)"></span>
+            <input type="button" value="X" ng-click="removeItem($index)" class="button special small">
           </label>
+        </div>
         </div>
         <!-- <button ng-click="addItem()">Add another item</button> -->
         <input type="button" value="Add Item" ng-click="addItem()" class="button alt small" style="width:10%">
         <br />
         <br />
-
         <input type="button" ng-click="reset()" value="Reset" />
-
-
         <input type="submit" ng-click="update(event, hold)" value="Submit" />
-
-
       </form>
     </div>
 
