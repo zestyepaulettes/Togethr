@@ -16,7 +16,7 @@ angular.module('Services', [])
 })
 
 .factory('requestFactory', function($http, $cookies) {
-  
+
   var getEvents = function(eventID) {
     return $http({
       method: 'GET',
@@ -119,19 +119,5 @@ angular.module('Services', [])
     isAuth: isAuth,
     signout: signout
   };
-})
-.factory('FacebookFactory', function($http){
-  var getFriends = function(cb){
-    return $http({
-      method: 'GET',
-      url: '??',
-      data: '' //access token
-    }).then(function(response){
-      cb(response.data);
-    });
-  }
-  return {
-    getFriends: getFriends
-  }
 });
 
