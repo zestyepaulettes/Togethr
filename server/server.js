@@ -18,6 +18,8 @@ var router = require('./config/routes.js');
 
 var app = express();
 
+var q
+
 //set port and listen
 var port = 3000;
 app.listen(port, function(){
@@ -50,7 +52,7 @@ passport.deserializeUser(function(obj, cb) {
 
 /***** FACEBOOK AUTH *****/
 var User = db.User;
-
+var User_Friends = db.User_Friends;
 
 passport.use(new FacebookStrategy({
     clientID: keys.FB_APP_ID,
@@ -61,17 +63,23 @@ passport.use(new FacebookStrategy({
   function(accessToken, refreshToken, profile, cb) {
     console.log(profile);
     process.nextTick(function() {
-      console.log('THIS IS THE PROFILE');
-      console.log(profile._json.friends);
-      User.findOrCreate({ where:{
-        facebookID: profile.id,
-        displayName: profile.displayName,
-        email: profile.emails[0].value,
-        photoUrl: profile.photos[0].value
-      }}).spread(function (user, created) {
-          user.accessToken = accessToken;
-          user.save();
-          return cb(null, user);
+      // User_Friends.bulkCreate(profile._json.friends)
+      // .then(function())
+      User.findOrCreate({
+        where:{
+          facebookID: profile.id
+        },
+        defaults:{
+          displayName: profile.displayName,
+          email: profile.emails[0].value,
+          photoUrl: profile.photos[0].value,
+          accessToken: accessToken
+        }
+      })
+      .spread(function (user, created) {
+        user.accessToken = accessToken;
+        user.save();
+        return cb(null, user);
       });
     });
   }
@@ -84,13 +92,11 @@ app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/signin' }),
   function(req, res) {
     // Successful authentication, redirect home.
-    console.log('THIS IS THE USER');
-    console.log(req.user);
     res.cookie('userID', req.user.id);
     res.cookie('facebookID', req.user.facebookID);
     res.cookie('displayName', req.user.displayName);
     res.cookie('email', req.user.email);
-
+    res.cookie('accessToken', req.user.accessToken);
     res.redirect('/');
   });
 

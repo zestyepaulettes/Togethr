@@ -10,12 +10,25 @@ var User = db.define('User', {
   displayName: Sequelize.STRING,
   email: Sequelize.STRING,
   phoneNum: Sequelize.STRING,
-  photoUrl: Sequelize.STRING
+  photoUrl: Sequelize.STRING,
+  accessToken: Sequelize.STRING
 });
 
+
+
+//We can refactor to get rid of this table when deploying and having all the users register in the same app
 var User_Friends = db.define('Friends', {
-  userFacebookID: Sequelize.STRING,
-  friendFacebookID: Sequelize.STRING
+  userId: {
+    type: Sequelize.STRING,
+    primaryKey: true
+  },
+  name: Sequelize.STRING,
+  email: Sequelize.STRING,
+  phoneNum: Sequelize.INTEGER,
+  facebookID: {
+    type: Sequelize.STRING,
+    primaryKey: true
+  }
 });
 
 var Event = db.define('Event', {
