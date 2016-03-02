@@ -2,7 +2,6 @@ angular.module('createEvent', [])
 
 .controller('CreateController', ['$scope', 'CreateFactory', '$location', '$cookies', function($scope, CreateFactory, $location, $cookies) {
   
-
   // $scope.days = CreateFactory.getNextDaysNameAndInfo();
   $scope.event = {};
   $scope.hold = {};

@@ -61,13 +61,16 @@ passport.use(new FacebookStrategy({
   function(accessToken, refreshToken, profile, cb) {
     console.log(profile);
     process.nextTick(function() {
-
+      console.log('THIS IS THE PROFILE');
+      console.log(profile._json.friends);
       User.findOrCreate({ where:{
         facebookID: profile.id,
         displayName: profile.displayName,
-        email: profile.emails[0].value
-      }})
-        .spread(function (user, created) {
+        email: profile.emails[0].value,
+        photoUrl: profile.photos[0].value
+      }}).spread(function (user, created) {
+          user.accessToken = accessToken;
+          user.save();
           return cb(null, user);
       });
     });
@@ -75,12 +78,14 @@ passport.use(new FacebookStrategy({
 ));
 
 app.get('/auth/facebook',
-  passport.authenticate('facebook', {scope: ['email', 'user_friends']}));
+  passport.authenticate('facebook', {scope: ['email','user_friends']}));
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/signin' }),
   function(req, res) {
     // Successful authentication, redirect home.
+    console.log('THIS IS THE USER');
+    console.log(req.user);
     res.cookie('userID', req.user.id);
     res.cookie('facebookID', req.user.facebookID);
     res.cookie('displayName', req.user.displayName);
