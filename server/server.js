@@ -50,7 +50,7 @@ passport.deserializeUser(function(obj, cb) {
 
 /***** FACEBOOK AUTH *****/
 var User = db.User;
-
+var User_Friends = db.User_Friends;
 
 passport.use(new FacebookStrategy({
     clientID: keys.FB_APP_ID,
@@ -61,21 +61,29 @@ passport.use(new FacebookStrategy({
   function(accessToken, refreshToken, profile, cb) {
     console.log(profile);
     process.nextTick(function() {
-
-      User.findOrCreate({ where:{
-        facebookID: profile.id,
-        displayName: profile.displayName,
-        email: profile.emails[0].value
-      }})
-        .spread(function (user, created) {
-          return cb(null, user);
+      // User_Friends.bulkCreate(profile._json.friends)
+      // .then(function())
+      User.findOrCreate({
+        where:{
+          facebookID: profile.id
+        },
+        defaults:{
+          displayName: profile.displayName,
+          email: profile.emails[0].value,
+          photoUrl: profile.photos[0].value
+        }
+      })
+      .spread(function (user, created) {
+        user.accessToken = accessToken;
+        user.save();
+        return cb(null, user);
       });
     });
   }
 ));
 
 app.get('/auth/facebook',
-  passport.authenticate('facebook', {scope: ['email', 'user_friends']}));
+  passport.authenticate('facebook', {scope: ['email','user_friends']}));
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/signin' }),
@@ -85,7 +93,6 @@ app.get('/auth/facebook/callback',
     res.cookie('facebookID', req.user.facebookID);
     res.cookie('displayName', req.user.displayName);
     res.cookie('email', req.user.email);
-
     res.redirect('/');
   });
 
