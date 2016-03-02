@@ -31,7 +31,7 @@ angular.module('createEvent', [])
   };
 
   $scope.select = function($event, day){
-    console.log($event);
+    console.dir($event.target.innerHTML);
     console.log(day);
   };
 
@@ -77,6 +77,9 @@ angular.module('createEvent', [])
 .factory('CreateEventFactory', function($http, $cookies) {
   //send a post request to server
   var getNextDaysArray = function(){
+    var today = Date.now();
+    var result = [];
+    result.push()
     return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
   }
 
