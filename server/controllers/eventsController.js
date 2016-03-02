@@ -8,6 +8,7 @@ module.exports = {
   events: {
     get: function(req, res) {
       var userID = req.params.userID;
+      console.log(userID);
       EventQuery.getAll(userID, function(events) {
         res.json(events);
       })
