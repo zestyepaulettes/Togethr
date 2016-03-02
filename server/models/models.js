@@ -13,6 +13,11 @@ var User = db.define('User', {
   photoUrl: Sequelize.STRING
 });
 
+var User_Friends = db.define('Friends', {
+  userFacebookID: Sequelize.STRING,
+  friendFacebookID: Sequelize.STRING
+});
+
 var Event = db.define('Event', {
   name: Sequelize.STRING,
   description: Sequelize.STRING,
