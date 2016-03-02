@@ -10,6 +10,19 @@ angular.module('createEvent', [])
 
   $scope.guests = [{}];
   $scope.items = [{}];
+  $scope.myFriends = [];
+
+  
+  $scope.loadFriends = function() {
+    FB.api('/me/friends', function(response) {
+      $scope.$apply(function() {
+        //console.log(response.data);
+        $scope.myFriends = response.data;
+        console.log($scope.myFriends);
+      });
+    });
+  };
+  
 
   $scope.addGuest = function() {
     $scope.guests.push({});
