@@ -11,6 +11,7 @@
     </header>
   	<div>
   		<div>
+<<<<<<< HEAD
   		  <h3>Event Name: {{details.name}}</h3>
   		  <h5>Where: {{details.location}}</h5>
   		  <h5>When: {{details.date| date: 'fullDate'}}</h5>
@@ -20,6 +21,13 @@
       <!-- this is the map -->
         <div id="map" style="width: 500px; height: 400px;"></div>
         <br />
+=======
+  		  <h4>{{details.event.name}}</h4>
+  		  <h5>{{details.event.location}}</h5>
+  		  <h5>{{details.event.date| date: 'fullDate'}}</h5>
+  		</div>
+
+>>>>>>> implement working ajax to ven
       <!-- Drag-and-Drop Table -->
       <div class="table-wrapper">
     		<div class="itemsTable row">
@@ -48,6 +56,7 @@
       </div>
 
     </div>
+<<<<<<< HEAD
     <!-- want everyone to chip in? -->
     <div>
       <h5> Want people to chip in? </h5>
@@ -59,11 +68,26 @@
         <input type="button" value="Send Venmo Requests"ng-click="venmo()">
         </input>
     </div> <br/>
+=======
+    <div>
+      <h5> Want people to chip in? </h5>
+        <button type="button" class="nodemailer button" ng-click="venmo()">
+          Send Venmo Request
+        </button>
+    </div><br/>
+>>>>>>> implement working ajax to ven
     <div>
       <h5>Forget anything?</h5>
       <!-- add item field -->
       <span style="display:inline-block">
         <input type="text" ng-model="itemName" name="addItem" id="addItem" value="" placeholder="Enter Item" />
+<<<<<<< HEAD
+=======
+      </span>
+      <!-- add item button -->
+      <span class="button alt disabled" ng-click="addItemFunc(itemName)">
+        Add item
+>>>>>>> implement working ajax to ven
       </span>
       <!-- add item button -->
       <input type="button" value="Add item" ng-click="addItemFunc(itemName)">
@@ -79,7 +103,11 @@
       </span>
       <span style="display:inline-block">
         <input type="text"  ng-model="guestEmail" name="addEmail" id="addEmail" value="" placeholder="Enter Email" />
+<<<<<<< HEAD
       </span> -->
+=======
+      </span>
+>>>>>>> implement working ajax to ven
 
 
       <!-- add guest button  -->
@@ -90,8 +118,13 @@
 
     <br><br> -->
 
+<<<<<<< HEAD
     <!-- Send email button
     <button type="button" ng-classss="nodemailer button" ng-click="email()">
+=======
+    <!-- Send email button -->
+    <button type="button" class="nodemailer button" ng-click="email()">
+>>>>>>> implement working ajax to ven
       Send Event Details to Guests
     </button>
 >>>>>>> Implement name change

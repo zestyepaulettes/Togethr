@@ -41,6 +41,15 @@ angular.module('eventDetails', ['eventList'])
     }
   };
 
+
+  $scope.venmo = function() {
+    var data = {
+      phone: '14153167181',
+      amount: -1,
+      note: "venmo me"
+    };
+    requestFactory.sendVenmo(data);
+  };
   // clear text in text field, takes a string as input
   $scope.resetField = function(field) {
     $scope[field] = '';
@@ -94,6 +103,7 @@ angular.module('eventDetails', ['eventList'])
     // Makes request to server for all event details
     requestFactory.getEvents($routeParams.eventID)
       .then(function(details) {
+
         $scope.details = details;
           return $scope.getItems();
       })
@@ -165,7 +175,6 @@ angular.module('eventDetails', ['eventList'])
     var eventID = $cookies.get("eventID");
     requestFactory.sendEmails($routeParams.eventID);
   };
-
   socket.on('updateItems', function(msg){
     initializeDetails();
   });
