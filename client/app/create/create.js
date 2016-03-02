@@ -16,16 +16,18 @@ angular.module('createEvent', [])
   $scope.loadFriends = function() {
     FB.api('/me/friends', function(response) {
       $scope.$apply(function() {
-        //console.log(response.data);
+        console.log(response.data);
         $scope.myFriends = response.data;
-        console.log($scope.myFriends);
+        //console.log($scope.myFriends);
       });
     });
   };
   
 
-  $scope.addGuest = function() {
-    $scope.guests.push({});
+  $scope.addGuest = function (guest) {
+    console.log("inside addGuest function ", guest.id);
+    CreateFactory.addGuest(guest.id);
+    //$scope.guests.push({});
   };
 
   $scope.removeGuest = function(guest) {
