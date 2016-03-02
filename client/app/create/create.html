@@ -24,13 +24,13 @@
         <input type="datetime-local" id="exampleInput" name="input" ng-model="event.date"
            placeholder="yyyy-MM-dd" min="2016-01-01" max="2016-12-31" required />
         <br/>
-        <table>
+        <!-- <table>
           <tr ng-repeat='day in days'>
             <td>{{day.dayName}}</td>
             <td ng-repeat='hour in day.hours' ng-click="select($event, day)">{{hour}}</td>
           </tr>
-        </table>
-
+        </table> -->
+        
         <label>Event Location:</label> 
         <input type="text" ng-model="event.location" />
         <br />
