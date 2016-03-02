@@ -7,6 +7,7 @@ var itemsController = require('../controllers/itemsController');
 var nodemailerController = require('../controllers/nodemailerController'); 
 
 
+
 // router.get('/auth/facebook', usersController.getAll);
 // router.get('/auth/facebook/callback', usersController.addOne);
 
@@ -17,7 +18,13 @@ router.get('/eventDetails/:eventID', eventsController.eventDetails.get);
 router.get('/email/:eventID', nodemailerController.get);
 
 router.get('/guests', guestsController.get);
-router.post('/guests', guestsController.post);
+router.post('/guests', function(err,success) {
+  if(err) {
+    console.log(err);
+  } else {
+    console.log("success in receiving post!");
+  }
+});
 router.put('/guests', guestsController.put);
 router.delete('/guests', guestsController.delete);
 
@@ -28,10 +35,6 @@ router.delete('/items/:itemID', itemsController.delete);
 
 // router.get('/baskets', basketsController.get);
 // router.put('/baskets/swap', basketsController.put);
-
-
-//facebook routes
-
 
 
 module.exports = router;
