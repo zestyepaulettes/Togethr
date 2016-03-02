@@ -16,6 +16,26 @@
 
 
     <div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '202296070130925',
+            status     : true,                              
+            xfbml      : true, 
+            cookie     : true,
+            oauth      : true,
+            version    : 'v2.2'
+          });
+        };
+
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id; js.async = true;
+           js.src = "//connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+      </script>
       <form novalidate class="event-form">
         <label>Event Name:</label> 
         <input type="text" ng-model="event.name" />
@@ -66,10 +86,15 @@
         <input type="button" value="Add Item" ng-click="addItem()" class="button alt small" style="width:10%">
         <br />
         <br />
+        <button ng-click="loadFriends()"> facebook friends </button>
+        <br />
+        <div ng-repeat="friend in myFriends"> {{ friend.name }} 
+        </div>
+        <br/>
+        <br/>
         <input type="button" ng-click="reset()" value="Reset" />
         <input type="submit" ng-click="update(event, hold)" value="Submit" />
       </form>
     </div>
-
   </div>
 </section> 
