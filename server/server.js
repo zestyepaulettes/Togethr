@@ -56,9 +56,10 @@ passport.use(new FacebookStrategy({
     clientID: keys.FB_APP_ID,
     clientSecret: keys.FB_APP_SECRET,
     callbackURL: "/auth/facebook/callback",
-    profileFields: ['id', 'displayName','email', 'cover']
+    profileFields: ['id', 'displayName','email', 'cover', 'friends', 'picture.height(150).width(150)']
   },
   function(accessToken, refreshToken, profile, cb) {
+    console.log(profile);
     process.nextTick(function() {
 
       User.findOrCreate({ where:{
@@ -74,7 +75,7 @@ passport.use(new FacebookStrategy({
 ));
 
 app.get('/auth/facebook',
-  passport.authenticate('facebook', {scope: 'email'}));
+  passport.authenticate('facebook', {scope: ['email', 'user_friends']}));
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/signin' }),
