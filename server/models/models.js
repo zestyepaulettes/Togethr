@@ -10,8 +10,7 @@ var User = db.define('User', {
   displayName: Sequelize.STRING,
   email: Sequelize.STRING,
   phoneNum: Sequelize.STRING,
-  photoUrl: Sequelize.STRING,
-  accessToken: Sequelize.STRING
+  photoUrl: Sequelize.STRING
 });
 
 var Event = db.define('Event', {

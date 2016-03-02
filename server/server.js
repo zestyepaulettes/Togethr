@@ -26,8 +26,6 @@ io.on('connect', function(socket){
   });
 });
 
-var q
-
 //set port and listen
 var port = 3000;
 http.listen(port, function(){
@@ -80,8 +78,7 @@ passport.use(new FacebookStrategy({
         defaults:{
           displayName: profile.displayName,
           email: profile.emails[0].value,
-          photoUrl: profile.photos[0].value,
-          accessToken: accessToken
+          photoUrl: profile.photos[0].value
         }
       })
       .spread(function (user, created) {
@@ -104,7 +101,6 @@ app.get('/auth/facebook/callback',
     res.cookie('facebookID', req.user.facebookID);
     res.cookie('displayName', req.user.displayName);
     res.cookie('email', req.user.email);
-    res.cookie('accessToken', req.user.accessToken);
     res.redirect('/');
   });
 
