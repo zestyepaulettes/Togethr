@@ -79,7 +79,6 @@ angular.module('Services', [])
       }
     }).then(function(res){
       socket.emit('reassign','thenewitem');
-        console.log('inside addItem func ', res.data);
         return res.data;
     }).catch(function (err) {
       console.eroor(err);
