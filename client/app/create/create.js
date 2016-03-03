@@ -1,7 +1,7 @@
 angular.module('createEvent', [])
 
 .controller('CreateController', ['$scope', 'CreateFactory', 'requestFactory' ,'$location', '$cookies', function($scope, CreateFactory, requestFactory ,$location, $cookies) {
-  
+
   // $scope.days = CreateFactory.getNextDaysNameAndInfo();
   $scope.event = {};
   $scope.hold = {};
@@ -19,8 +19,48 @@ angular.module('createEvent', [])
       location: 'Event location',
       total: 9999
     });
-  }
+
+    //renders map
+    var geocoder, map;
+      geocoder = new google.maps.Geocoder();
+        geocoder.geocode({
+          'address':'Los Angeles, CA'
+         }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              var myOptions = {
+                zoom: 12,
+                center: results[0].geometry.location,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+              };
+            map = new google.maps.Map(document.getElementById("map"), myOptions);
+            var infowindow = new google.maps.InfoWindow();
+            }
+          });
+  };
   $scope.init();
+  $scope.$watch('event.location', function() {
+     $scope.mapIt();
+  });
+  $scope.mapIt = function() {
+    var geocoder, map;
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode({'address': $scope.event.location }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        var myOptions = {
+          zoom: 12,
+          center: results[0].geometry.location,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map"), myOptions);
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location,
+          animation: google.maps.Animation.DROP
+        });
+      }
+    });
+  };
 
   $scope.loadFriends = function() {
     FB.api('/me/friends', function(response) {
@@ -62,7 +102,7 @@ angular.module('createEvent', [])
 //Update function is invoked in submit button in create.html
   $scope.update = function(event, hold) {
     $scope.data.userID = $cookies.get('userID');
-    
+
     //TODO make api call to add guests to User_Event table
     console.log('CALLING ADDGUESTS');
     var currentEvent = CreateFactory.getCurrentEvent();
@@ -72,7 +112,7 @@ angular.module('createEvent', [])
     CreateFactory.addEvent($scope.data)
     .then(function () {
       $location.path('/events');
-    })
+    });
   };
   // clears out the form
   $scope.reset = function() {
