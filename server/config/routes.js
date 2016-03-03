@@ -18,13 +18,7 @@ router.get('/eventDetails/:eventID', eventsController.eventDetails.get);
 router.get('/email/:eventID', nodemailerController.get);
 
 router.get('/guests', guestsController.get);
-router.post('/guests', function(err,success) {
-  if(err) {
-    console.log(err);
-  } else {
-    console.log("success in receiving post!");
-  }
-});
+router.post('/guests', guestsController.post);
 router.put('/guests', guestsController.put);
 router.delete('/guests', guestsController.delete);
 
@@ -35,6 +29,7 @@ router.delete('/items/:itemID', itemsController.delete);
 
 // router.get('/baskets', basketsController.get);
 // router.put('/baskets/swap', basketsController.put);
+
 
 
 module.exports = router;
