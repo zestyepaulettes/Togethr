@@ -21,7 +21,9 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 io.on('connect', function(socket){
-  console.log('----------------------------> a user connected!!');
+  socket.on('reassign', function(msg){
+    io.emit('updateItems', msg);
+  });
 });
 
 //set port and listen
