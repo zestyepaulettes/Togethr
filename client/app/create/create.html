@@ -56,13 +56,16 @@
         <br />
 
         <label>Guests:</label> 
-        <!-- <textarea ng-model="hold.guests" ng-list="&#10;" ng-trim="false"></textarea> -->
-
-        
+        <button ng-click="loadFriends()"> facebook friends </button>
         <br />
-        <br />
-
-
+        <div ng-repeat="friend in myFriends"> 
+          <br /> 
+          <input type="button" value="{{ friend.name }}" ng-click="loadFriends()" class="button special small"> 
+          <br /> 
+        </div>
+        <br/>
+        <br/>
+      
         <label>Stuff you need for your party:</label>
         <!-- <textarea ng-model="hold.items" ng-list="&#10;" ng-trim="false"></textarea> -->
         <div class="add-items">
@@ -78,23 +81,12 @@
         <input type="button" value="Add Item" ng-click="addItem()" class="button alt small" style="width:10%">
         <br />
         <br />
-        <button ng-click="loadFriends()"> facebook friends </button>
+
+        
         <button ng-click="getCurrent()"> getCurrent Event </button>
         <br />
         <br />
-          <h1>Invited Guests:</h1>
-        <ul>
-          <li ng-repeat="friend in guests">
-          {{friend.name}}
-          </li>
-        </ul>
-        <div ng-repeat="friend in myFriends"> 
-          <br /> 
-          <input type="button" value="{{ friend.name }}" ng-click="addGuest(friend)" class="button special small"> 
-          <br /> 
-        </div>
-        <br/>
-        <br/>
+          
         <input type="button" ng-click="reset()" value="Reset" />
         <input type="submit" ng-click="update(event, hold)" value="Submit" />
       </form>
