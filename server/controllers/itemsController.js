@@ -1,4 +1,5 @@
 var ItemQuery = require('../queries/itemQueries');
+var db = require('../models/models');
 
 module.exports = {
 	get: function(req, res) {
@@ -9,9 +10,25 @@ module.exports = {
 	},
 
 	post: function(req, res) {
-		var item = req.body;
-		ItemQuery.addOne(item, function(newItem){
-			res.json(newItem); 
+		console.log("inside itemsController POST req ", req.body);
+		var items = req.body.items;
+		var userid = req.body.userID;
+		var eventid = req.body.eventID;
+		var itemEntries = [];
+		console.log(items, userid, eventid);
+		for(var i=0;i<items.length;i++) {
+			itemEntries.push({
+				name: items[i],
+				UserId: userid,
+				EventId: eventid
+			})
+		}
+		console.log(itemEntries);
+		db.Item.bulkCreate(itemEntries)
+			.then(function () {
+				res.json('SUCCESS');
+		}).catch(function (error) {
+				res.json(error);
 		});
 	},
 

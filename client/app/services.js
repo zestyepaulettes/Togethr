@@ -77,7 +77,7 @@ angular.module('Services', [])
         userID: userID
       }
     }).then(function(res){
-        console.log('inside addItem func ', res.data);
+        console.log('response for additem for server ', res.data);
         return res.data;
     }).catch(function (err) {
       console.eroor(err);
