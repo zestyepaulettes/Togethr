@@ -9,6 +9,7 @@ angular.module('createEvent', [])
 
   $scope.items = [];
   $scope.myFriends = [];
+  $scope.total= 0;
 
   $scope.loadFriends = function() {
     FB.api('/me/friends', function(response) {
@@ -123,7 +124,7 @@ angular.module('createEvent', [])
       date: Date.now(),
       location: $scope.event.location, //get location
       hostId: 1, //get host ID
-      total: 50
+      total: $scope.total
     };
     console.log(currentEvent.id);
     requestFactory.updateEvent(eventData, currentEvent.id);
