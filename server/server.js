@@ -1,6 +1,5 @@
 var express = require('express');
 var db = require('./models/models');
-var cors = require('cors');
 var request = require('request');
 
 //facebook keys
