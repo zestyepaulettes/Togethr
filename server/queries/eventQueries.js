@@ -27,5 +27,20 @@ module.exports = {
   	  .then(function(event) {
   	  	callback(event)
   	  });
+  },
+  updateByID: function(data, ID){
+    //find event
+    return Event.find({
+      where: {ID: ID}
+    })  //update event with data
+    .then(function(event){
+      event.name = data.name;
+      event.description = data.description;
+      event.date = data.date;
+      event.location = data.location;
+      event.hostId = data.hostId;
+      event.total = data.total;
+      return event.save();
+    });
   }
 };

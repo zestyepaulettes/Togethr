@@ -50,7 +50,8 @@
             <td ng-repeat='hour in day.hours' ng-click="select($event, day)">{{hour}}</td>
           </tr>
         </table> -->
-
+        <label>Event Description:</label> 
+        <input type="text" ng-model="event.description" />
         <label>Event Location:</label>
         <input type="text" ng-model="event.location" ng-model-options="{ debounce: 500 }"/> <br/>
         <input type="submit"  ng-click="mapIt()" value="Map it!" />
