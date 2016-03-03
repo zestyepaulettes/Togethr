@@ -7,9 +7,9 @@ angular.module('createEvent', [])
   $scope.hold = {};
   $scope.data = {};
 
-  $scope.guests = [{}];
   $scope.items = [{}];
   $scope.myFriends = [];
+
 
   $scope.init = function(){
     //create an empty event
@@ -33,9 +33,8 @@ angular.module('createEvent', [])
   };
 
   $scope.addGuest = function (guest) {
-    console.log("inside addGuest function ", guest.id);
-    CreateFactory.addGuest(guest.id);
-    //$scope.guests.push({});
+    CreateFactory.addGuest(guest);
+    $scope.guests = CreateFactory.getGuests();
   };
 
   $scope.removeGuest = function(guest) {
@@ -58,6 +57,9 @@ angular.module('createEvent', [])
     console.log(day);
   };
 
+  $scope.getCurrent = function(){
+    console.log(CreateFactory.getCurrentEvent());
+  };
 
 //Update function is invoked in submit button in create.html
   $scope.update = function(event, hold) {

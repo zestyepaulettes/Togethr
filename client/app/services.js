@@ -91,26 +91,35 @@ angular.module('Services', [])
 
 .factory('CreateFactory', function($http, $cookies) {
   //send a post request to server
+  var currentEvent;
+  var guests = [];
   var addEvent = function(event) {
-    return $http({
+    $http({
       method: 'POST',
       url: '/api/events',
       data: event
+    }).then(function(response){
+      currentEvent = response.data;
+      console.log(currentEvent);
     });
   }
 
-  var addGuest = function(id) {
-    return $http({
-      method: 'POST',
-      url: '/api/guests',
-      data: id
-    }).then(function(res) {
-      return res.data;
-    })
+  var getCurrentEvent = function(){
+    return currentEvent;
   }
-  return{
+
+  var addGuest = function(guest){
+    guests.push(guest);
+  }
+  var getGuests = function(){
+    return guests;
+  }
+
+  return {
     addEvent: addEvent,
-    addGuest: addGuest
+    addGuest: addGuest,
+    getGuests: getGuests,
+    getCurrentEvent: getCurrentEvent
   };
 })
 

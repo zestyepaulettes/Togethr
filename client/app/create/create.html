@@ -1,4 +1,4 @@
-  
+
 <!-- Banner is here b/c of problems with keeping clear nav bar showing -->
 <section id="banner" >
     <h2>Beer or Chip</h2>
@@ -58,15 +58,7 @@
         <label>Guests:</label> 
         <!-- <textarea ng-model="hold.guests" ng-list="&#10;" ng-trim="false"></textarea> -->
 
-        <div ng-repeat="guest in guests">
-          <label>
-            <span style="display:inline-block; width:45%;"><input type="text" ng-model="guest.name" placeholder="Enter Name..."></span>
-            <span style="display:inline-block; width: 45%;"><input type="text" ng-model="guest.email" placeholder="Enter Email..."></span>
-            <input type="button" value="X" ng-click="removeGuest($index)" class="button special small">
-          </label>
-        </div>
-        <input ng-click="addGuest()" type="button" class="button alt small" value="Add Guest" style="width:10%">
-        <!-- <button ng-click="addGuest()">Add another guest</button> -->
+        
         <br />
         <br />
 
@@ -87,9 +79,15 @@
         <br />
         <br />
         <button ng-click="loadFriends()"> facebook friends </button>
-        <button ng-click="addEvent()"> create Event </button>
+        <button ng-click="getCurrent()"> getCurrent Event </button>
         <br />
         <br />
+          <h1>Invited Guests:</h1>
+        <ul>
+          <li ng-repeat="friend in guests">
+          {{friend.name}}
+          </li>
+        </ul>
         <div ng-repeat="friend in myFriends"> 
           <br /> 
           <input type="button" value="{{ friend.name }}" ng-click="addGuest(friend)" class="button special small"> 
