@@ -85,7 +85,7 @@ angular.module('Services', [])
     }).catch(function(err){
       console.error(err);
     });
-  }
+  };
 
   return {
     getEvents: getEvents,
@@ -112,7 +112,7 @@ angular.module('Services', [])
     }).catch(function(error){
       console.error(error);
     });
-  }
+  };
 
   var updateEvent = function(data){
     return $http({
@@ -120,18 +120,18 @@ angular.module('Services', [])
       url: '/api/event',
       data: data
     });
-  }
+  };
 
   var getCurrentEvent = function(){
     return currentEvent;
-  }
+  };
 
   var addGuest = function(guest){
     guests.push(guest);
-  }
+  };
   var getGuests = function(){
     return guests;
-  }
+  };
 
   return{
     addEvent: addEvent,
