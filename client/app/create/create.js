@@ -25,9 +25,7 @@ angular.module('createEvent', [])
   $scope.loadFriends = function() {
     FB.api('/me/friends', function(response) {
       $scope.$apply(function() {
-        //console.log(response.data);
         $scope.myFriends = response.data;
-        //console.log($scope.myFriends);
       });
     });
   };

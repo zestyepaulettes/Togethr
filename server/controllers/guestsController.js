@@ -12,16 +12,27 @@ module.exports = {
   post: function(req, res) {
     var guests = req.body.guests;
     var eventId = req.body.eventId;
-    var guestId = guests[0].id;
     var guestIDs = []; //array of user ids
-    db.User.find({
-      where: { facebookID: guestId }
+    for(var i=0;i<guests.length;i++){
+      guestIDs.push(guests[i].id);
+    }
+    db.User.findAll({
+      where: { 
+        facebookID: {
+          $in: guestIDs
+        }
+      }
     })
-    .then(function(user){
-      return db.User_Event.findOrCreate({
-        where: { UserId: user.id },
-        defaults: { EventId: eventId }
-      })
+    .then(function(users){
+      var userEventEntries = [];
+      for(var i=0;i<users.length;i++){
+        userEventEntries.push({
+          UserId:users[i].dataValues.id,
+          EventId: eventId
+        });
+      }
+      console.log(userEventEntries);
+      return db.User_Event.bulkCreate(userEventEntries)
     })
     .then(function(){
       res.json('SUCCESS');
