@@ -40,6 +40,7 @@ angular.module('Services', [])
       data: {GuestId: guestId}
     })
     .then(function() {
+      socket.emit('reassign', 'helloworld');
       console.log("UPDATED DB");
     })
   };
