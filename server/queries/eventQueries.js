@@ -4,8 +4,6 @@ var UserQueries = require('./userQueries');
 module.exports = {
 // create and add one event and passes the new event to a callback
   addOne: function(data) {
-    console.log('EVENTSQUERIES DATA');
-    console.log(data);
   	return Event.create(data);
   },
 
