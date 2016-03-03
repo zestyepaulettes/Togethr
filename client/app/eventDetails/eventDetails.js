@@ -1,18 +1,27 @@
 angular.module('eventDetails', ['eventList'])
-.controller('eventDetailsController', ['$scope', '$http', 'requestFactory', '$cookies', '$routeParams', function($scope, $http, requestFactory, $cookies, $routeParams) {  
+.controller('eventDetailsController', ['$scope', '$http', 'requestFactory', '$cookies', '$routeParams', function($scope, $http, requestFactory, $cookies, $routeParams) {
 /** ADD ITEM AND ADD GUEST INPUT BOXES **/
 
   // Holds text input from add item and add guest input boxes
   $scope.itemName;
-  $scope.guestName; 
-  $scope.guestEmail; 
+  $scope.guestName;
+  $scope.guestEmail;
 
+
+  $scope.venmo = function() {
+    var data = {
+      phone: '14153167181',
+      amount: -1,
+      note: "venmo me"
+    };
+    requestFactory.sendVenmo(data);
+  };
   // clear text in text field, takes a string as input
   $scope.resetField = function(field) {
-    $scope[field] = "";
+    $scope[field] = '';
   };
 
-  // sends a POST request to insert a new item 
+  // sends a POST request to insert a new item
   $scope.addItemFunc = function(itemName){
     //console.log('inside addItemFunc!');
     var newItem = {
@@ -33,8 +42,8 @@ angular.module('eventDetails', ['eventList'])
       email: guestEmail
     };
     requestFactory.addGuest(newGuest).then(function(res){
-        $scope.resetField('guestName'); 
-        $scope.resetField('guestEmail'); 
+        $scope.resetField('guestName');
+        $scope.resetField('guestEmail');
     });
 
   };
@@ -58,7 +67,7 @@ angular.module('eventDetails', ['eventList'])
     // Makes request to server for all event details
     requestFactory.getEvents($routeParams.eventID)
       .then(function(details) {
-        
+
         // Set event details to ng-model details
         $scope.details = details;
 
@@ -74,18 +83,18 @@ angular.module('eventDetails', ['eventList'])
           } else {
             temp[GuestId] = [item];
           }
-        }        
+        }
 
         // Populate the ng-model guests
         for (var i = 0; i < details.guests.length; i++){
           var guestName = details.guests[i].name;
           var guestId = details.guests[i].id;
-          // Adds guestName and guestId to ng-model guests 
+          // Adds guestName and guestId to ng-model guests
           // and assigns guests an items array or an empty array
           guests[guestName + ' ' + guestId] = temp[guestId] ? temp[guestId] : [];
         }
-      })
-  }
+      });
+  };
 
   // Fires when an item is moved to a column
   $scope.reassignItem = function(item, guestInfo) {
@@ -93,27 +102,26 @@ angular.module('eventDetails', ['eventList'])
     requestFactory.updateItem(item, guestId);
     // nessesary for drag-and-drop visualization
     // return false to reject visual update
-    return item; 
-  }
+    return item;
+  };
 
   // parse guestInfo for guest name
   $scope.getId = function(guestInfo) {
     var name = guestInfo.match(/([^\s])+/g);
     return name[1];
-  }
-
-  // parse guestInfo for guest Id 
+  };
+  // parse guestInfo for guest Id
   $scope.getName = function(guestInfo) {
     var name = guestInfo.match(/([^\s])+/);
     return name[0];
-  }
+  };
 
 /** EMAIL **/
   // sends unique eventDetails url to all guests
   $scope.email = function() {
-    var eventID = $cookies.get("eventID")
+    var eventID = $cookies.get("eventID");
     requestFactory.sendEmails(eventID);
-  }
+  };
 
 /** INITIALIZE ON PAGE LOAD **/
   initializeDetails();

@@ -1,5 +1,6 @@
 var express = require('express');
 var db = require('./models/models');
+var request = require('request');
 
 //facebook keys
 var keys = require('./keys');
@@ -17,6 +18,15 @@ var cookieParser = require('cookie-parser');
 var router = require('./config/routes.js');
 
 var app = express();
+
+//sets cors headers
+// app.use(cors());
+
+// app.use( function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+//  });
 
 //set port and listen
 var port = 3000;
@@ -50,31 +60,56 @@ passport.deserializeUser(function(obj, cb) {
 
 /***** FACEBOOK AUTH *****/
 var User = db.User;
-
+var User_Friends = db.User_Friends;
 
 passport.use(new FacebookStrategy({
     clientID: keys.FB_APP_ID,
     clientSecret: keys.FB_APP_SECRET,
     callbackURL: "/auth/facebook/callback",
-    profileFields: ['id', 'displayName','email', 'cover']
+    profileFields: ['id', 'displayName','email', 'cover', 'friends', 'picture.height(150).width(150)']
   },
   function(accessToken, refreshToken, profile, cb) {
+    console.log(profile);
     process.nextTick(function() {
-
-      User.findOrCreate({ where:{
-        facebookID: profile.id,
-        displayName: profile.displayName,
-        email: profile.emails[0].value
-      }})
-        .spread(function (user, created) {
-          return cb(null, user);
+      // User_Friends.bulkCreate(profile._json.friends)
+      // .then(function())
+      User.findOrCreate({
+        where:{
+          facebookID: profile.id
+        },
+        defaults:{
+          displayName: profile.displayName,
+          email: profile.emails[0].value,
+          photoUrl: profile.photos[0].value
+        }
+      })
+      .spread(function (user, created) {
+        user.accessToken = accessToken;
+        user.save();
+        return cb(null, user);
       });
     });
   }
 ));
 
+app.post('/venmo', function(req, res) {
+  req.body.access_token =  keys.ACCESS_TOKEN;
+  var requestObj = {
+    uri: "https://api.venmo.com/v1/payments",
+    method:"POST",
+    json: req.body
+  };
+  request(requestObj, function (error, response, body) {
+    if(error) {
+      res.send(404, error);
+    }
+    res.send(200, response);
+  });
+});
+
+
 app.get('/auth/facebook',
-  passport.authenticate('facebook', {scope: 'email'}));
+  passport.authenticate('facebook', {scope: ['email','user_friends']}));
 
 app.get('/auth/facebook/callback',
   passport.authenticate('facebook', { failureRedirect: '/signin' }),
@@ -84,14 +119,7 @@ app.get('/auth/facebook/callback',
     res.cookie('facebookID', req.user.facebookID);
     res.cookie('displayName', req.user.displayName);
     res.cookie('email', req.user.email);
-
     res.redirect('/');
   });
-
-//if we are being rung directly, run the server
-// if(!module.parent) {
-//   app.listen(app.get('port'));
-//   console.log('Listening on', app.get('port'));
-// }
 
 module.exports.app = app;

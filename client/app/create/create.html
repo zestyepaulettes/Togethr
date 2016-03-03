@@ -1,11 +1,3 @@
-<!-- 
-<style>
-
-
-</style>
-
- -->
-  
 
 <!-- Banner is here b/c of problems with keeping clear nav bar showing -->
 <section id="banner" >
@@ -24,57 +16,80 @@
 
 
     <div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '202296070130925',
+            status     : true,                              
+            xfbml      : true, 
+            cookie     : true,
+            oauth      : true,
+            version    : 'v2.2'
+          });
+        };
+
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id; js.async = true;
+           js.src = "//connect.facebook.net/en_US/sdk.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+      </script>
       <form novalidate class="event-form">
         <label>Event Name:</label> 
         <input type="text" ng-model="event.name" />
         <br />
-
         <label>Event Date:</label> 
         <input type="datetime-local" id="exampleInput" name="input" ng-model="event.date"
            placeholder="yyyy-MM-dd" min="2016-01-01" max="2016-12-31" required />
-        <br />
-
+        <br/>
+        <!-- <table>
+          <tr ng-repeat='day in days'>
+            <td>{{day.dayName}}</td>
+            <td ng-repeat='hour in day.hours' ng-click="select($event, day)">{{hour}}</td>
+          </tr>
+        </table> -->
+        
         <label>Event Location:</label> 
         <input type="text" ng-model="event.location" />
         <br />
 
         <label>Guests:</label> 
-        <!-- <textarea ng-model="hold.guests" ng-list="&#10;" ng-trim="false"></textarea> -->
-
-        <div ng-repeat="guest in guests">
-          <label>
-            <span style="display:inline-block; width:45%;"><input type="text" ng-model="guest.name" placeholder="Enter Name..."></span>
-            <span style="display:inline-block; width: 45%;"><input type="text" ng-model="guest.email" placeholder="Enter Email..."></span>
-            <input type="button" value="X" ng-click="removeGuest($index)" class="button special small">
-          </label>
+        <button ng-click="loadFriends()"> facebook friends </button>
+        <br />
+        <div ng-repeat="friend in myFriends"> 
+          <br /> 
+          <input type="button" value="{{ friend.name }}" ng-click="loadFriends()" class="button special small"> 
+          <br /> 
         </div>
-        <input ng-click="addGuest()" type="button" class="button alt small" value="Add Guest" style="width:10%">
-        <!-- <button ng-click="addGuest()">Add another guest</button> -->
-        <br />
-        <br />
-
-
+        <br/>
+        <br/>
+      
         <label>Stuff you need for your party:</label>
         <!-- <textarea ng-model="hold.items" ng-list="&#10;" ng-trim="false"></textarea> -->
+        <div class="add-items">
         <div ng-repeat="item in items">
           <label>
-            <span style="display:inline-block; width:90%"><input type="text" ng-model="item.name" placeholder="Enter Item..."></span>
-            <input type="button" value="X" ng-click="removeItem($index)" class="button special small" >
+            <span>
+            <input type="text" ng-model="item.name" placeholder="Enter Item..." ng-keypress="addItem($event)"></span>
+            <input type="button" value="X" ng-click="removeItem($index)" class="button special small">
           </label>
+        </div>
         </div>
         <!-- <button ng-click="addItem()">Add another item</button> -->
         <input type="button" value="Add Item" ng-click="addItem()" class="button alt small" style="width:10%">
         <br />
         <br />
 
+        
+        <button ng-click="getCurrent()"> getCurrent Event </button>
+        <br />
+        <br />
+          
         <input type="button" ng-click="reset()" value="Reset" />
-
-
         <input type="submit" ng-click="update(event, hold)" value="Submit" />
-
-
       </form>
     </div>
-
   </div>
 </section> 
