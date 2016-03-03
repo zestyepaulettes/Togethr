@@ -10,6 +10,13 @@ angular.module('createEvent', [])
   $scope.items = [{}];
   $scope.myFriends = [];
 
+  $scope.loadFriends = function() {
+    FB.api('/me/friends', function(response) {
+      $scope.$apply(function() {
+        $scope.myFriends = response.data;
+      });
+    });
+  };
 
   $scope.init = function(){
     //create an empty event
@@ -65,14 +72,6 @@ angular.module('createEvent', [])
     });
   };
 
-  $scope.loadFriends = function() {
-    FB.api('/me/friends', function(response) {
-      $scope.$apply(function() {
-        $scope.myFriends = response.data;
-      });
-    });
-  };
-
   $scope.addGuest = function (guest) {
     CreateFactory.addGuest(guest);
     $scope.guests = CreateFactory.getGuests();
@@ -107,15 +106,24 @@ angular.module('createEvent', [])
     $scope.data.userID = $cookies.get('userID');
 
     //TODO make api call to add guests to User_Event table
-    console.log('CALLING ADDGUESTS');
     var currentEvent = CreateFactory.getCurrentEvent();
     requestFactory.addGuests(CreateFactory.getGuests(), currentEvent.id);
 
+    var eventData = {
+      name: $scope.event.name,//get name
+      description: $scope.event.description, //getdescription,
+      date: Date.now(),
+      location: $scope.event.location, //get location
+      hostId: 1, //get host ID
+      total: 50
+    };
+    console.log(currentEvent.id);
+    requestFactory.updateEvent(eventData, currentEvent.id);
     // $scope.master = angular.copy(event);
-    CreateFactory.addEvent($scope.data)
-    .then(function () {
-      $location.path('/events');
-    });
+    // CreateFactory.addEvent($scope.data)
+    // .then(function () {
+    //   $location.path('/events');
+    // })
   };
   // clears out the form
   $scope.reset = function() {

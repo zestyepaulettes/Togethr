@@ -56,6 +56,26 @@ module.exports = {
           res.json(data);
         }
       }
+    },
+    post: function(req, res){
+      var eventID = req.params.eventID;
+      var data = {
+        name: req.body.name,
+        description: req.body.description,
+        date: req.body.date,
+        location: req.body.location,
+        hostId: req.body.hostId,
+        total: req.body.total
+      }
+
+      EventQuery.updateByID(data, eventID)
+      .then(function(event){
+        res.json(event);
+      })
+      .catch(function(error){
+        console.error(error);
+        res.json(error);
+      });
     }
   }
 };

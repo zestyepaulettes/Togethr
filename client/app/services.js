@@ -46,6 +46,16 @@ angular.module('Services', [])
     });
   };
 
+  var updateEvent = function(eventData, eventID){
+    console.log('UPDATING EVENT WITH: ');
+    console.log(eventData);
+    return $http({
+      method: 'POST',
+      url: '/api/event/' + eventID,
+      data: eventData
+    });
+  }
+
   var updateItem = function(item, guestId) {
     return $http({
       method: 'PUT',
@@ -88,6 +98,7 @@ angular.module('Services', [])
   return {
     getEvents: getEvents,
     sendEmails: sendEmails,
+    updateEvent: updateEvent,
     updateItem: updateItem,
     addItem: addItem,
     addGuests: addGuests,
