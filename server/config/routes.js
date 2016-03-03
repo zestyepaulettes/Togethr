@@ -14,6 +14,7 @@ var nodemailerController = require('../controllers/nodemailerController');
 router.get('/events/:userID', eventsController.events.get);
 router.post('/events', eventsController.events.post);
 router.get('/eventDetails/:eventID', eventsController.eventDetails.get);
+router.post('/event/:eventID', eventsController.eventDetails.post);
 
 router.get('/email/:eventID', nodemailerController.get);
 
