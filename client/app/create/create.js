@@ -1,6 +1,6 @@
 angular.module('createEvent', [])
 
-.controller('CreateController', ['$scope', 'CreateFactory', '$location', '$cookies', function($scope, CreateFactory, $location, $cookies) {
+.controller('CreateController', ['$scope', 'CreateFactory', 'requestFactory' ,'$location', '$cookies', function($scope, CreateFactory, requestFactory ,$location, $cookies) {
   
   // $scope.days = CreateFactory.getNextDaysNameAndInfo();
   $scope.event = {};
@@ -64,23 +64,11 @@ angular.module('createEvent', [])
 //Update function is invoked in submit button in create.html
   $scope.update = function(event, hold) {
     $scope.data.userID = $cookies.get('userID');
-    var guestArray = [];
-    for (var i = 0; i < $scope.guests.length; i++) {
-      if($scope.guests[i].name && $scope.guests[i].email) {
-        guestArray.push($scope.guests[i]);
-      }
-    }
-    var itemArray = [];
-    // console.log("ITEMS", hold);
-    for (var j=0; j < $scope.items.length; j++) {
-      if($scope.items[j] && $scope.items[j].name) {
-        itemArray.push($scope.items[j]);
-      }
-    }
-
-    $scope.data.event = event;
-    $scope.data.guests = guestArray;
-    $scope.data.items = itemArray;
+    
+    //TODO make api call to add guests to User_Event table
+    console.log('CALLING ADDGUESTS');
+    var currentEvent = CreateFactory.getCurrentEvent();
+    requestFactory.addGuests(CreateFactory.getGuests(), currentEvent.id);
 
     // $scope.master = angular.copy(event);
     CreateFactory.addEvent($scope.data)

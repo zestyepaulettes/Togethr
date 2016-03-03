@@ -1,4 +1,5 @@
 var GuestQuery = require('../queries/guestQueries');
+var db = require('../models/models');
 
 module.exports = {
   get: function(req, res) {
@@ -9,11 +10,28 @@ module.exports = {
   },
 
   post: function(req, res) {
-    console.log("inside post req for guests ",req.body);
-    var guest = req.body;
-    GuestQuery.addOne(guest, function(newGuest) {
-      res.json(newGuest);
+    var guests = req.body.guests;
+    var eventId = req.body.eventId;
+    var guestId = guests[0].id;
+    var guestIDs = []; //array of user ids
+    db.User.find({
+      where: { facebookID: guestId }
+    })
+    .then(function(user){
+      return db.User_Event.findOrCreate({
+        where: { UserId: user.id },
+        defaults: { EventId: eventId }
+      })
+    })
+    .then(function(){
+      res.json('SUCCESS');
+    })
+    .catch(function(error){
+      res.json(error);
     });
+    // GuestQuery.addOne(guest, function(newGuest) {
+    //   res.json(newGuest);
+    // });
   },
 
   put: function(req, res) {
