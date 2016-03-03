@@ -17,10 +17,16 @@ var cookieParser = require('cookie-parser');
 var router = require('./config/routes.js');
 
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
+
+io.on('connect', function(socket){
+  console.log('----------------------------> a user connected!!');
+});
 
 //set port and listen
 var port = 3000;
-app.listen(port, function(){
+http.listen(port, function(){
   console.log('Listening on port:' + port);
 });
 
