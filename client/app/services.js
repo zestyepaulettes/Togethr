@@ -17,6 +17,17 @@ angular.module('Services', [])
 })
 
 .factory('requestFactory', function($http, $cookies) {
+  var getGuestsByEvent = function(eventId) {
+    return $http({
+      method:'GET',
+      url:'/api/eventGuestDetails',
+      params: {eventId: eventId}
+    })
+    .then(function(resp) {
+      console.log('this is resp from server requesting guests ',resp);
+      return resp;
+    });
+  };
 
   var sendVenmo = function(data) {
     return $http({
@@ -53,7 +64,7 @@ angular.module('Services', [])
       method: 'POST',
       url: '/api/event/' + eventID,
       data: eventData
-    })
+    });
   };
 
   var updateItem = function(item, guestId) {
@@ -109,7 +120,8 @@ angular.module('Services', [])
     updateItem: updateItem,
     addItem: addItem,
     addGuests: addGuests,
-    sendVenmo: sendVenmo
+    sendVenmo: sendVenmo,
+    getGuestsByEvent: getGuestsByEvent
   };
 })
 
@@ -146,6 +158,7 @@ angular.module('Services', [])
   var addGuest = function(guest){
     guests.push(guest);
   };
+
   var getGuests = function(){
     return guests;
   };
