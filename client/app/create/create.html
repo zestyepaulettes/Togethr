@@ -54,22 +54,13 @@
         <label>Event Location:</label>
         <input type="text" ng-model="event.location" ng-model-options="{ debounce: 500 }"/> <br/>
         <input type="submit"  ng-click="mapIt()" value="Map it!" />
-        <br />
+        <br /> <br />
 
         <!-- this is the map -->
         <div id="map" style="width: 500px; height: 400px;"></div>
         <br />
-        <h1>Invited Guests:</h1>
-        <ul>
-          <li ng-repeat="friend in guests">
-          {{friend.name}}
-          </li>
-        </ul>
-        <label>Guests:</label>
 
-        <label>Guests:</label>
-        <button ng-click="loadFriends()"> facebook friends </button>
-        <br />
+        <label>Guests to invite:</label>
         <div ng-repeat="friend in myFriends">
           <br />
           <input type="button" value="{{ friend.name }}" ng-click="addGuest(friend)" class="button special small">
@@ -77,6 +68,13 @@
         </div>
         <br/>
         <br/>
+
+        <h1>Invited Guests:</h1>
+        <ul>
+          <li ng-repeat="friend in guests">
+          {{friend.name}}
+          </li>
+        </ul>
 
         <label>Stuff you need for your party:</label>
         <!-- <textarea ng-model="hold.items" ng-list="&#10;" ng-trim="false"></textarea> -->

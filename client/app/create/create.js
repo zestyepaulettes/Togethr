@@ -22,24 +22,27 @@ angular.module('createEvent', [])
 
     //renders map
     var geocoder, map;
-      geocoder = new google.maps.Geocoder();
-        geocoder.geocode({
-          'address':'Los Angeles, CA'
-         }, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-              var myOptions = {
-                zoom: 12,
-                center: results[0].geometry.location,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-              };
-            map = new google.maps.Map(document.getElementById("map"), myOptions);
-            var infowindow = new google.maps.InfoWindow();
-            }
-          });
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode({'address':'Los Angeles, CA'}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        var myOptions = {
+          zoom: 12,
+          center: results[0].geometry.location,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map"), myOptions);
+        var infowindow = new google.maps.InfoWindow();
+      }
+    });
   };
   $scope.init();
+  //this watches for anything typed to location to map it live
   $scope.$watch('event.location', function() {
      $scope.mapIt();
+  });
+  //watches the event name being typed to load fb friends
+  $scope.$watch('event.name', function() {
+    $scope.loadFriends();
   });
   $scope.mapIt = function() {
     var geocoder, map;
