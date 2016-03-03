@@ -55,12 +55,19 @@
         <input type="text" ng-model="event.location" />
         <br />
 
+        <h1>Invited Guests:</h1>
+        <ul>
+          <li ng-repeat="friend in guests">
+          {{friend.name}}
+          </li>
+        </ul>
+
         <label>Guests:</label> 
         <button ng-click="loadFriends()"> facebook friends </button>
         <br />
         <div ng-repeat="friend in myFriends"> 
           <br /> 
-          <input type="button" value="{{ friend.name }}" ng-click="loadFriends()" class="button special small"> 
+          <input type="button" value="{{ friend.name }}" ng-click="addGuest(friend)" class="button special small"> 
           <br /> 
         </div>
         <br/>
@@ -86,6 +93,10 @@
         <button ng-click="getCurrent()"> getCurrent Event </button>
         <br />
         <br />
+
+        
+        <br/>
+        <br/>
           
         <input type="button" ng-click="reset()" value="Reset" />
         <input type="submit" ng-click="update(event, hold)" value="Submit" />
