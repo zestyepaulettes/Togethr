@@ -115,7 +115,6 @@ angular.module('Services', [])
       console.error(err);
     });
   };
-
   var addItem = function (items, eventID, userID) {
     return $http({
       method: 'POST',
