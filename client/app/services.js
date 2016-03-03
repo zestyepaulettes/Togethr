@@ -126,8 +126,8 @@ angular.module('Services', [])
         userID: userID
       }
     }).then(function(res){
-        console.log('response for additem for server ', res.data);
-        return res.data;
+      socket.emit('reassign','thenewitem');
+      return res.data;
     }).catch(function (err) {
       console.eroor(err);
     });
