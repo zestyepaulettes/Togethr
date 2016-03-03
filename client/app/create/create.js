@@ -7,7 +7,7 @@ angular.module('createEvent', [])
   $scope.hold = {};
   $scope.data = {};
 
-  $scope.items = [{}];
+  $scope.items = [];
   $scope.myFriends = [];
 
   $scope.loadFriends = function() {
@@ -82,14 +82,20 @@ angular.module('createEvent', [])
   };
 
   $scope.addItem = function($event) {
-    console.log($event);
+    $scope.item = $scope.item;
     if($event && $event.which === 13){
-      $scope.items.push({});
+      $scope.items.push($scope.item);
+      $scope.item = '';
     }
   };
 
   $scope.removeItem = function(item) {
-    $scope.items.splice(item, 1);
+    for(var i = 0; i < $scope.items.length; i++) {
+      if($scope.items[i] === item) {
+        $scope.items.splice(i, 1);
+        console.log($scope.items, 'after deletion');
+      }
+    }
   };
 
   $scope.select = function($event, day){
@@ -130,7 +136,7 @@ angular.module('createEvent', [])
     $scope.event = {};
     $scope.hold = {};
     $scope.guests = [{}];
-    $scope.items = [{}];
+    $scope.items = [];
     $scope.data = {};
   };
 
