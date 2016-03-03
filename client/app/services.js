@@ -70,23 +70,29 @@ angular.module('Services', [])
     });
   };
 
-  var addGuest = function(guest) {
+  var addGuests = function(guests, eventID){
+    console.log('Add guests function');
     return $http({
       method: 'POST',
       url: '/api/guests',
-      data: guest
+      data: {
+        guests: guests,
+        eventId: eventID
+      }
     }).then(function(res){
-        console.log('inside addGuest func in services ', res.data);
-        return res.data;
+      console.log('GOT RESPONSE');
+      console.log(res.data);
+    }).catch(function(err){
+      console.error(err);
     });
-  };
+  }
 
   return {
     getEvents: getEvents,
     sendEmails: sendEmails,
     updateItem: updateItem,
     addItem: addItem,
-    addGuest: addGuest,
+    addGuests: addGuests,
     sendVenmo: sendVenmo
   };
 })
@@ -103,6 +109,16 @@ angular.module('Services', [])
     }).then(function(response){
       currentEvent = response.data;
       console.log(currentEvent);
+    }).catch(function(error){
+      console.error(error);
+    });
+  }
+
+  var updateEvent = function(data){
+    return $http({
+      method: 'UPDATE',
+      url: '/api/event',
+      data: data
     });
   }
 
