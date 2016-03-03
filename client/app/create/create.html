@@ -79,12 +79,10 @@
         <label>Stuff you need for your party:</label>
         <!-- <textarea ng-model="hold.items" ng-list="&#10;" ng-trim="false"></textarea> -->
         <div class="add-items">
-        <!-- <div ng-repeat="item in items"> -->
           <label>
             <span>
             <input type="text" ng-model="item" placeholder="Enter Item..." ng-keypress="addItem($event)"></span>
           </label>
-        <!-- </div> -->
         </div>
 
         <h1>Added items:</h1>
@@ -94,10 +92,6 @@
             <input type="button" value="X" ng-click="removeItem(item)" class="button special small">
           </li>
         </ul>
-
-        <!-- <button ng-click="addItem()">Add another item</button> -->
-        <input type="button" value="Add Item" ng-click="addItem()" class="button alt small" style="width:10%">
-        <br /> <br />
 
         <!-- <button ng-click="getCurrent()"> getCurrent Event </button> -->
         <!-- <br />
