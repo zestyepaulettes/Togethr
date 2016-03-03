@@ -39,6 +39,51 @@ angular.module('createEvent', [])
       location: 'Event location',
       total: 9999
     });
+<<<<<<< HEAD
+=======
+
+    //renders map
+    var geocoder, map;
+      geocoder = new google.maps.Geocoder();
+        geocoder.geocode({
+          'address':'Los Angeles, CA'
+         }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+              var myOptions = {
+                zoom: 12,
+                center: results[0].geometry.location,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+              };
+            map = new google.maps.Map(document.getElementById("map"), myOptions);
+            var infowindow = new google.maps.InfoWindow();
+            }
+          });
+  };
+  $scope.init();
+  $scope.$watch('event.location', function() {
+     $scope.mapIt();
+  });
+  $scope.mapIt = function() {
+    var geocoder, map;
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode({'address': $scope.event.location }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        var myOptions = {
+          zoom: 12,
+          center: results[0].geometry.location,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map"), myOptions);
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location,
+          animation: google.maps.Animation.DROP
+        });
+      }
+    });
+  };
+>>>>>>> implement google maps for event location
 
     //renders map
     var geocoder, map;
