@@ -1,6 +1,6 @@
 angular.module('Services', [])
 
-.factory('EventFactory', function($http, $cookies) {
+.factory('EventFactory', function($http, $cookies, $location) {
 
   var getEvents = function() {
     return $http({
@@ -53,8 +53,8 @@ angular.module('Services', [])
       method: 'POST',
       url: '/api/event/' + eventID,
       data: eventData
-    });
-  }
+    })
+  };
 
   var updateItem = function(item, guestId) {
     return $http({
