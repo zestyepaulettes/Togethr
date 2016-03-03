@@ -32,8 +32,8 @@ module.exports = {
   },
 
   eventDetails: {
-    get: function(req, res) {
-      // Pull eventID from request params 
+    get: function(req, res) { //NOT RELEVANT, to be deleted
+      // Pull eventID from request params
       var eventID = req.params.eventID;
       var data = {}; // will hold response data
 
@@ -52,7 +52,7 @@ module.exports = {
 
       // check if all queries are done and return data in response
       function checkQueries() {
-        if (Object.keys(data).length === 3) { 
+        if (Object.keys(data).length === 3) {
           res.json(data);
         }
       }
@@ -66,7 +66,7 @@ module.exports = {
         location: req.body.location,
         hostId: req.body.hostId,
         total: req.body.total
-      }
+      };
 
       EventQuery.updateByID(data, eventID)
       .then(function(event){
