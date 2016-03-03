@@ -82,9 +82,10 @@ angular.module('createEvent', [])
   };
 
   $scope.addItem = function($event) {
-    $scope.item = $scope.item;
-    if($event && $event.which === 13){
-      $scope.items.push($scope.item);
+    if($event.which === 13) {
+      // $scope.items.push($scope.item);
+      CreateFactory.addItem($scope.item);
+      $scope.items = CreateFactory.getItems();
       $scope.item = '';
     }
   };
@@ -114,6 +115,7 @@ angular.module('createEvent', [])
     //TODO make api call to add guests to User_Event table
     var currentEvent = CreateFactory.getCurrentEvent();
     requestFactory.addGuests(CreateFactory.getGuests(), currentEvent.id);
+    requestFactory.addItem(CreateFactory.getItems(), currentEvent.id, $scope.data.userID);
 
     var eventData = {
       name: $scope.event.name,//get name

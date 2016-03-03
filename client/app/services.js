@@ -67,14 +67,20 @@ angular.module('Services', [])
     });
   };
 
-  var addItem = function (item) {
+  var addItem = function (items, eventID, userID) {
     return $http({
       method: 'POST',
       url: '/api/items',
-      data: item
+      data: {
+        items: items,
+        eventID: eventID,
+        userID: userID
+      }
     }).then(function(res){
-        console.log('inside addItem func ', res.data);
+        console.log('response for additem for server ', res.data);
         return res.data;
+    }).catch(function (err) {
+      console.eroor(err);
     });
   };
 
@@ -110,6 +116,7 @@ angular.module('Services', [])
   //send a post request to server
   var currentEvent;
   var guests = [];
+  var items = [];
   var addEvent = function(event) {
     $http({
       method: 'POST',
@@ -142,11 +149,20 @@ angular.module('Services', [])
     return guests;
   };
 
+  var addItem = function (item) {
+    items.push(item);
+  };
+  var getItems = function () {
+    return items;
+  }
+
   return{
     addEvent: addEvent,
     addGuest: addGuest,
     getGuests: getGuests,
-    getCurrentEvent: getCurrentEvent
+    getCurrentEvent: getCurrentEvent,
+    addItem: addItem,
+    getItems: getItems
   };
 })
 
