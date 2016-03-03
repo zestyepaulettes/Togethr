@@ -1,6 +1,7 @@
 angular.module('Services', [])
 
 .factory('EventFactory', function($http, $cookies) {
+
   var getEvents = function() {
     return $http({
       method: 'GET',
@@ -8,15 +9,26 @@ angular.module('Services', [])
     })
     .then(function(resp) {
       return resp.data;
-    })
-  }
+    });
+  };
   return {
     getEvents: getEvents
-  }
+  };
 })
 
 .factory('requestFactory', function($http, $cookies) {
 
+  var sendVenmo = function(data) {
+    return $http({
+      method: 'POST',
+      url:'/venmo',
+      data: data
+    })
+    .then(function(resp) {
+      console.log('response from venmo', resp);
+      return resp;
+    });
+  };
   var getEvents = function(eventID) {
     return $http({
       method: 'GET',
@@ -24,7 +36,7 @@ angular.module('Services', [])
     })
     .then(function(res) {
       return res.data;
-    })
+    });
   };
 
   var sendEmails = function(eventID) {
@@ -42,7 +54,7 @@ angular.module('Services', [])
     })
     .then(function() {
       console.log("UPDATED DB");
-    })
+    });
   };
 
   var addItem = function (item) {
@@ -72,8 +84,9 @@ angular.module('Services', [])
     sendEmails: sendEmails,
     updateItem: updateItem,
     addItem: addItem,
-    addGuest: addGuest
-  }
+    addGuest: addGuest,
+    sendVenmo: sendVenmo
+  };
 })
 
 .factory('CreateFactory', function($http, $cookies) {
