@@ -23,9 +23,7 @@ var Event = db.define('Event', {
 });
 
 var Item = db.define('Item', {
-  name: Sequelize.STRING,
-  UserId: Sequelize.INTEGER,
-  EventId: Sequelize.INTEGER
+  name: Sequelize.STRING
 });
 
 var User_Event = db.define('User_Event', {
