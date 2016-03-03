@@ -126,7 +126,7 @@ angular.module('Services', [])
       }
     }).then(function(res){
       socket.emit('reassign','thenewitem');
-      return res.data;
+        return res.data;
     }).catch(function (err) {
       console.eroor(err);
     });
