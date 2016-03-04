@@ -17,7 +17,9 @@
         <h5>Description: {{details.description}}</h5>
         <h5>Total Cost of Party: {{total || details.total}}</h5>
   		</div>
-
+      <!-- this is the map -->
+        <div id="map" style="width: 500px; height: 400px;"></div>
+        <br />
       <!-- Drag-and-Drop Table -->
       <div class="table-wrapper">
     		<div class="itemsTable row">
@@ -58,7 +60,7 @@
         </span>
         <input type="button" value="Send Venmo Requests"ng-click="venmo()">
         </input>
-    </div><br/>
+    </div> <br/>
     <div>
       <h5>Forget anything?</h5>
       <!-- add item field -->
@@ -67,8 +69,12 @@
       </span>
       <!-- add item button -->
       <input type="button" value="Add item" ng-click="addItemFunc(itemName)">
-
-
+    </div>
+    <div>
+      <br />
+      <input type="button" value="Email Guests" class="nodemailer button" ng-click="email()">
+      </input>
+    </div>
       <!-- add guest field  -->
       <!-- <span style="display:inline-block">
         <input type="text"  ng-model="guestName" name="addGuest" id="addGuest" value="" placeholder="Enter Guest" />
@@ -87,10 +93,6 @@
     <br><br> -->
 
     <!-- Send email button -->
-    <div>
-      <br />
-      <input type="button" value="Email Guests" class="nodemailer button" ng-click="email()">
-      </input>
-    </div>
+
   </div>
 </section>
