@@ -81,16 +81,19 @@ angular.module('Services', [])
       data: {UserId: guestId}
     })
     .then(function() {
+       socket.emit('reassign', 'helloworld');
       console.log("UPDATED DB-------currently");
     });
   };
 
   var addOneItem = function (item) {
+    item.UserId = $cookies.get('userID');
     return $http({
       method: 'POST',
       url: '/api/extraItem',
-      data: item
+      data: {item}
     }).then(function(res) {
+      socket.emit('reassign', 'helloworld');
       console.log("response from server for adding items from eventdetails ", res.data);
       return res.data;
     }).catch(function (err) {
