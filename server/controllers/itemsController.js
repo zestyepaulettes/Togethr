@@ -57,8 +57,6 @@ module.exports = {
 		});
 	},
 	put: function(req, res) {
-		// console.log('making a put request when we drag items', req.params.itemID);
-		// console.log('req.body in put', req.body);
 		var itemID = req.params.itemID;
 		var newAttrs = req.body;
 		db.Item.update(newAttrs, {
