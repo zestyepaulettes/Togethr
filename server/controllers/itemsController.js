@@ -3,10 +3,29 @@ var db = require('../models/models');
 
 module.exports = {
 	get: function(req, res) {
-		var eventID = req.params.eventID; 
+		var eventID = req.params.eventID;
 		ItemQuery.getAll(eventID, function(items){
 			res.json(items);
 		});
+	},
+	 getItems: function(req, res) {
+	  var eventId = req.params.eventId;
+	  console.log(eventId);
+	  db.Item.findAll({
+	    where: {
+	      EventId: eventId
+	    }
+	  })
+	  .then(function(items) {
+	    var itemArray = [];
+	    console.log('this is items linked to event in db', items);
+	    // // console.log('this is users from server:',users);
+		   //  for(var i = 0; i < items.length; i++) {
+		   //    itemArray.push(items[i].dataValues);
+		   //    console.log('this is itemArray',itemArray)
+		   //  }
+		      res.json(items);
+	    });
 	},
 
 	post: function(req, res) {
@@ -44,7 +63,7 @@ module.exports = {
 	},
 
 	delete: function(req, res) {
-		var itemID = req.params.itemID; 
+		var itemID = req.params.itemID;
 		ItemQuery.deleteOne(itemID, function(){
 			res.send();
 		});

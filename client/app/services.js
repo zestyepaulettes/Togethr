@@ -26,6 +26,15 @@ angular.module('Services', [])
       return resp;
     });
   };
+  var getItemsByEvent = function (eventId) {
+    return $http({
+      method:'GET',
+      url:'/api/eventItemDetails/' + eventId,
+    })
+    .then(function(resp) {
+      return resp.data;
+    });
+  };
 
   var sendVenmo = function(data) {
     return $http({
@@ -69,11 +78,10 @@ angular.module('Services', [])
     return $http({
       method: 'PUT',
       url: '/api/items/' + item.id,
-      data: {GuestId: guestId}
+      data: {UserId: guestId}
     })
     .then(function() {
       socket.emit('reassign', 'helloworld');
-      console.log("UPDATED DB");
     });
   };
 
@@ -133,7 +141,8 @@ angular.module('Services', [])
     addGuests: addGuests,
     sendVenmo: sendVenmo,
     getGuestsByEvent: getGuestsByEvent,
-    addOneItem: addOneItem
+    addOneItem: addOneItem,
+    getItemsByEvent: getItemsByEvent
   };
 })
 

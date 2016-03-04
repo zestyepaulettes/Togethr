@@ -18,6 +18,7 @@ router.post('/event/:eventID', eventsController.eventDetails.post);
 
 router.get('/email/:eventID', nodemailerController.get);
 
+router.get('/eventItemDetails/:eventId', itemsController.getItems); //tiff
 router.get('/eventGuestDetails/:eventId', guestsController.getGuests); //tiff
 router.get('/guests', guestsController.get);
 router.post('/guests', guestsController.post);
