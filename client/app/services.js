@@ -89,7 +89,7 @@ angular.module('Services', [])
     return $http({
       method: 'POST',
       url: '/api/extraItem',
-      data: {item}
+      data: item
     }).then(function(res) {
       console.log("response from server for adding items from eventdetails ", res.data);
       return res.data;
@@ -116,7 +116,10 @@ angular.module('Services', [])
   };
 
   var addGuests = function(guests, eventID){
-    console.log('Add guests function');
+    guests.push({
+      id: $cookies.get('facebookID'),
+      name: $cookies.get('displayName')
+    });
     return $http({
       method: 'POST',
       url: '/api/guests',
