@@ -1,6 +1,6 @@
 angular.module('Services', [])
 
-.factory('EventFactory', function($http, $cookies, $location) {
+.factory('EventFactory', function($http, $cookies) {
 
   var getEvents = function() {
     return $http({
