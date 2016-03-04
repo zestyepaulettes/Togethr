@@ -116,6 +116,7 @@ angular.module('Services', [])
   };
 
   var addGuests = function(guests, eventID){
+    //these three lines add host to guests list
     guests.push({
       id: $cookies.get('facebookID'),
       name: $cookies.get('displayName')
