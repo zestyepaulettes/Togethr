@@ -87,9 +87,10 @@ angular.module('eventDetails', ['eventList'])
 
   var initializeDetails = function() {
     // Makes request to server for all event details
+    console.log($routeParams.eventID);
     requestFactory.getEvents($routeParams.eventID)
       .then(function(details) {
-
+        console.log(details);
         // Set event details to ng-model details
         $scope.details = details;
 

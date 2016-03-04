@@ -46,6 +46,7 @@ angular.module('Services', [])
       url: '/api/eventDetails/' + eventID
     })
     .then(function(res) {
+      //console.log(res);
       return res.data;
     });
   };
