@@ -155,7 +155,7 @@ angular.module('Services', [])
   };
   var getItems = function () {
     return items;
-  }
+  };
 
   return{
     addEvent: addEvent,
