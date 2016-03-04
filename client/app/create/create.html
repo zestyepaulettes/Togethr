@@ -65,7 +65,7 @@
         <div ng-repeat="friend in myFriends">
           <br />
           <input type="button" value="{{ friend.name }}" ng-click="addGuest(friend)" class="button special small">
-          <br /> 
+          <br />
         </div>
         <br/> <br/>
 
@@ -89,22 +89,22 @@
 
         <h1>Added items:</h1>
         <ul>
-          <li ng-repeat="item in items">
+          <li ng-repeat="item in items track by $index">
           {{item}}
             <input type="button" value="X" ng-click="removeItem(item)" class="button special small">
-            <br />  
+            <br />
           </li>
         </ul>
-
-        <label> Do you want your Guests to bring items or cash:    
+        <label> Do you want your Guests to bring items or cash:
           <input type="button" value="Items" class="button special small">
           <input type="button" value="Cash" class="button special small">
         </label>
-        <br /> 
+        <br />
         <label> Total Cash for the party:
           <input type="number" ng-model="total" placeholder="Enter amount...">
-        </label> 
+        </label>
         <br />
+        <input type="button" value="testGUEST" ng-click="getGuestTest()" class="button special small">
         <!-- <button ng-click="getCurrent()"> getCurrent Event </button> -->
         <!-- <br />
         <br /> -->

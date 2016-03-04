@@ -11,6 +11,13 @@ angular.module('createEvent', [])
   $scope.myFriends = [];
   $scope.total= 0;
 
+  $scope.getGuestTest = function() {
+    requestFactory.getGuestsByEvent(26)
+    .then(function(guests) {
+      console.log('returning guests from db',guests);
+    });
+  };
+
   $scope.loadFriends = function() {
     FB.api('/me/friends', function(response) {
       $scope.$apply(function() {
