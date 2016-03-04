@@ -14,7 +14,6 @@ angular.module('eventDetails', ['eventList'])
     return requestFactory.getGuestsByEvent($routeParams.eventID)
     .then(function(guests) {
       $scope.guests = guests.data;
-      console.log('this is scope.guests;', $scope.guests);
       initializeDetails();
     });
   };
@@ -59,7 +58,6 @@ angular.module('eventDetails', ['eventList'])
     $scope.getItems()
         .then(function(items) {
         $scope.items = items;
-        console.log(res);
         $scope.resetField('newItem'); // reset text field
       });
   });
@@ -100,39 +98,32 @@ angular.module('eventDetails', ['eventList'])
     console.log($routeParams.eventID);
     requestFactory.getEvents($routeParams.eventID)
       .then(function(details) {
-          $scope.getItems()
-          .then(function(items) {
-          $scope.items = items;
-          $scope.details = details;
-          var temp = {};
-          for(var i = 0 ; i < $scope.items.length; i++) {
-            var GuestId = $scope.items[i].UserId;
-            var item = $scope.items[i];
-              if(temp[GuestId]) {
-                temp[GuestId].push(item);
-              } else {
-                temp[GuestId] = [item];
-              }
-          }
-          for(var j = 0 ; j < $scope.guests.length; j++) {
-            var guestName = $scope.guests[j].displayName;
-            var guestId = $scope.guests[j].id;
-            partyGuests[guestName + ' ' + guestId] = temp[guestId] ? temp[guestId] : [];
-          }
- 
+        $scope.details = details;
+          return $scope.getItems();
+      })
+      .then(function(items) {
+        $scope.items = items;
+        var temp = {};
+        for(var i = 0 ; i < $scope.items.length; i++) {
+          var GuestId = $scope.items[i].UserId;
+          var item = $scope.items[i];
+            if(temp[GuestId]) {
+              temp[GuestId].push(item);
+            } else {
+              temp[GuestId] = [item];
+            }
+        }
+        for(var j = 0 ; j < $scope.guests.length; j++) {
+          var guestName = $scope.guests[j].displayName;
+          var guestId = $scope.guests[j].id;
+          partyGuests[guestName + ' ' + guestId] = temp[guestId] ? temp[guestId] : [];
+        }
       });
-        // Set event details to ng-model details
-
-        // temporarily holds guestId: [items]
-        //   console.log('this is $scope.details',$scope.details);
-        // console.log('this is partyGuests',partyGuests);
-    });
   };
 
   // Fires when an item is moved to a column
   $scope.reassignItem = function(item, guestInfo) {
     var UserId = $scope.getId(guestInfo);
-    console.log('this is item dragged',item)
     requestFactory.updateItem(item, UserId);
     // nessesary for drag-and-drop visualization
     // return false to reject visual update
@@ -159,7 +150,6 @@ angular.module('eventDetails', ['eventList'])
   };
 
   socket.on('updateItems', function(msg){
-    console.log('ITEM MOVED IN DB!');
     initializeDetails();
   });
 }]);
