@@ -22,11 +22,7 @@ angular.module('eventDetails', ['eventList'])
   $scope.getItems = function () {
     requestFactory.getItemsByEvent($routeParams.eventID)
     .then(function(items) {
-      console.log('-------this is items for event', items);
-      for(var i = 0; i < items.length; i++) {
-        $scope.items.push(items[i].name);
-      }
-      console.log($scope.items);
+      $scope.items = items;
     });
   };
   $scope.getItems();
