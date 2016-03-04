@@ -147,11 +147,10 @@ angular.module('eventDetails', ['eventList'])
     var eventID = $cookies.get("eventID");
     requestFactory.sendEmails(eventID);
   };
+
   socket.on('updateItems', function(msg){
+    console.log('ITEM MOVED IN DB!');
     initializeDetails();
   });
-
-/** INITIALIZE ON PAGE LOAD **/
-  initializeDetails();
 }]);
 
