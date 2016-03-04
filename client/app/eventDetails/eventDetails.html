@@ -11,9 +11,11 @@
     </header>
   	<div>
   		<div>
-  		  <h3>{{details.event.name}}</h3>
-  		  <h5>Where: {{details.event.location}}</h5>
-  		  <h5>When: {{details.event.date| date: 'fullDate'}}</h5>
+  		  <h3>Event Name: {{details.name}}</h3>
+  		  <h5>Where: {{details.location}}</h5>
+  		  <h5>When: {{details.date| date: 'fullDate'}}</h5>
+        <h5>Description: {{details.description}}</h5>
+        <h5>Total Cash: {{details.total}}</h5>
   		</div>
 
       <!-- Drag-and-Drop Table -->

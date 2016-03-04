@@ -3,6 +3,7 @@ var GuestQuery = require('../queries/guestQueries');
 var ItemQuery = require('../queries/itemQueries');
 var BasketQuery = require('../queries/basketQueries');
 var nodemailer = require('../config/nodemailer');
+var db = require('../models/models');
 
 module.exports = {
   events: {
@@ -32,30 +33,19 @@ module.exports = {
   },
 
   eventDetails: {
-    get: function(req, res) { //NOT RELEVANT, to be deleted
+    get: function(req, res) { 
       // Pull eventID from request params
       var eventID = req.params.eventID;
-      var data = {}; // will hold response data
-
-      EventQuery.getByID(eventID, function(event) {
-        data.event = event; // get event
-        checkQueries();
-      });
-      GuestQuery.getAll(eventID, function(guests) {
-        data.guests = guests; // get event guests
-        checkQueries();
-      });
-      ItemQuery.getAll(eventID, function(items) {
-        data.items = items; // get event items
-        checkQueries();
-      });
-
-      // check if all queries are done and return data in response
-      function checkQueries() {
-        if (Object.keys(data).length === 3) {
-          res.json(data);
+      db.Event.find({ 
+        where: {
+          id: eventID
         }
-      }
+      }).then(function (event) {
+        console.log("current event is ", event.dataValues);
+        res.json(event.dataValues);
+      }).catch(function(error) {
+        console.log("error in eventdetails get req!");
+      })
     },
     post: function(req, res){
       var eventID = req.params.eventID;
