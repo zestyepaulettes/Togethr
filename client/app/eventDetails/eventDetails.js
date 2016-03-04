@@ -8,12 +8,13 @@ angular.module('eventDetails', ['eventList'])
   $scope.guestEmail; //is this used?
   $scope.total;
   $scope.guests;
+  $scope.split;
+  $scope.total;
 
   //retrieves guests full info from db specific to event
   $scope.getGuests = function() {
     requestFactory.getGuestsByEvent($routeParams.eventID)
     .then(function(guests) {
-      // console.log('returning guests from db',guests.data);
       $scope.guests = guests.data;
     });
   };
@@ -23,7 +24,6 @@ angular.module('eventDetails', ['eventList'])
   $scope.getGuests = function() {
     requestFactory.getGuestsByEvent($routeParams.eventID)
     .then(function(guests) {
-      // console.log('returning guests from db',guests.data);
       $scope.guests = guests.data;
     });
   };
@@ -31,13 +31,19 @@ angular.module('eventDetails', ['eventList'])
 
   //makes venmo call to server
   $scope.venmo = function(guestData) {
+    $scope.total = $scope.total;
+    $scope.split = $scope.total/($scope.guests.length + 1);
     var data = {
-      phone: '14153167181',
-      amount: -1,
-      note: "venmo me"
+      // phone: '14153167181',
+      amount: -$scope.split,
+      note: "please chip in for" + ""//enter event name when we get access
     };
+    for(var i = 0; i < $scope.guests.length; i++) {
+      data.email = $scope.guests[i].email;
     requestFactory.sendVenmo(data);
+    }
   };
+
   // clear text in text field, takes a string as input
   $scope.resetField = function(field) {
     $scope[field] = '';
@@ -45,7 +51,6 @@ angular.module('eventDetails', ['eventList'])
 
   // sends a POST request to insert a new item
   $scope.addItemFunc = function(itemName){
-    //console.log('inside addItemFunc!');
     var newItem = {
       EventId: $cookies.get('eventID'),
       name: itemName // this is coming from ng-model
