@@ -81,6 +81,7 @@ angular.module('Services', [])
       data: {UserId: guestId}
     })
     .then(function() {
+       socket.emit('reassign', 'helloworld');
       console.log("UPDATED DB-------currently");
     });
   };
