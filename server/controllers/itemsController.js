@@ -3,10 +3,29 @@ var db = require('../models/models');
 
 module.exports = {
 	get: function(req, res) {
-		var eventID = req.params.eventID; 
+		var eventID = req.params.eventID;
 		ItemQuery.getAll(eventID, function(items){
 			res.json(items);
 		});
+	},
+	 getItems: function(req, res) {
+	  var eventId = req.params.eventId;
+	  console.log(eventId);
+	  db.Item.findAll({
+	    where: {
+	      EventId: eventId
+	    }
+	  })
+	  .then(function(items) {
+	    var itemArray = [];
+	    console.log('this is items linked to event in db', items);
+	    // // console.log('this is users from server:',users);
+		   //  for(var i = 0; i < items.length; i++) {
+		   //    itemArray.push(items[i].dataValues);
+		   //    console.log('this is itemArray',itemArray)
+		   //  }
+		      res.json(items);
+	    });
 	},
 
 	post: function(req, res) {
@@ -21,7 +40,7 @@ module.exports = {
 				name: items[i],
 				UserId: userid,
 				EventId: eventid
-			})
+			});
 		}
 		console.log(itemEntries);
 		db.Item.bulkCreate(itemEntries)
@@ -31,9 +50,9 @@ module.exports = {
 				res.json(error);
 		});
 	},
-
-	put: function(req, res) {
-		console.log("PUT request for add item ", req.body.item);
+//TODO ASSIGN ITEM TO HOST
+	postOne: function(req, res) {
+		console.log("Post request for add item ", req.body.item);
 		var item = req.body.item;
 		db.Item.create(item)
 		.then(function () {
@@ -42,11 +61,25 @@ module.exports = {
 			res.json(error);
 		});
 	},
+	put: function(req, res) {
+		console.log('making a put request when we drag items', req.params.itemID);
+		console.log('req.body in put', req.body);
+		var itemID = req.params.itemID;
+		var newAttrs = req.body;
+		db.Item.update(newAttrs, {
+			where:{
+				id: itemID
+			}
+		})
+		.then(function() {
+			res.send(200);
+		});
+	},
 
 	delete: function(req, res) {
-		var itemID = req.params.itemID; 
+		var itemID = req.params.itemID;
 		ItemQuery.deleteOne(itemID, function(){
 			res.send();
 		});
 	}
-}
+};

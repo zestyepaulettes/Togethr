@@ -26,6 +26,15 @@ angular.module('Services', [])
       return resp;
     });
   };
+  var getItemsByEvent = function (eventId) {
+    return $http({
+      method:'GET',
+      url:'/api/eventItemDetails/' + eventId,
+    })
+    .then(function(resp) {
+      return resp.data;
+    });
+  };
 
   var sendVenmo = function(data) {
     return $http({
@@ -69,17 +78,17 @@ angular.module('Services', [])
     return $http({
       method: 'PUT',
       url: '/api/items/' + item.id,
-      data: {GuestId: guestId}
+      data: {UserId: guestId}
     })
     .then(function() {
-      console.log("UPDATED DB");
+      console.log("UPDATED DB-------currently");
     });
   };
 
   var addOneItem = function (item) {
     return $http({
-      method: 'PUT',
-      url: '/api/items',
+      method: 'POST',
+      url: '/api/extraItem',
       data: {item}
     }).then(function(res) {
       console.log("response from server for adding items from eventdetails ", res.data);
@@ -132,7 +141,8 @@ angular.module('Services', [])
     addGuests: addGuests,
     sendVenmo: sendVenmo,
     getGuestsByEvent: getGuestsByEvent,
-    addOneItem: addOneItem
+    addOneItem: addOneItem,
+    getItemsByEvent: getItemsByEvent
   };
 })
 

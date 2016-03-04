@@ -18,6 +18,7 @@ router.post('/event/:eventID', eventsController.eventDetails.post);
 
 router.get('/email/:eventID', nodemailerController.get);
 
+router.get('/eventItemDetails/:eventId', itemsController.getItems); //tiff
 router.get('/eventGuestDetails/:eventId', guestsController.getGuests); //tiff
 router.get('/guests', guestsController.get);
 router.post('/guests', guestsController.post);
@@ -26,7 +27,8 @@ router.delete('/guests', guestsController.delete);
 
 router.get('/items/:eventID', itemsController.get);
 router.post('/items', itemsController.post);
-router.put('/items', itemsController.put);
+router.post('/extraItem', itemsController.postOne);
+router.put('/items/:itemID', itemsController.put);
 router.delete('/items/:itemID', itemsController.delete);
 
 // router.get('/baskets', basketsController.get);

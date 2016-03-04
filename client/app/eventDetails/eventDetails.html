@@ -21,11 +21,11 @@
       <!-- Drag-and-Drop Table -->
       <div class="table-wrapper">
     		<div class="itemsTable row">
-          <div ng-repeat="guest in guests" class="col-md-6">
+          <div ng-repeat="(guestInfo, list) in models.guests" class="col-md-6">
           <!-- <div ng-repeat="(guestInfo, list) in models.guests" class="col-md-6"> -->
             <div class="panel panel-info">
               <div class="panel-heading">
-                  <h3 class="panel-title">{{guest.displayName}}</h3>
+                  <h3 class="panel-title">{{getName(guestInfo)}}</h3>
               </div>
               <div class="panel-body" >
                 <ul dnd-list="list"
@@ -66,7 +66,7 @@
       </span>
       <!-- add item button -->
       <input type="button" value="Add item" ng-click="addItemFunc(itemName)">
-        
+
 
       <!-- add guest field  -->
       <!-- <span style="display:inline-block">
@@ -81,7 +81,7 @@
       <!-- <span class="button alt disabled" ng-click="addGuestFunc(guestName, guestEmail)">
         Add guest
       </span>
-    </div> 
+    </div>
 
     <br><br> -->
 
