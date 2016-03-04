@@ -130,13 +130,6 @@ angular.module('createEvent', [])
     requestFactory.updateEvent(eventData, currentEvent.id).then(function() {
       $location.path('/eventDetails/' + currentEvent.id);
     });
-    // $scope.master = angular.copy(event);
-    // CreateFactory.addEvent($scope.data)
-    // .then(function () {
-    //   $location.path('/events');
-    // })
-    console.log(currentEvent.id);
-    $location.path('/eventDetails/' + currentEvent.id);
   };
   // clears out the form
   $scope.reset = function() {
