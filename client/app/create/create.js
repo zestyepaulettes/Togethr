@@ -95,14 +95,12 @@ angular.module('createEvent', [])
     for(var i = 0; i < $scope.items.length; i++) {
       if($scope.items[i] === item) {
         $scope.items.splice(i, 1);
-        console.log($scope.items, 'after deletion');
       }
     }
   };
 
   $scope.select = function($event, day){
     console.dir($event.target.innerHTML);
-    console.log(day);
   };
 
   $scope.getCurrent = function(){
