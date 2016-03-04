@@ -40,7 +40,7 @@ module.exports = {
 				name: items[i],
 				UserId: userid,
 				EventId: eventid
-			})
+			});
 		}
 		console.log(itemEntries);
 		db.Item.bulkCreate(itemEntries)
@@ -50,15 +50,29 @@ module.exports = {
 				res.json(error);
 		});
 	},
-
-	put: function(req, res) {
-		console.log("PUT request for add item ", req.body.item);
+//TODO ASSIGN ITEM TO HOST
+	postOne: function(req, res) {
+		console.log("Post request for add item ", req.body.item);
 		var item = req.body.item;
 		db.Item.create(item)
 		.then(function () {
 			res.json("Successfully added data!");
 		}).catch(function (error) {
 			res.json(error);
+		});
+	},
+	put: function(req, res) {
+		console.log('making a put request when we drag items', req.params.itemID);
+		console.log('req.body in put', req.body);
+		var itemID = req.params.itemID;
+		var newAttrs = req.body;
+		db.Item.update(newAttrs, {
+			where:{
+				id: itemID
+			}
+		})
+		.then(function() {
+			res.send(200);
 		});
 	},
 
@@ -68,4 +82,4 @@ module.exports = {
 			res.send();
 		});
 	}
-}
+};
