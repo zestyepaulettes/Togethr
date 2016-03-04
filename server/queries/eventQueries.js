@@ -1,21 +1,41 @@
-var Event = require('../models/models').Event;
+var db = require('../models/models');
 var UserQueries = require('./userQueries');
 
 module.exports = {
-// create and add one event and passes the new event to a callback
+// create and add one db.Event and passes the new db.Event to a callback
   addOne: function(data) {
-  	return Event.create(data);
+  	return db.Event.create(data);
   },
 
 // passes all events from a user to a callback
   getAll: function(userID, callback) {
-  	Event
-  		.findAll({
-  	    where: {UserId: userID}
-  	  })
-  	  .then(function(events) {
-  	    callback(events);
-  	  }); 
+    db.User_Event.find({
+      where: {
+        UserId: userID
+      }
+    }).then(function(user_event){
+      var eventIDs = [];
+      if(user_event !== null){
+        for(var i=0;i<user_event.length;i++){
+          eventIDs.push(user_event[i].EventId);
+        }
+      }
+    	db.Event
+    		.findAll({
+      	    where: {
+              $or: {
+                hostId: userID,
+                id: {
+                  $in: eventIDs
+              }
+            }
+          }
+    	  })
+    	  .then(function(events) {
+          console.log('found EVENTS' + events.length);
+    	    callback(events);
+    	  }); 
+    });
   },
 
 // get event by ID and pass to a callback
@@ -25,7 +45,7 @@ module.exports = {
   	  	where: {ID: ID}
   	  })
   	  .then(function(event) {
-  	  	callback(event)
+  	  	callback(event);
   	  });
   },
   updateByID: function(data, ID){

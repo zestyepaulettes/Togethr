@@ -13,8 +13,8 @@ angular.module('eventList', [])
   	  })
   	  .catch(function(error) {
   	  	console.error("EventsController", error);
-  	  })
-  }
+  	  });
+  };
 
   //after all the data is displayed: when the user clicks on a specific
   //event this function is fired:
@@ -22,8 +22,8 @@ angular.module('eventList', [])
     console.log("EVENT", event);
     // storeFactory.eventID = event.id;
     $cookies.put('eventID', event.id);
-    $location.path('/eventdetails/' + event.id);
-  }
+    $location.path('/eventDetails/' + event.id);
+  };
 
   //when the page is requested by the user, the initialize
   //function automatically runs:

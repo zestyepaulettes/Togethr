@@ -11,7 +11,7 @@ module.exports = {
       console.log(userID);
       EventQuery.getAll(userID, function(events) {
         res.json(events);
-      })
+      });
     },
     post: function (req, res) {
       var data = {
