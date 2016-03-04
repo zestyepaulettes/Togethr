@@ -123,11 +123,13 @@ angular.module('createEvent', [])
       description: $scope.event.description, //getdescription,
       date: Date.now(),
       location: $scope.event.location, //get location
-      hostId: 1, //get host ID
+      hostId: $scope.data.userID, //get host ID
       total: $scope.total
     };
     console.log(currentEvent.id);
-    requestFactory.updateEvent(eventData, currentEvent.id);
+    requestFactory.updateEvent(eventData, currentEvent.id).then(function() {
+      $location.path('/eventDetails/' + currentEvent.id);
+    });
     // $scope.master = angular.copy(event);
     // CreateFactory.addEvent($scope.data)
     // .then(function () {

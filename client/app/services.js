@@ -53,8 +53,8 @@ angular.module('Services', [])
       method: 'POST',
       url: '/api/event/' + eventID,
       data: eventData
-    });
-  }
+    })
+  };
 
   var updateItem = function(item, guestId) {
     return $http({
