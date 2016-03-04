@@ -2,11 +2,40 @@ var GuestQuery = require('../queries/guestQueries');
 var db = require('../models/models');
 
 module.exports = {
-  get: function(req, res) {
+  get: function(req, res) { //NOT OURS, to be deleted
     var eventID = req.body.eventID;
     GuestQuery.getAll(eventID, function(guests) {
       res.json(guests);
+    });
+  },
+   getGuests: function(req, res) {
+    var eventId = req.params.eventId;
+    console.log(eventId);
+    db.User_Event.findAll({
+      where: {
+        EventId: eventId
+      }
     })
+    .then(function(users) {
+      var idArray = [];
+      // console.log('this is users from server:',users);
+      for(var i = 0; i < users.length; i++) {
+        idArray.push(users[i].dataValues.UserId);
+
+      }
+      // console.log('this is id array',idArray);
+      db.User.findAll({
+        where: {
+          id: {
+            $in: idArray,
+          }
+        }
+      })
+      .then(function(foundUsers) {
+        console.log('this is found users fro user table',foundUsers);
+        res.json(foundUsers);
+      });
+    });
   },
 
   post: function(req, res) {
@@ -17,7 +46,7 @@ module.exports = {
       guestIDs.push(guests[i].id);
     }
     db.User.findAll({
-      where: { 
+      where: {
         facebookID: {
           $in: guestIDs
         }
@@ -32,7 +61,7 @@ module.exports = {
         });
       }
       console.log(userEventEntries);
-      return db.User_Event.bulkCreate(userEventEntries)
+      return db.User_Event.bulkCreate(userEventEntries);
     })
     .then(function(){
       res.json('SUCCESS');
@@ -45,18 +74,18 @@ module.exports = {
     // });
   },
 
-  put: function(req, res) {
+  put: function(req, res) { //TO BE DELETED
     var guestID = req.params.guestID;
     var newAttrs = req.body;
     GuestQuery.updateOne(guestID, newAttrs, function() {
       res.send();
-    })
+    });
   },
 
-  delete: function(req, res) {
-    var guestID = req.params.guestID; 
+  delete: function(req, res) { //TO BE DELETED
+    var guestID = req.params.guestID;
     GuestQuery.deleteOne(guestID, function(){
       res.send();
     });
   }
-}
+};

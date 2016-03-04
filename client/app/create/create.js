@@ -123,7 +123,7 @@ angular.module('createEvent', [])
       description: $scope.event.description,
       date: Date.now(),
       location: $scope.event.location,
-      hostId: $scope.data.userID, 
+      hostId: $scope.data.userID,
       total: $scope.total
     };
     console.log(currentEvent.id);

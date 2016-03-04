@@ -4,7 +4,7 @@ var eventsController = require('../controllers/eventsController');
 var guestsController = require('../controllers/guestsController');
 // var basketsController = require('../controllers/basketsController');
 var itemsController = require('../controllers/itemsController');
-var nodemailerController = require('../controllers/nodemailerController'); 
+var nodemailerController = require('../controllers/nodemailerController');
 
 
 
@@ -18,6 +18,7 @@ router.post('/event/:eventID', eventsController.eventDetails.post);
 
 router.get('/email/:eventID', nodemailerController.get);
 
+router.get('/eventGuestDetails/:eventId', guestsController.getGuests); //tiff
 router.get('/guests', guestsController.get);
 router.post('/guests', guestsController.post);
 router.put('/guests', guestsController.put);

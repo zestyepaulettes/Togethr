@@ -44,8 +44,13 @@
       </div>
 
     </div>
+    <!-- want everyone to chip in? -->
     <div>
       <h5> Want people to chip in? </h5>
+      <div ng-repeat="guest in guests">
+        <div>{{guest.displayName}}</div>
+      </div>
+        <input type="text"  ng-model="total" name="addTotal" id="addTotal" value="How much did you pay?" placeholder="Enter amount" /> <br />
         <button type="button" class="nodemailer button" ng-click="venmo()">
           Send Venmo Request
         </button>
@@ -74,7 +79,7 @@
      <!--  <span class="button alt disabled" ng-click="addGuestFunc(guestName, guestEmail)">
         Add guest
       </span>
-    </div> --> 
+    </div> -->
 
     <br><br>
 

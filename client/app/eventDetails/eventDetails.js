@@ -3,12 +3,34 @@ angular.module('eventDetails', ['eventList'])
 /** ADD ITEM AND ADD GUEST INPUT BOXES **/
 
   // Holds text input from add item and add guest input boxes
-  $scope.itemName;
-  $scope.guestName;
-  $scope.guestEmail;
+  $scope.itemName;//is this used?
+  $scope.guestName; //is this used?
+  $scope.guestEmail; //is this used?
+  $scope.total;
+  $scope.guests;
 
+  //retrieves guests full info from db specific to event
+  $scope.getGuests = function() {
+    requestFactory.getGuestsByEvent($routeParams.eventID)
+    .then(function(guests) {
+      // console.log('returning guests from db',guests.data);
+      $scope.guests = guests.data;
+    });
+  };
+  $scope.getGuests();
 
-  $scope.venmo = function() {
+  //retrieves guests full info from db specific to event
+  $scope.getGuests = function() {
+    requestFactory.getGuestsByEvent($routeParams.eventID)
+    .then(function(guests) {
+      // console.log('returning guests from db',guests.data);
+      $scope.guests = guests.data;
+    });
+  };
+  $scope.getGuests();
+
+  //makes venmo call to server
+  $scope.venmo = function(guestData) {
     var data = {
       phone: '14153167181',
       amount: -1,
