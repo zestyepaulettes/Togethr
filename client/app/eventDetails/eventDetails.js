@@ -8,7 +8,7 @@ angular.module('eventDetails', ['eventList'])
   $scope.split;
   $scope.total;
   $scope.items= [];
-
+  $scope.details;
   //retrieves guests full info from db specific to event
   var getGuests = function() {
     return requestFactory.getGuestsByEvent($routeParams.eventID)
@@ -87,15 +87,11 @@ angular.module('eventDetails', ['eventList'])
     guests: {} // each guest will be a column in the table
   };
 
-  // Holds event details
-  $scope.details;
-
   // For simplicity when refering to the ng-model guests
   var partyGuests =  $scope.models.guests;
 
   var initializeDetails = function() {
     // Makes request to server for all event details
-    console.log($routeParams.eventID);
     requestFactory.getEvents($routeParams.eventID)
       .then(function(details) {
         $scope.details = details;
@@ -118,6 +114,7 @@ angular.module('eventDetails', ['eventList'])
           var guestId = $scope.guests[j].id;
           partyGuests[guestName + ' ' + guestId] = temp[guestId] ? temp[guestId] : [];
         }
+        mapIt();
       });
   };
 
@@ -142,6 +139,26 @@ angular.module('eventDetails', ['eventList'])
     return name.join(' ').trim();
   };
 
+  var mapIt = function() {
+    var geocoder, map;
+    geocoder = new google.maps.Geocoder();
+    geocoder.geocode({'address': $scope.details.location }, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        var myOptions = {
+          zoom: 12,
+          center: results[0].geometry.location,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map"), myOptions);
+        var infowindow = new google.maps.InfoWindow();
+        var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location,
+          animation: google.maps.Animation.DROP
+        });
+      }
+    });
+  };
 /** EMAIL **/
   // sends unique eventDetails url to all guests
   $scope.email = function() {
