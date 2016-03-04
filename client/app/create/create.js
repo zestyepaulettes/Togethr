@@ -119,11 +119,11 @@ angular.module('createEvent', [])
     requestFactory.addItem(CreateFactory.getItems(), currentEvent.id, $scope.data.userID);
 
     var eventData = {
-      name: $scope.event.name,//get name
-      description: $scope.event.description, //getdescription,
+      name: $scope.event.name,
+      description: $scope.event.description,
       date: Date.now(),
-      location: $scope.event.location, //get location
-      hostId: $scope.data.userID, //get host ID
+      location: $scope.event.location,
+      hostId: $scope.data.userID, 
       total: $scope.total
     };
     console.log(currentEvent.id);
@@ -135,6 +135,8 @@ angular.module('createEvent', [])
     // .then(function () {
     //   $location.path('/events');
     // })
+    console.log(currentEvent.id);
+    $location.path('/eventDetails/' + currentEvent.id);
   };
   // clears out the form
   $scope.reset = function() {
