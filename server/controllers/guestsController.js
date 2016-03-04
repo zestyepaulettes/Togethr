@@ -13,11 +13,28 @@ module.exports = {
     console.log(eventId);
     db.User_Event.findAll({
       where: {
-        UserId: eventId
+        EventId: eventId
       }
     })
     .then(function(users) {
-      res.json(users);
+      var idArray = [];
+      // console.log('this is users from server:',users);
+      for(var i = 0; i < users.length; i++) {
+        idArray.push(users[i].dataValues.UserId);
+
+      }
+      // console.log('this is id array',idArray);
+      db.User.findAll({
+        where: {
+          id: {
+            $in: idArray,
+          }
+        }
+      })
+      .then(function(foundUsers) {
+        console.log('this is found users fro user table',foundUsers);
+        res.json(foundUsers);
+      });
     });
   },
 

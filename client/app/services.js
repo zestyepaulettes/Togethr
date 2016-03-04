@@ -20,8 +20,8 @@ angular.module('Services', [])
   var getGuestsByEvent = function(eventId) {
     return $http({
       method:'GET',
-      url:'/api/eventGuestDetails',
-      params: {eventId: eventId}
+      url:'/api/eventGuestDetails/' + eventId,
+      // params: {eventId: eventId}
     })
     .then(function(resp) {
       console.log('this is resp from server requesting guests ',resp);
