@@ -10,7 +10,7 @@ module.exports = {
   },
    getGuests: function(req, res) {
     var eventId = req.params.eventId;
-    console.log(eventId);
+    // console.log(eventId);
     db.User_Event.findAll({
       where: {
         EventId: eventId
@@ -32,7 +32,7 @@ module.exports = {
         }
       })
       .then(function(foundUsers) {
-        console.log('this is found users fro user table',foundUsers);
+        // console.log('this is found users fro user table',foundUsers);
         res.json(foundUsers);
       });
     });
@@ -60,7 +60,7 @@ module.exports = {
           EventId: eventId
         });
       }
-      console.log(userEventEntries);
+      // console.log(userEventEntries);
       return db.User_Event.bulkCreate(userEventEntries);
     })
     .then(function(){

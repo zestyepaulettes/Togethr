@@ -111,6 +111,7 @@ app.post('/venmo', function(req, res) {
     if(error) {
       res.send(404, error);
     }
+    console.log('made a venmo charge!');
     res.send(200, response);
   });
 });

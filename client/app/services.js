@@ -21,10 +21,8 @@ angular.module('Services', [])
     return $http({
       method:'GET',
       url:'/api/eventGuestDetails/' + eventId,
-      // params: {eventId: eventId}
     })
     .then(function(resp) {
-      console.log('this is resp from server requesting guests ',resp);
       return resp;
     });
   };
@@ -36,7 +34,6 @@ angular.module('Services', [])
       data: data
     })
     .then(function(resp) {
-      console.log('response from venmo', resp);
       return resp;
     });
   };
