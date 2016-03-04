@@ -34,15 +34,15 @@ module.exports = {
     	  .then(function(events) {
           console.log('found EVENTS' + events.length);
     	    callback(events);
-    	  }); 
+    	  });
     });
   },
 
 // get event by ID and pass to a callback
   getByID: function(ID, callback) {
-  	Event
+  	db.Event
   	  .find({
-  	  	where: {ID: ID}
+  	  	where: {id: ID}
   	  })
   	  .then(function(event) {
   	  	callback(event);
@@ -50,10 +50,11 @@ module.exports = {
   },
   updateByID: function(data, ID){
     //find event
-    return Event.find({
-      where: {ID: ID}
+    return db.Event.find({
+      where: {id: ID}
     })  //update event with data
     .then(function(event){
+      console.log('this is returned event from db', event)
       event.name = data.name;
       event.description = data.description;
       event.date = data.date;

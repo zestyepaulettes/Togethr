@@ -16,15 +16,7 @@ angular.module('eventDetails', ['eventList'])
     requestFactory.getGuestsByEvent($routeParams.eventID)
     .then(function(guests) {
       $scope.guests = guests.data;
-    });
-  };
-  $scope.getGuests();
-
-  //retrieves guests full info from db specific to event
-  $scope.getGuests = function() {
-    requestFactory.getGuestsByEvent($routeParams.eventID)
-    .then(function(guests) {
-      $scope.guests = guests.data;
+      console.log('this is scope.guests;', $scope.guests);
     });
   };
   $scope.getGuests();
@@ -104,25 +96,25 @@ angular.module('eventDetails', ['eventList'])
         // temporarily holds guestId: [items]
         var temp = {};
 
-        // Populate temp
-        for (var j = 0; j < details.items.length; j++) {
-          var GuestId = details.items[j].GuestId;
-          var item = details.items[j];
-          if (temp[GuestId]) {
-            temp[GuestId].push(item);
-          } else {
-            temp[GuestId] = [item];
-          }
-        }
+        // // Populate temp
+        // for (var j = 0; j < details.items.length; j++) {
+        //   var GuestId = details.items[j].GuestId;
+        //   var item = details.items[j];
+        //   if (temp[GuestId]) {
+        //     temp[GuestId].push(item);
+        //   } else {
+        //     temp[GuestId] = [item];
+        //   }
+        // }
 
         // Populate the ng-model guests
-        for (var i = 0; i < details.guests.length; i++){
-          var guestName = details.guests[i].name;
-          var guestId = details.guests[i].id;
+        // for (var i = 0; i < details.guests.length; i++){
+        //   var guestName = details.guests[i].name;
+        //   var guestId = details.guests[i].id;
           // Adds guestName and guestId to ng-model guests
           // and assigns guests an items array or an empty array
-          guests[guestName + ' ' + guestId] = temp[guestId] ? temp[guestId] : [];
-        }
+          // guests[guestName + ' ' + guestId] = temp[guestId] ? temp[guestId] : [];
+        // }
       });
   };
 
