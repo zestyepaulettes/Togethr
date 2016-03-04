@@ -18,7 +18,6 @@ module.exports = {
 	  })
 	  .then(function(items) {
 	    var itemArray = [];
-	    // console.log('this is items linked to event in db', items);
 	    // // console.log('this is users from server:',users);
 		   //  for(var i = 0; i < items.length; i++) {
 		   //    itemArray.push(items[i].dataValues);

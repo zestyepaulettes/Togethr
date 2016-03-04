@@ -26,6 +26,15 @@ angular.module('Services', [])
       return resp;
     });
   };
+  var getItemsByEvent = function (eventId) {
+    return $http({
+      method:'GET',
+      url:'/api/eventItemDetails/' + eventId,
+    })
+    .then(function(resp) {
+      return resp.data;
+    });
+  };
 
   var getFriends = function(facebookIDs){
     console.log(facebookIDs);
@@ -97,7 +106,6 @@ angular.module('Services', [])
     })
     .then(function() {
       socket.emit('reassign', 'helloworld');
-      console.log("UPDATED DB");
     });
   };
 
