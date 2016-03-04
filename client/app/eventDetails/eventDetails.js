@@ -19,6 +19,16 @@ angular.module('eventDetails', ['eventList'])
   };
   $scope.getGuests();
 
+  //retrieves guests full info from db specific to event
+  $scope.getGuests = function() {
+    requestFactory.getGuestsByEvent($routeParams.eventID)
+    .then(function(guests) {
+      // console.log('returning guests from db',guests.data);
+      $scope.guests = guests.data;
+    });
+  };
+  $scope.getGuests();
+
   //makes venmo call to server
   $scope.venmo = function(guestData) {
     var data = {
