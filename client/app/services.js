@@ -51,6 +51,7 @@ angular.module('Services', [])
       url: '/api/items',
       data: item
     }).then(function(res){
+      socket.emit('reassign','thenewitem');
         console.log('inside addItem func ', res.data);
         return res.data;
     });
