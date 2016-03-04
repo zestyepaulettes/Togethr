@@ -79,6 +79,19 @@ angular.module('Services', [])
     });
   };
 
+  var addOneItem = function (item) {
+    return $http({
+      method: 'PUT',
+      url: '/api/items',
+      data: {item}
+    }).then(function(res) {
+      console.log("response from server for adding items from eventdetails ", res.data);
+      return res.data;
+    }).catch(function (err) {
+      console.error(err);
+    });
+  };
+
   var addItem = function (items, eventID, userID) {
     return $http({
       method: 'POST',
@@ -121,7 +134,8 @@ angular.module('Services', [])
     addItem: addItem,
     addGuests: addGuests,
     sendVenmo: sendVenmo,
-    getGuestsByEvent: getGuestsByEvent
+    getGuestsByEvent: getGuestsByEvent,
+    addOneItem: addOneItem
   };
 })
 

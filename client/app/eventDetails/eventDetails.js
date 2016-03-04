@@ -45,12 +45,13 @@ angular.module('eventDetails', ['eventList'])
 
   // sends a POST request to insert a new item
   $scope.addItemFunc = function(itemName){
-    //console.log('inside addItemFunc!');
     var newItem = {
-      EventId: $cookies.get('eventID'),
-      name: itemName // this is coming from ng-model
+      name: itemName, // this is coming from ng-model
+      userId: null, 
+      EventId: $scope.details.id
     };
-  requestFactory.addItem(newItem).then(function(res) {
+  requestFactory.addOneItem(newItem).then(function(res) {
+    console.log(res);
     $scope.resetField('newItem'); // reset text field
   });
 

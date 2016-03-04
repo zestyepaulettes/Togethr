@@ -33,11 +33,14 @@ module.exports = {
 	},
 
 	put: function(req, res) {
-		var itemID = req.params.itemID;
-		var newAttrs = req.body;
-		ItemQuery.updateOne(itemID, newAttrs, function() {
-			res.send();
-		})
+		console.log("PUT request for add item ", req.body.item);
+		var item = req.body.item;
+		db.Item.create(item)
+		.then(function () {
+			res.json("Successfully added data!");
+		}).catch(function (error) {
+			res.json(error);
+		});
 	},
 
 	delete: function(req, res) {

@@ -26,7 +26,7 @@ router.delete('/guests', guestsController.delete);
 
 router.get('/items/:eventID', itemsController.get);
 router.post('/items', itemsController.post);
-router.put('/items/:itemID', itemsController.put);
+router.put('/items', itemsController.put);
 router.delete('/items/:itemID', itemsController.delete);
 
 // router.get('/baskets', basketsController.get);
