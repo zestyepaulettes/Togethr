@@ -29,15 +29,15 @@
               </div>
               <div class="panel-body" >
                 <ul dnd-list="list"
-                    dnd-drop="reassignItem(item, guestInfo)">
-                  <li ng-repeat="item in list"
+                    dnd-drop="reassignItem(item, guest.id)">
+                  <li ng-repeat="item in items"
                       dnd-draggable="item"
                       dnd-moved="list.splice($index, 1)"
                       dnd-effect-allowed="move"
                       dnd-selected="models.selected = item"
                       ng-class="{'selected': models.selected === item}"
                       >
-                      {{item.name}}
+                      {{item}}
                   </li>
                 </ul>
               </div>
@@ -66,7 +66,7 @@
       </span>
       <!-- add item button -->
       <input type="button" value="Add item" ng-click="addItemFunc(itemName)">
-        
+
 
       <!-- add guest field  -->
       <!-- <span style="display:inline-block">
@@ -81,7 +81,7 @@
       <!-- <span class="button alt disabled" ng-click="addGuestFunc(guestName, guestEmail)">
         Add guest
       </span>
-    </div> 
+    </div>
 
     <br><br> -->
 

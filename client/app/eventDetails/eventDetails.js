@@ -3,13 +3,11 @@ angular.module('eventDetails', ['eventList'])
 /** ADD ITEM AND ADD GUEST INPUT BOXES **/
 
   // Holds text input from add item and add guest input boxes
-  $scope.itemName;//is this used?
-  $scope.guestName; //is this used?
-  $scope.guestEmail; //is this used?
   $scope.total;
   $scope.guests;
   $scope.split;
   $scope.total;
+  $scope.items= [];
 
   //retrieves guests full info from db specific to event
   $scope.getGuests = function() {
@@ -21,6 +19,17 @@ angular.module('eventDetails', ['eventList'])
   };
   $scope.getGuests();
 
+  $scope.getItems = function () {
+    requestFactory.getItemsByEvent($routeParams.eventID)
+    .then(function(items) {
+      console.log('-------this is items for event', items);
+      for(var i = 0; i < items.length; i++) {
+        $scope.items.push(items[i].name);
+      }
+      console.log($scope.items);
+    });
+  };
+  $scope.getItems();
   //makes venmo call to server
   $scope.venmo = function(guestData) {
     $scope.total = $scope.total;
@@ -45,7 +54,7 @@ angular.module('eventDetails', ['eventList'])
   $scope.addItemFunc = function(itemName){
     var newItem = {
       name: itemName, // this is coming from ng-model
-      userId: null, 
+      userId: null,
       EventId: $scope.details.id
     };
   requestFactory.addOneItem(newItem).then(function(res) {
@@ -89,7 +98,7 @@ angular.module('eventDetails', ['eventList'])
     console.log($routeParams.eventID);
     requestFactory.getEvents($routeParams.eventID)
       .then(function(details) {
-        console.log(details);
+        // console.log(details);
         // Set event details to ng-model details
         $scope.details = details;
 
@@ -119,8 +128,8 @@ angular.module('eventDetails', ['eventList'])
   };
 
   // Fires when an item is moved to a column
-  $scope.reassignItem = function(item, guestInfo) {
-    var guestId = $scope.getId(guestInfo);
+  $scope.reassignItem = function(item, guestId) {
+    // var guestId = $scope.getId(guestInfo);
     requestFactory.updateItem(item, guestId);
     // nessesary for drag-and-drop visualization
     // return false to reject visual update
@@ -128,10 +137,10 @@ angular.module('eventDetails', ['eventList'])
   };
 
   // parse guestInfo for guest name
-  $scope.getId = function(guestInfo) {
-    var name = guestInfo.match(/([^\s])+/g);
-    return name[1];
-  };
+  // $scope.getId = function(guestInfo) {
+  //   var name = guestInfo.match(/([^\s])+/g);
+  //   return name[1];
+  // };
   // parse guestInfo for guest Id
   $scope.getName = function(guestInfo) {
     var name = guestInfo.match(/([^\s])+/);
