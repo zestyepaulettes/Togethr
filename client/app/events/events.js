@@ -23,7 +23,6 @@ angular.module('eventList', [])
     // storeFactory.eventID = event.id;
     $cookies.put('eventID', event.id);
     $location.path('/eventDetails/' + event.id);
-    $location.path('/eventdetails/' + event.id);
   };
 
   //when the page is requested by the user, the initialize
