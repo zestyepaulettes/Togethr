@@ -21,18 +21,18 @@
       <!-- Drag-and-Drop Table -->
       <div class="table-wrapper">
     		<div class="itemsTable row">
-          <div ng-repeat="guest in guests" class="col-md-6">
+          <div ng-repeat="(guestInfo, list) in models.guests" class="col-md-6">
           <!-- <div ng-repeat="(guestInfo, list) in models.guests" class="col-md-6"> -->
             <div class="panel panel-info">
               <div class="panel-heading">
-                  <h3 class="panel-title">{{guest.displayName}}</h3>
+                  <h3 class="panel-title">{{getName(guestInfo)}}</h3>
               </div>
               <div class="panel-body" >
-                <ul dnd-list="items"
-                    dnd-drop="reassignItem(item, guest.id)">
-                  <li ng-repeat="item in items"
+                <ul dnd-list="list"
+                    dnd-drop="reassignItem(item, guestInfo)">
+                  <li ng-repeat="item in list"
                       dnd-draggable="item"
-                      dnd-moved="items.splice($index, 1)"
+                      dnd-moved="list.splice($index, 1)"
                       dnd-effect-allowed="move"
                       dnd-selected="models.selected = item"
                       ng-class="{'selected': models.selected === item}"

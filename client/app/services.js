@@ -87,8 +87,8 @@ angular.module('Services', [])
 
   var addOneItem = function (item) {
     return $http({
-      method: 'PUT',
-      url: '/api/items',
+      method: 'POST',
+      url: '/api/extraItem',
       data: {item}
     }).then(function(res) {
       console.log("response from server for adding items from eventdetails ", res.data);
