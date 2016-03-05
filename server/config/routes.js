@@ -7,15 +7,16 @@ var nodemailerController = require('../controllers/nodemailerController');
 
 
 
-router.get('/events/:userID', eventsController.events.get);
+router.get('/events/:userID', eventsController.events.get); //this renders events
 router.post('/events', eventsController.events.post);
 router.get('/eventDetails/:eventID', eventsController.eventDetails.get);
 router.post('/event/:eventID', eventsController.eventDetails.post);
 
 router.get('/email/:eventID', nodemailerController.get);
 
-router.get('/eventItemDetails/:eventId', itemsController.getItems); //tiff
-router.get('/eventGuestDetails/:eventId', guestsController.getGuests); //tiff
+router.get('/eventItemDetails/:eventId', itemsController.getItems);
+router.get('/eventGuestDetails/:eventId', guestsController.getGuests);
+router.post('/message', eventsController.eventDetails.postMessage); //
 
 router.get('/getFriends', guestsController.getFriends);
 

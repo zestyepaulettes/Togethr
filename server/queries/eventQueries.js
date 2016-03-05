@@ -19,17 +19,18 @@ module.exports = {
         for(var i=0;i<user_event.length;i++){
           eventIDs.push(user_event[i].dataValues.EventId);
         }
+          console.log('these are event ID', eventIDs);
       }
     	db.Event
     		.findAll({
     	    where: {
-              id: {
-                $in: eventIDs
+            id: {
+              $in: eventIDs
             }
           }
     	  })
     	  .then(function(events) {
-          console.log('found EVENTS' + events.length);
+          console.log('found EVENTS' + events);
     	    callback(events);
     	  });
     });
@@ -51,7 +52,7 @@ module.exports = {
       where: {id: ID}
     })  //update event with data
     .then(function(event){
-      console.log('this is returned event from db', event)
+      console.log('this is returned event from db', event);
       event.name = data.name;
       event.description = data.description;
       event.date = data.date;

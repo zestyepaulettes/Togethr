@@ -17,6 +17,8 @@
     "client/lib"
   ],
   "dependencies": {
+    "bootstrap": "~3.3.1",
+    "angularjs-scroll-glue": "~0.0.1",
     "angular": "~1.3.16",
     "angular-route": "~1.3.16",
     "angular-mocks": "~1.3.16",
