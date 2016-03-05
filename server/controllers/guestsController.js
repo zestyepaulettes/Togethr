@@ -38,6 +38,19 @@ module.exports = {
     });
   },
 
+  getFriends: function(req, res){
+    var facebookIDs = req.query.facebookIDs;
+    db.User.findAll({
+      where: {
+        facebookID: {
+          $in: facebookIDs
+        }
+      }
+    }).then(function(users){
+      res.json(users);
+    });
+  },
+
   post: function(req, res) {
     var guests = req.body.guests;
     var eventId = req.body.eventId;
