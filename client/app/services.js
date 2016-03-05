@@ -35,6 +35,7 @@ angular.module('Services', [])
       data: messageData
     })
     .then(function(resp) {
+      socket.emit('chat', 'helloworld');
       console.log(resp.data);
       return resp;
     });

@@ -208,5 +208,8 @@ angular.module('eventDetails', ['eventList'])
   socket.on('updateItems', function(msg){
     initializeDetails();
   });
+  socket.on('updateChat', function(msg){
+    updateMessages();
+  });
 }]);
 
