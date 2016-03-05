@@ -22,7 +22,7 @@ var Event = db.define('Event', {
   total: Sequelize.FLOAT
 });
 
-var Message = db.define('Chat', {
+var Message = db.define('Message', {
   text: Sequelize.STRING,
   date: Sequelize.DATE,
 });
