@@ -21,6 +21,7 @@ module.exports = {
         }
           console.log('these are event ID', eventIDs);
       }
+      console.log(eventIDs);
     	db.Event
     		.findAll({
     	    where: {

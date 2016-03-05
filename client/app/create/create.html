@@ -19,7 +19,7 @@
       <script>
         window.fbAsyncInit = function() {
           FB.init({
-            appId      : '1696287807323234',
+            appId      : '202296070130925',
             status     : true,
             xfbml      : true,
             cookie     : true,
@@ -69,16 +69,16 @@
           <br />
         </div>
         <br/> <br/>
-
-        <h1>Invited Guests:</h1>
-        <ul>
-          <li ng-repeat="friend in guests">
-          {{friend.name}}
-            <input type="button" value="X" ng-click="removeGuest(guest)" class="button special small">
-            <br />
-          </li>
-        </ul>
-
+        <div ng-if="guests.length > 0">
+          <h1>Invited Guests:</h1>
+          <ul>
+            <li ng-repeat="friend in guests">
+            {{friend.name}}
+              <input type="button" value="X" ng-click="removeGuest(guest)" class="button special small">
+              <br />
+            </li>
+          </ul>
+        </div>
         <label>Stuff you need for your party:</label>
         <div class="add-items">
           <label>
