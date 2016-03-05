@@ -25,6 +25,9 @@ io.on('connect', function(socket){
   socket.on('reassign', function(msg){
     io.emit('updateItems', msg);
   });
+  socket.on('newEvent', function(msg){
+    io.emit('updateEvents', msg);
+  });
 });
 
 //sets cors headers
