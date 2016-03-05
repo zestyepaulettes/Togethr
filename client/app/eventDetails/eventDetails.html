@@ -24,7 +24,6 @@
       <div class="table-wrapper">
     		<div class="itemsTable row">
           <div ng-repeat="(guestInfo, list) in models.guests" class="col-md-6">
-          <!-- <div ng-repeat="(guestInfo, list) in models.guests" class="col-md-6"> -->
             <div class="panel panel-info">
               <div class="panel-heading">
                   <h3 class="panel-title">{{getName(guestInfo)}}</h3>
@@ -53,10 +52,9 @@
     <div>
       <h5> Want people to chip in? </h5>
       <div ng-repeat="guest in guests">
-        <div>{{guest.displayName}}</div>
       </div>
       <span style="display:inline-block">
-        <input type="text"  ng-model="total" name="addTotal" id="addTotal" value="How much did you pay?" placeholder="Enter total amount to split" value="total"/>
+        <input type="text"  ng-model="total" name="addTotal" id="addTotal" value="How much did you pay?" placeholder="Enter total amount to split between everyone" value="total"/>
         </span>
         <input type="button" value="Send Venmo Requests"ng-click="venmo()">
         </input>
