@@ -26,6 +26,7 @@ var Event = db.define('Event', {
 var Message = db.define('Message', {
   text: Sequelize.STRING,
   date: Sequelize.DATE,
+  name: Sequelize.STRING
 });
 
 var Item = db.define('Item', {

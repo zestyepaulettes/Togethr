@@ -15,8 +15,7 @@ angular.module('eventDetails', ['eventList'])
   var updateMessages = function() {
     return requestFactory.updateMessages($routeParams.eventID)
     .then(function(messages) {
-      console.log('back to controller! messages updated', messages);
-      $scope.messages = messages.data; //array of message objs
+      $scope.messages = messages.data;
     });
   };
   $scope.sendMessage = function () { //sends message to database
@@ -25,7 +24,8 @@ angular.module('eventDetails', ['eventList'])
       userId: $cookies.get('userID'),
       eventId: $routeParams.eventID,
       text: messageToSend,
-      date: Date()
+      date: Date(),
+      displayName: $cookies.get('displayName')
     };
     return requestFactory.sendMessage(chatData).then(function() {
       updateMessages();
@@ -193,7 +193,7 @@ angular.module('eventDetails', ['eventList'])
   socket.on('updateItems', function(msg){
     initializeDetails();
   });
-  
+
   socket.on('updateChat', function(msg){
     updateMessages();
   });
