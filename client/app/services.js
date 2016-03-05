@@ -19,13 +19,15 @@ angular.module('Services', [])
 })
 
 .factory('requestFactory', function($http, $cookies) {
+
   var sendMessage = function(messageData) {
     return $http({
       method: 'POST',
-      url:'/api/message/',
+      url:'/api/message',
       data: messageData
     })
     .then(function(resp) {
+      console.log(resp.data);
       return resp;
     });
   };

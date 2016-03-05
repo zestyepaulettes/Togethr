@@ -17,8 +17,9 @@
            <span class = "messageMeta">Posted by {{message.userId}}</span>
          </div>
       </ul>
-        <form ng-submit="sendMessage()">
+        <form>
         <input ng-model="message" type="text" placeholder="Submit"/>
+        <input type="button" value="submit" ng-click="sendMessage(message)"> 
         </form>
     </div>
 

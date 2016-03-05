@@ -68,8 +68,20 @@ module.exports = {
       });
     },
     postMessage: function(req, res) {
-      console.log(req.body);
-      // db.Message.create()
+      // console.log(req.body); { userId: '1', eventId: '42', text: 'hello world!' }
+      var message = req.body;
+      db.Message.create({
+        text: message.text,
+        UserId: message.userId,
+        EventId: message.eventId,
+        date: message.date
+      }).then(function(message) {
+        console.log("this is the response message from database ", message.dataValues);
+        res.json(message.dataValues);
+      }).catch(function(error) {
+        console.error(error);
+        res.json(error);
+      });
     }
   }
 };
