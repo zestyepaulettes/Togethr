@@ -19,6 +19,7 @@ module.exports = {
         for(var i=0;i<user_event.length;i++){
           eventIDs.push(user_event[i].dataValues.EventId);
         }
+          console.log('these are event ID', eventIDs);
       }
     	db.Event
     		.findAll({
@@ -29,7 +30,7 @@ module.exports = {
           }
     	  })
     	  .then(function(events) {
-          console.log('found EVENTS' + events.length);
+          console.log('found EVENTS' + events);
     	    callback(events);
     	  });
     });

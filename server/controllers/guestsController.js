@@ -32,7 +32,6 @@ module.exports = {
         }
       })
       .then(function(foundUsers) {
-        // console.log('this is found users fro user table',foundUsers);
         res.json(foundUsers);
       });
     });

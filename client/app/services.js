@@ -6,8 +6,10 @@ angular.module('Services', [])
     return $http({
       method: 'GET',
       url: '/api/events/' + $cookies.get('userID')
+      // console.log('this is id w cookies', $cookies.get('userID'))
     })
     .then(function(resp) {
+      console.log('this is resp from events');
       return resp.data;
     });
   };
@@ -209,8 +211,8 @@ angular.module('Services', [])
         alreadyGuest = true;
         break;
       } else {
-        alreadyGuest = false; 
-      }        
+        alreadyGuest = false;
+      }
     }
     if(!alreadyGuest) {
       guests.push(guest);
