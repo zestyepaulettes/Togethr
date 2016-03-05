@@ -94,7 +94,12 @@ module.exports = {
         }
       })
       .then(function(messages) {
+        // var idArray = [];
         console.log('this is found messages from db', messages);
+        // for(var i = 0; i < messages.length; i++) {
+        //   idArray.push(messages[i].dataValues)
+        // }
+        res.json(messages);
       });
 
     }
