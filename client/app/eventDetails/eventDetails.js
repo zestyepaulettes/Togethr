@@ -9,7 +9,7 @@ angular.module('eventDetails', ['eventList'])
   $scope.total;
   $scope.items= [];
   $scope.details;
-  var fakeData = [{
+  $fakeData = [{
     userId: '1',
     eventId: '45', //todo: to test, change it to whatever ur local id is currently
     text: 'omg 2 hours to do this'
