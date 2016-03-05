@@ -86,7 +86,17 @@ module.exports = {
       // db.Message.create()
     },
     getMessages: function(req, res) {
-      console.log('this is param from getmessage req', req.params);
+      console.log('this is param from getmessage req', req.params.eventId);
+      var eventId = req.params.eventId;
+      db.Message.findAll({
+        where: {
+          EventId: eventId
+        }
+      })
+      .then(function(messages) {
+        console.log('this is found messages from db', messages);
+      });
+
     }
   }
 };
