@@ -1,15 +1,11 @@
 var router = require('express').Router();
-// var usersController = require('');
 var eventsController = require('../controllers/eventsController');
 var guestsController = require('../controllers/guestsController');
-// var basketsController = require('../controllers/basketsController');
 var itemsController = require('../controllers/itemsController');
 var nodemailerController = require('../controllers/nodemailerController');
 
 
 
-// router.get('/auth/facebook', usersController.getAll);
-// router.get('/auth/facebook/callback', usersController.addOne);
 
 router.get('/events/:userID', eventsController.events.get);
 router.post('/events', eventsController.events.post);
@@ -33,9 +29,6 @@ router.post('/items', itemsController.post);
 router.post('/extraItem', itemsController.postOne);
 router.put('/items/:itemID', itemsController.put);
 router.delete('/items/:itemID', itemsController.delete);
-
-// router.get('/baskets', basketsController.get);
-// router.put('/baskets/swap', basketsController.put);
 
 
 

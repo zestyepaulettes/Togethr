@@ -23,7 +23,7 @@ module.exports = {
         idArray.push(users[i].dataValues.UserId);
 
       }
-      // console.log('this is id array',idArray);
+      console.log('this is id array',idArray);
       db.User.findAll({
         where: {
           id: {

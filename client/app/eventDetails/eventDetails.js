@@ -163,7 +163,7 @@ angular.module('eventDetails', ['eventList'])
   // sends unique eventDetails url to all guests
   $scope.email = function() {
     var eventID = $cookies.get("eventID");
-    requestFactory.sendEmails(eventID);
+    requestFactory.sendEmails($routeParams.eventID);
   };
 
   socket.on('updateItems', function(msg){
