@@ -1,4 +1,4 @@
-# Beer and Chip
+# Togethr
 
 The intention of this app is to help people organize events together and they need to buy groceries or other things. We organize this by either telling the guests to bring specific things or charging them the splitted amount that they are supposed to bring.
 
