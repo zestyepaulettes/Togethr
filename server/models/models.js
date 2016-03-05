@@ -2,6 +2,7 @@ var Sequelize = require('sequelize');
 var db = require('../config/db');
 
 //define models
+
 var User = db.define('User', {
   facebookID: {
     type: Sequelize.STRING,
