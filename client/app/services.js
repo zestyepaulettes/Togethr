@@ -86,6 +86,9 @@ angular.module('Services', [])
       method: 'POST',
       url: '/api/event/' + eventID,
       data: eventData
+    })
+    .then(function(){
+      socket.emit('newEvent', 'helloworld');
     });
   };
 

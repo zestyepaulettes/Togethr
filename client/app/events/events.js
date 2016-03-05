@@ -30,4 +30,8 @@ angular.module('eventList', [])
   //*@*@*@*WARNING NEED TO COMMENT THIS LINE AFTER DATABASE FUNCTIONS
   initializeEvents();
 
+  socket.on('updateEvents', function(msg){
+  initializeEvents();
+  });
+
 }]);
