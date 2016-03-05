@@ -58,7 +58,7 @@ Message.belongsTo(User);
 //create tables in MySql if they don't already exist
 User.sync()
 .then(function() {
-  return Event.sync()
+  return Event.sync();
 }).then(function() {
   return Item.sync();
 }).then(function(){

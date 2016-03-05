@@ -9,7 +9,21 @@ angular.module('eventDetails', ['eventList'])
   $scope.total;
   $scope.items= [];
   $scope.details;
-
+  var fakeData = [{
+    userId: '1',
+    eventId: '45', //todo: to test, change it to whatever ur local id is currently
+    text: 'omg 2 hours to do this'
+  },{
+    userId: '2',
+    eventId: '45', //todo: to test, change it to whatever ur local id is currently
+    text: 'hello world'
+  },
+  {
+    userId: '3',
+    eventId: '45', //todo: to test, change it to whatever ur local id is currently
+    text: '1 hr and 58 minutes now'
+    }
+  ];
   $scope.sendMesssage = function () { //sends message to database
     var messageToSend = $scope.message;
     var chatData = {
