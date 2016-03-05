@@ -1,7 +1,7 @@
 
 <!-- Banner is here b/c of problems with keeping clear nav bar showing -->
 <section id="banner" >
-    <h2>Togethr</h2>
+    <h2>Beer or Chip</h2>
     <p>everyone makes the party</p>
 </section>
 
@@ -62,10 +62,9 @@
         <br />
 
         <label>Guests to invite:</label>
-        <div class="friend" ng-repeat="friend in myFriends">
+        <div ng-repeat="friend in myFriends">
           <br />
-          <img src="{{friend.photoUrl}}">
-          <input type="button" value="{{ friend.displayName }}" ng-click="addGuest({id: friend.facebookID, name: friend.displayName})" class="button special small">
+          <input type="button" value="{{ friend.name }}" ng-click="addGuest(friend)" class="button special small">
           <br />
         </div>
         <br/> <br/>
@@ -88,7 +87,7 @@
         </div>
         <h1>Added items:</h1>
         <ul>
-          <li ng-repeat="item in items">
+          <li ng-repeat="item in items track by $index">
           {{item}}
             <input type="button" value="X" ng-click="removeItem(item)" class="button special small">
             <br />
