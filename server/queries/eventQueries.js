@@ -9,7 +9,7 @@ module.exports = {
 
 // passes all events from a user to a callback
   getAll: function(userID, callback) {
-    db.User_Event.find({
+    db.User_Event.findAll({
       where: {
         UserId: userID
       }
@@ -17,17 +17,14 @@ module.exports = {
       var eventIDs = [];
       if(user_event !== null){
         for(var i=0;i<user_event.length;i++){
-          eventIDs.push(user_event[i].EventId);
+          eventIDs.push(user_event[i].dataValues.EventId);
         }
       }
     	db.Event
     		.findAll({
-      	    where: {
-              $or: {
-                hostId: userID,
-                id: {
-                  $in: eventIDs
-              }
+    	    where: {
+              id: {
+                $in: eventIDs
             }
           }
     	  })
