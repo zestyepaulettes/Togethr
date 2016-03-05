@@ -36,7 +36,8 @@ angular.module('eventDetails', ['eventList'])
   var updateMessages = function() {
     return requestFactory.updateMessages($routeParams.eventID)
     .then(function(messages) {
-      // $scope.messages = messages.data;
+      console.log('back to controller! messages updated', messages);
+      $scope.messages = messages.data; //array of message objs
     });
   };
   $scope.sendMessage = function () { //sends message to database

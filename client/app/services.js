@@ -24,7 +24,7 @@ angular.module('Services', [])
       url:'/api/message/'+ eventId
     })
     .then(function(resp) {
-      console.log('returned to updateMessages services');
+      console.log('returned to updateMessages services', resp);
       return resp;
     });
   };

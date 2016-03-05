@@ -83,7 +83,6 @@ module.exports = {
         console.error(error);
         res.json(error);
       });
-      // db.Message.create()
     },
     getMessages: function(req, res) {
       console.log('this is param from getmessage req', req.params.eventId);
@@ -94,7 +93,6 @@ module.exports = {
         }
       })
       .then(function(messages) {
-        // var idArray = [];
         console.log('this is found messages from db', messages);
         // for(var i = 0; i < messages.length; i++) {
         //   idArray.push(messages[i].dataValues)
