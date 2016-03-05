@@ -9,6 +9,16 @@ angular.module('eventDetails', ['eventList'])
   $scope.total;
   $scope.items= [];
   $scope.details;
+
+  $scope.sendMesssage = function () { //sends message to database
+    var messageToSend = $scope.message;
+    var chatData = {
+      userId: $cookies.get('userID'),
+      eventId: $routeParams.eventID,
+      text: messageToSend
+    };
+    return requestFactory.sendMesssage(chatData);
+  };
   //retrieves guests full info from db specific to event
   var getGuests = function() {
     return requestFactory.getGuestsByEvent($routeParams.eventID)

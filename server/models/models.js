@@ -22,6 +22,11 @@ var Event = db.define('Event', {
   total: Sequelize.FLOAT
 });
 
+var Message = db.define('Chat', {
+  text: Sequelize.STRING,
+  date: Sequelize.DATE,
+});
+
 var Item = db.define('Item', {
   name: Sequelize.STRING
 });
@@ -37,6 +42,11 @@ Item.belongsTo(Event);
 User.hasMany(Item);
 Item.belongsTo(User);
 
+Event.hasMany(Message);
+Message.belongsTo(Event);
+
+User.hasMany(Message);
+Message.belongsTo(User);
 
 //set bi-directional associations
 // User_Event.hasMany(User);

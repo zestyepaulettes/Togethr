@@ -33,10 +33,10 @@ module.exports = {
   },
 
   eventDetails: {
-    get: function(req, res) { 
+    get: function(req, res) {
       // Pull eventID from request params
       var eventID = req.params.eventID;
-      db.Event.find({ 
+      db.Event.find({
         where: {
           id: eventID
         }
@@ -66,6 +66,10 @@ module.exports = {
         console.error(error);
         res.json(error);
       });
+    },
+    postMessage: function(req, res) {
+      console.log(req.body);
+      // db.Message.create()
     }
   }
 };

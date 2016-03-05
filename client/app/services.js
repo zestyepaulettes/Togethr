@@ -19,6 +19,17 @@ angular.module('Services', [])
 })
 
 .factory('requestFactory', function($http, $cookies) {
+  var sendMessage = function(messageData) {
+    return $http({
+      method: 'POST',
+      url:'/api/sendMessage/',
+      data: messageData
+    })
+    .then(function(resp) {
+      return resp;
+    });
+  };
+
   var getGuestsByEvent = function(eventId) {
     return $http({
       method:'GET',
@@ -170,7 +181,8 @@ angular.module('Services', [])
     sendVenmo: sendVenmo,
     getGuestsByEvent: getGuestsByEvent,
     addOneItem: addOneItem,
-    getItemsByEvent: getItemsByEvent
+    getItemsByEvent: getItemsByEvent,
+    sendMessage: sendMessage
   };
 })
 
