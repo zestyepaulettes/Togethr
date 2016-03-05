@@ -9,7 +9,6 @@ angular.module('Services', [])
       // console.log('this is id w cookies', $cookies.get('userID'))
     })
     .then(function(resp) {
-      console.log('this is resp from events');
       return resp.data;
     });
   };
@@ -19,7 +18,16 @@ angular.module('Services', [])
 })
 
 .factory('requestFactory', function($http, $cookies) {
-
+  var updateMessages = function(eventId) {
+    return $http({
+      method:'GET',
+      url:'/api/message/'+ eventId
+    })
+    .then(function(resp) {
+      console.log('returned to updateMessages services');
+      return resp;
+    });
+  };
   var sendMessage = function(messageData) {
     return $http({
       method: 'POST',
@@ -184,7 +192,8 @@ angular.module('Services', [])
     getGuestsByEvent: getGuestsByEvent,
     addOneItem: addOneItem,
     getItemsByEvent: getItemsByEvent,
-    sendMessage: sendMessage
+    sendMessage: sendMessage,
+    updateMessages: updateMessages
   };
 })
 

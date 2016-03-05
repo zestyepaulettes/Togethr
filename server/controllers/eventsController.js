@@ -9,7 +9,7 @@ module.exports = {
   events: {
     get: function(req, res) {
       var userID = req.params.userID;
-      console.log(userID);
+      // console.log(userID);
       EventQuery.getAll(userID, function(events) {
         res.json(events);
       });
@@ -34,6 +34,7 @@ module.exports = {
 
   eventDetails: {
     get: function(req, res) {
+      console.log('-------------- new call');
       // Pull eventID from request params
       var eventID = req.params.eventID;
       db.Event.find({
@@ -41,10 +42,10 @@ module.exports = {
           id: eventID
         }
       }).then(function (event) {
-        console.log("current event is ", event.dataValues);
+        // console.log("current event is ", event.dataValues);
         res.json(event.dataValues);
       }).catch(function(error) {
-        console.log("error in eventdetails get req!");
+        // console.log("error in eventdetails get req!");
       });
     },
     post: function(req, res){
@@ -82,6 +83,10 @@ module.exports = {
         console.error(error);
         res.json(error);
       });
+      // db.Message.create()
+    },
+    getMessages: function(req, res) {
+      console.log('this is param from getmessage req', req.params);
     }
   }
 };
