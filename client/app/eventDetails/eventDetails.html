@@ -14,12 +14,12 @@
       <ul class = "chatContainer" id="messages">
          <div ng-repeat="message in messages | filter : date">
            <span class = "messages">{{message.text}}</span><br />
-           <span class = "messageMeta">Posted by {{message.UserId}}</span>
+           <span class = "messageMeta">Posted by {{message.name}}</span>
          </div>
       </ul>
         <form>
         <input ng-model="message" type="text" placeholder="Submit"/>
-        <input type="button" value="submit" ng-click="sendMessage(message)"> 
+        <input type="button" value="submit" ng-click="sendMessage(message)">
         </form>
     </div>
 

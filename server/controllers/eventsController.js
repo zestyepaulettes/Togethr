@@ -69,15 +69,17 @@ module.exports = {
       });
     },
     postMessage: function(req, res) {
-      // console.log(req.body); { userId: '1', eventId: '42', text: 'hello world!' }
+      console.log(req.body); //{ userId: '1', eventId: '42', text: 'hello world!' }
       var message = req.body;
+      console.log('this is message------------', message);
       db.Message.create({
         text: message.text,
         UserId: message.userId,
         EventId: message.eventId,
-        date: message.date
+        date: message.date,
+        name: message.displayName
       }).then(function(message) {
-        res.json(message.dataValues);
+        res.json(message);
       }).catch(function(error) {
         console.error(error);
         res.json(error);
@@ -91,7 +93,6 @@ module.exports = {
         }
       })
       .then(function(messages) {
-        console.log('this is found messages from db', messages);
         res.json(messages);
       });
 
