@@ -63,6 +63,8 @@ User.sync()
   return Item.sync();
 }).then(function(){
   return User_Event.sync();
+}).then(function() {
+  return Message.sync();
 });
 
 
@@ -70,5 +72,6 @@ module.exports = {
   User: User,
   Event: Event,
   Item: Item,
-  User_Event: User_Event
+  User_Event: User_Event,
+  Message: Message
 };
