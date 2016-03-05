@@ -16,7 +16,7 @@ router.get('/email/:eventID', nodemailerController.get);
 
 router.get('/eventItemDetails/:eventId', itemsController.getItems);
 router.get('/eventGuestDetails/:eventId', guestsController.getGuests);
-router.post('/sendMessage', eventsController.eventDetails.postMessage); //
+router.post('/message', eventsController.eventDetails.postMessage); //
 
 router.get('/getFriends', guestsController.getFriends);
 

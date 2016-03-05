@@ -22,7 +22,7 @@ angular.module('Services', [])
   var sendMessage = function(messageData) {
     return $http({
       method: 'POST',
-      url:'/api/sendMessage/',
+      url:'/api/message/',
       data: messageData
     })
     .then(function(resp) {
