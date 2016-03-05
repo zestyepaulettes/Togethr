@@ -10,15 +10,18 @@
       <h2>Event Details</h2>
     </header>
     <div id="chat">
-      <ul id="messages">
-         <li ng-repeat="message in messages">
-           <div>{{message}}</div>
-         </li>
+    <h3>Message your party!</h3>
+      <ul class = "chatContainer" id="messages">
+         <div ng-repeat="message in fakeData">
+           <span class = "messages">{{message.text}}</span><br />
+           <span class = "messageMeta">Posted by {{message.userId}}</span>
+         </div>
       </ul>
         <form ng-submit="sendMessage()">
         <input ng-model="message" type="text" placeholder="Submit"/>
         </form>
     </div>
+
   	<div>
   		<div>
   		  <h3>Event Name: {{details.name}}</h3>

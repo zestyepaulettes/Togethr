@@ -6,7 +6,25 @@
   border-radius:50%;
   max-height: 80px;
 }
-header img{
+
+.chatContainer {
+  height: 110px;
+  width: 50%;
+  overflow-y: scroll;
+  background-color: rgba(144, 144, 144, 0.0745); 
+  border-radius: 15px;
+}
+
+.messages {
+  color: black;
+}
+
+.messageMeta {
+  color: grey;
+  font-size: 0.7em;
+  font-style: italic;
+  margin-top: 0px;
+}header img{
   border-radius: 50%;
   max-height: 50px;
 }
