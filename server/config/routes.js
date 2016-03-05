@@ -20,6 +20,9 @@ router.get('/email/:eventID', nodemailerController.get);
 
 router.get('/eventItemDetails/:eventId', itemsController.getItems); //tiff
 router.get('/eventGuestDetails/:eventId', guestsController.getGuests); //tiff
+
+router.get('/getFriends', guestsController.getFriends);
+
 router.get('/guests', guestsController.get);
 router.post('/guests', guestsController.post);
 router.put('/guests', guestsController.put);
