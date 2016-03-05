@@ -26,6 +26,18 @@ angular.module('Services', [])
       return resp;
     });
   };
+
+  var getFriends = function(facebookIDs){
+    console.log(facebookIDs);
+    return $http({
+      method:'GET',
+      url:'/api/getFriends',
+      params: {
+        facebookIDs: facebookIDs
+      }
+    });
+  };
+
   var getItemsByEvent = function (eventId) {
     return $http({
       method:'GET',
@@ -141,6 +153,7 @@ angular.module('Services', [])
 
   return {
     getEvents: getEvents,
+    getFriends: getFriends,
     sendEmails: sendEmails,
     updateEvent: updateEvent,
     updateItem: updateItem,

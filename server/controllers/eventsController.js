@@ -33,10 +33,10 @@ module.exports = {
   },
 
   eventDetails: {
-    get: function(req, res) {
+    get: function(req, res) { 
       // Pull eventID from request params
       var eventID = req.params.eventID;
-      db.Event.find({
+      db.Event.find({ 
         where: {
           id: eventID
         }
@@ -48,7 +48,6 @@ module.exports = {
       });
     },
     post: function(req, res){
-      console.log('-----------we got req.body on post', req.body);
       var eventID = req.params.eventID;
       var data = {
         name: req.body.name,

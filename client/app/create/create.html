@@ -62,9 +62,10 @@
         <br />
 
         <label>Guests to invite:</label>
-        <div ng-repeat="friend in myFriends">
+        <div class="friend" ng-repeat="friend in myFriends">
           <br />
-          <input type="button" value="{{ friend.name }}" ng-click="addGuest(friend)" class="button special small">
+          <img src="{{friend.photoUrl}}">
+          <input type="button" value="{{ friend.displayName }}" ng-click="addGuest({id: friend.facebookID, name: friend.displayName})" class="button special small">
           <br />
         </div>
         <br/> <br/>

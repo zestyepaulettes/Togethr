@@ -14,7 +14,19 @@ angular.module('createEvent', [])
   $scope.loadFriends = function() {
     FB.api('/me/friends', function(response) {
       $scope.$apply(function() {
-        $scope.myFriends = response.data;
+        //GET images
+        var facebookIDs = [];
+        console.log(response);
+        for(var i=0;i<response.data.length;i++){
+          facebookIDs.push(response.data[i].id);
+        }
+        requestFactory.getFriends(facebookIDs)
+        .then(function(response){
+          console.log(response);
+          $scope.myFriends = response.data;
+        }).catch(function(error){
+          console.error(error);
+        });
       });
     });
   };
