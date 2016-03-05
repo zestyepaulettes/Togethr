@@ -9,10 +9,11 @@ exports.transporter = nodemailer.createTransport({
   });
 
 exports.createMailOptions = function(receivers, eventDetailsURL) {
+  var message = 'You\'ve been invited to an event! Click here for the link!';
   return {
-    from: '"BeerOrChip" <beerandchip@gmail.com>', // sender address
+    from: '"Togethr" <beerandchip@gmail.com>', // sender address
     to: receivers, // list of receivers
     subject: 'Event Information!', // Subject line
-    text: eventDetailsURL
-  }
+    text: message +eventDetailsURL
+  };
 };

@@ -18,7 +18,7 @@ module.exports = {
 	  })
 	  .then(function(items) {
 	    var itemArray = [];
-	    console.log('this is items linked to event in db', items);
+	    // console.log('this is items linked to event in db', items);
 	    // // console.log('this is users from server:',users);
 		   //  for(var i = 0; i < items.length; i++) {
 		   //    itemArray.push(items[i].dataValues);
@@ -29,12 +29,10 @@ module.exports = {
 	},
 
 	post: function(req, res) {
-		console.log("inside itemsController POST req ", req.body);
 		var items = req.body.items;
 		var userid = req.body.userID;
 		var eventid = req.body.eventID;
 		var itemEntries = [];
-		console.log(items, userid, eventid);
 		for(var i=0;i<items.length;i++) {
 			itemEntries.push({
 				name: items[i],
@@ -42,7 +40,6 @@ module.exports = {
 				EventId: eventid
 			});
 		}
-		console.log(itemEntries);
 		db.Item.bulkCreate(itemEntries)
 			.then(function () {
 				res.json('SUCCESS');
@@ -52,7 +49,6 @@ module.exports = {
 	},
 //TODO ASSIGN ITEM TO HOST
 	postOne: function(req, res) {
-		console.log("Post request for add item ", req.body.item);
 		var item = req.body.item;
 		db.Item.create(item)
 		.then(function () {
@@ -62,8 +58,8 @@ module.exports = {
 		});
 	},
 	put: function(req, res) {
-		console.log('making a put request when we drag items', req.params.itemID);
-		console.log('req.body in put', req.body);
+		// console.log('making a put request when we drag items', req.params.itemID);
+		// console.log('req.body in put', req.body);
 		var itemID = req.params.itemID;
 		var newAttrs = req.body;
 		db.Item.update(newAttrs, {

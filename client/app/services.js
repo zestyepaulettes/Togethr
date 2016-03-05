@@ -73,6 +73,9 @@ angular.module('Services', [])
     return $http({
       method: 'GET',
       url: '/api/email/' + eventID
+    })
+    .then(function(resp) {
+      return resp;
     });
   };
 
