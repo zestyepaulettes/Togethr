@@ -200,7 +200,15 @@ angular.module('Services', [])
   };
 
   var addGuest = function(guest){
-    guests.push(guest);
+   if(guests.length > 0) {
+      for(vari=0;i<guests.length;i++) {
+        if(guests[i] !== guest) {
+          guests.push(guest);
+        }
+      }
+    } else {
+      guests.push(guest);
+    }
   };
 
   var getGuests = function(){
