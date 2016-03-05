@@ -11,21 +11,6 @@ angular.module('eventDetails', ['eventList'])
   $scope.details;
 
   $scope.messages;
-  var fakeData = [{
-    UserId: '1',
-    EventId: '57', //todo: to test, change it to whatever ur local id is currently
-    text: 'omg 2 hours to do this'
-  },{
-    UserId: '2',
-    eventId: '45', //todo: to test, change it to whatever ur local id is currently
-    text: 'hello world'
-  },
-  {
-    UserId: '3',
-    EventId: '45', //todo: to test, change it to whatever ur local id is currently
-    text: '1 hr and 58 minutes now'
-    }
-  ];
 
   var updateMessages = function() {
     return requestFactory.updateMessages($routeParams.eventID)
@@ -207,6 +192,10 @@ angular.module('eventDetails', ['eventList'])
 
   socket.on('updateItems', function(msg){
     initializeDetails();
+  });
+  
+  socket.on('updateChat', function(msg){
+    updateMessages();
   });
 }]);
 

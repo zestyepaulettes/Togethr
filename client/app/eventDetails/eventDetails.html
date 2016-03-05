@@ -12,9 +12,9 @@
     <div id="chat">
     <h3>Message your party!</h3>
       <ul class = "chatContainer" id="messages">
-         <div ng-repeat="message in fakeData">
+         <div ng-repeat="message in messages | filter : date">
            <span class = "messages">{{message.text}}</span><br />
-           <span class = "messageMeta">Posted by {{message.userId}}</span>
+           <span class = "messageMeta">Posted by {{message.UserId}}</span>
          </div>
       </ul>
         <form>
