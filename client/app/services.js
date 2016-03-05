@@ -200,11 +200,11 @@ angular.module('Services', [])
   };
 
   var addGuest = function(guest){
-    var alreadyguest = false;
+    var alreadyGuest = false;
     for(var i=0;i<guests.length;i++) {
-      guests[i].id === guest.id? alreadyguest = true: alreaedyguest = false;         
+      guests[i].id === guest.id? alreadyGuest = true: alreadyGuest = false;         
     }
-    if(!alreadyguest) {
+    if(!alreadyGuest) {
       guests.push(guest);
     }
   };
