@@ -7,14 +7,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Beer or Chip</title>
+    <title>Togethr</title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
     <meta name="keywords" content="" />
 
 <!--********************************************************-->
 <!-- These are the files that our template needs:        -->
-  
+
     <script src="js/jquery.min.js"></script>
     <script src="js/skel.min.js"></script>
     <script src="js/skel-layers.min.js"></script>
@@ -24,15 +24,16 @@
       <link rel="stylesheet" href="css/style.css" />
       <link rel="stylesheet" href="css/style-xlarge.css" />
     </noscript>
- 
+    <link rel="stylesheet" href="css/beernchips.css"/>
+
 <!-- ************************************************-->
   </head>
-  <body class="landing" ng-app='myApp' >  
+  <body class="landing" ng-app='myApp' >
     <!-- ng-app-'myApp' -->
 
     <!-- Header -->
       <header id="header" ng-controller='AuthController'>
-        <h1><a href="index.html">Beer Or Chip</a></h1>
+        <h1><a href="index.html">Togethr</a></h1>
         <nav id="nav">
           <ul>
             <li><a href="#/">Create</a></li>
@@ -46,25 +47,12 @@
 <!--******************* THIS IS THE FRONT PAGE BANNER AND DESCRIPTION *******-->
 
 
-
-
-
-
-
-
     <!-- Main -->
 
-          <!-- THIS IS WHERE OUR ANGULAR VIEWS WILL BE INSERTED -->
+    <!-- THIS IS WHERE OUR ANGULAR VIEWS WILL BE INSERTED -->
           <div ng-view> </div>
-            
-
-
-
-
 
 <!--*******************************        -->
-
-
     <!-- Footer -->
       <footer id="footer">
         <div class="container">
@@ -78,9 +66,13 @@
                   <li><a href="#">Deniz M.</a></li>
                   <li><a href="#">Diamond W.</a></li>
                   <li><a href="#">Saumitra S.</a></li>
+                  <li><a href="#">Arthi P.</a></li>
+                  <li><a href="#">Tiffany T.</a></li>
+                  <li><a href="#">Hamzah C.</a></li>
+                  <li><a href="#">Yasu F.</a></li>
                 </ul>
               </section>
-              
+
 <!-- this is for the bottom with the facebook logos -->
 
             </div>
@@ -119,6 +111,8 @@
 <script src="https://code.angularjs.org/1.5.0/angular-route.js"></script>
 <script src="https://code.angularjs.org/1.5.0/angular-cookies.js"></script>
 <script src="/lib/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js"></script>
+<script src="http://maps.google.com/maps/api/js?libraries=places" type="text/javascript"></script>
+
 
 <!-- THIS IS THE START OF THE ANGULAR APP.JS -->
 <script src="/app/events/events.js"></script>
@@ -127,13 +121,10 @@
 <script src="/app/eventDetails/eventDetails.js"></script>
 <script src="/app/app.js"></script>
 <script src="/app/services.js"></script>
-<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>    
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
 <script>
     var socket = io();
 </script>
-
-
-
 
   </body>
 </html>

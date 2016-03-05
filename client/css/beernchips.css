@@ -1,0 +1,8 @@
+.add-items span{
+  display:inline-block; 
+  width:90%;
+}
+.friend img{
+  border-radius:50%;
+  max-height: 80px;
+}

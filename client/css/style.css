@@ -237,7 +237,7 @@
 		outline: 0;
 		padding: 0 1em;
 		text-decoration: none;
-		width: 100%;
+		width: 48em;
 	}
 
 		input[type="text"]:invalid,
@@ -1294,3 +1294,4 @@
     background-color: #dff0d8;
     color: #3c763d;
 }
+

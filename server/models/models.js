@@ -8,57 +8,57 @@ var User = db.define('User', {
     unique: true
   },
   displayName: Sequelize.STRING,
-  email: Sequelize.STRING
+  email: Sequelize.STRING,
+  phoneNum: Sequelize.STRING,
+  photoUrl: Sequelize.STRING
 });
 
 var Event = db.define('Event', {
   name: Sequelize.STRING,
   description: Sequelize.STRING,
   date: Sequelize.DATE,
-  location: Sequelize.STRING
-});
-
-var Guest = db.define('Guest', {
-  email: Sequelize.STRING,
-  name: Sequelize.STRING
+  location: Sequelize.STRING,
+  hostId: Sequelize.INTEGER,
+  total: Sequelize.FLOAT
 });
 
 var Item = db.define('Item', {
-  name: Sequelize.STRING,
-  category: Sequelize.STRING,
-  price: Sequelize.FLOAT
+  name: Sequelize.STRING
 });
 
-
-//set bi-directional associations
-User.hasMany(Event);
-Event.belongsTo(User);
-
-Event.hasMany(Guest);
-Guest.belongsTo(Event);
+var User_Event = db.define('User_Event', {
+  UserId: Sequelize.INTEGER,
+  EventId: Sequelize.INTEGER
+});
 
 Event.hasMany(Item);
 Item.belongsTo(Event);
 
-Guest.hasMany(Item);
-Item.belongsTo(Guest);
+User.hasMany(Item);
+Item.belongsTo(User);
+
+
+//set bi-directional associations
+// User_Event.hasMany(User);
+// User.belongsTo(User_Event);
+
+// User_Event.hasMany(Event);
+// Event.belongsTo(User_Event);
 
 //create tables in MySql if they don't already exist
 User.sync()
-  .then(function() {
-    Event.sync()
-      .then(function() {
-        Guest.sync()
-          .then(function() {
-            Item.sync();
-          });
-      });
-  });
+.then(function() {
+  return Event.sync()
+}).then(function() {
+  return Item.sync();
+}).then(function(){
+  return User_Event.sync();
+});
 
 
 module.exports = {
   User: User,
   Event: Event,
-  Guest: Guest,
-  Item: Item
+  Item: Item,
+  User_Event: User_Event
 };
