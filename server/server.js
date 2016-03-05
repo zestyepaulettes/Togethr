@@ -127,7 +127,7 @@ app.get('/auth/facebook/callback',
     res.cookie('userID', req.user.id);
     res.cookie('facebookID', req.user.facebookID);
     res.cookie('displayName', req.user.displayName);
-    res.cookie('photoURL', req.user.photoURL);
+    res.cookie('photoURL', req.user.photoUrl);
     res.cookie('email', req.user.email);
     res.redirect('/');
   });

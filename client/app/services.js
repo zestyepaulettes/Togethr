@@ -256,7 +256,9 @@ angular.module('Services', [])
   var isAuth = function () {
     return !!$cookies.get('displayName');
   };
-
+  var getPhotoURL = function(){
+    return $cookies.get('photoURL');
+  }
   var signout = function () {
     var cookies = $cookies.getAll();
     angular.forEach(cookies, function (v, k) {
@@ -268,7 +270,8 @@ angular.module('Services', [])
 
   return {
     isAuth: isAuth,
-    signout: signout
+    signout: signout,
+    getPhotoURL: getPhotoURL
   };
 });
 
