@@ -204,7 +204,7 @@ angular.module('Services', [])
     for(var i=0;i<guests.length;i++) {
       if(guests[i].id === guest.id) {
         alreadyGuest = true;
-        i = guests.length;
+        break;
       } else {
         alreadyGuest = false; 
       }        
