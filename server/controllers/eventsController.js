@@ -77,7 +77,6 @@ module.exports = {
         EventId: message.eventId,
         date: message.date
       }).then(function(message) {
-        console.log("this is the response message from database ", message.dataValues);
         res.json(message.dataValues);
       }).catch(function(error) {
         console.error(error);
@@ -85,7 +84,6 @@ module.exports = {
       });
     },
     getMessages: function(req, res) {
-      console.log('this is param from getmessage req', req.params.eventId);
       var eventId = req.params.eventId;
       db.Message.findAll({
         where: {
@@ -94,9 +92,6 @@ module.exports = {
       })
       .then(function(messages) {
         console.log('this is found messages from db', messages);
-        // for(var i = 0; i < messages.length; i++) {
-        //   idArray.push(messages[i].dataValues)
-        // }
         res.json(messages);
       });
 

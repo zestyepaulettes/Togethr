@@ -9,11 +9,8 @@ angular.module('eventDetails', ['eventList'])
   $scope.total;
   $scope.items= [];
   $scope.details;
-<<<<<<< 33fca3f1a749f6a75c48d6551f340ca0854508dd
 
-=======
   $scope.messages;
->>>>>>> work on get req for messages
   var fakeData = [{
     UserId: '1',
     EventId: '57', //todo: to test, change it to whatever ur local id is currently
@@ -29,10 +26,7 @@ angular.module('eventDetails', ['eventList'])
     text: '1 hr and 58 minutes now'
     }
   ];
-<<<<<<< 33fca3f1a749f6a75c48d6551f340ca0854508dd
 
-  $scope.sendMessage = function (message) { //sends message to database
-=======
   var updateMessages = function() {
     return requestFactory.updateMessages($routeParams.eventID)
     .then(function(messages) {
@@ -41,7 +35,6 @@ angular.module('eventDetails', ['eventList'])
     });
   };
   $scope.sendMessage = function () { //sends message to database
->>>>>>> work on get req for messages
     var messageToSend = $scope.message;
     var chatData = {
       userId: $cookies.get('userID'),
@@ -49,11 +42,9 @@ angular.module('eventDetails', ['eventList'])
       text: messageToSend,
       date: Date()
     };
-<<<<<<< 33fca3f1a749f6a75c48d6551f340ca0854508dd
-    return requestFactory.sendMessage(chatData);
-=======
-    return requestFactory.sendMessage(fakeData[0]);
->>>>>>> work on get req for messages
+    return requestFactory.sendMessage(chatData).then(function() {
+      updateMessages();
+    });
   };
   $scope.sendMessage();
   //retrieves guests full info from db specific to event
