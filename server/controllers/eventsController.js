@@ -72,11 +72,11 @@ module.exports = {
       var message = req.body;
       db.Message.create({
         text: message.text,
-        userID: message.userId,
-        eventID: message.eventId,
+        UserId: message.userId,
+        EventId: message.eventId,
         date: message.date
       }).then(function(message) {
-        //console.log("this is the response message from database ", message.dataValues);
+        console.log("this is the response message from database ", message.dataValues);
         res.json(message.dataValues);
       }).catch(function(error) {
         console.error(error);
