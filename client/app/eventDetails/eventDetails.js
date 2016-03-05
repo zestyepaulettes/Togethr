@@ -31,7 +31,8 @@ angular.module('eventDetails', ['eventList'])
     var chatData = {
       userId: $cookies.get('userID'),
       eventId: $routeParams.eventID,
-      text: messageToSend
+      text: messageToSend,
+      date: Date()
     };
     return requestFactory.sendMessage(chatData);
   };

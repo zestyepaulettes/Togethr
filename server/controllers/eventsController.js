@@ -74,14 +74,14 @@ module.exports = {
         text: message.text,
         userID: message.userId,
         eventID: message.eventId,
-        date: NOW ()
+        date: message.date
       }).then(function(message) {
-        console.log(message);
-        res.json(message);
+        //console.log("this is the response message from database ", message.dataValues);
+        res.json(message.dataValues);
       }).catch(function(error) {
         console.error(error);
         res.json(error);
-      })
+      });
     }
   }
 };
