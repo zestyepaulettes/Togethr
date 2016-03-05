@@ -24,8 +24,8 @@ module.exports = {
     	db.Event
     		.findAll({
     	    where: {
-              id: {
-                $in: eventIDs
+            id: {
+              $in: eventIDs
             }
           }
     	  })
@@ -52,7 +52,7 @@ module.exports = {
       where: {id: ID}
     })  //update event with data
     .then(function(event){
-      console.log('this is returned event from db', event)
+      console.log('this is returned event from db', event);
       event.name = data.name;
       event.description = data.description;
       event.date = data.date;
