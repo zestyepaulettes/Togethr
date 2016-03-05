@@ -28,8 +28,8 @@ io.on('connect', function(socket){
   socket.on('newEvent', function(msg){
     io.emit('updateEvents', msg);
   });
-  socket.on('chat', function(message) {
-    io.emit('updateChat', message);
+  socket.on('chat', function(msg) {
+    io.emit('updateChat', msg);
   });
 });
 
