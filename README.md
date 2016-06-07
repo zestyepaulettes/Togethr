@@ -1,9 +1,23 @@
 # Togethr
 
-The intention of this app is to help people organize events together and they need to buy groceries or other things. We organize this by either telling the guests to bring specific things or charging them the splitted amount that they are supposed to bring.
+Togethr is a collaborative event planing application to help hosts organize events. Hosts can assign items for guests to bring, and can also send split payment requests through Venmo. There is also a built in chat room feature for guests/hosts to talk about the upcoming event. Facebook is used for login and adding guests, however guests can also be manually added using their emails.
 
-We are extending our colleagues project with some extra functionallities that includes adding facebook friends, making the website easier to use and partially implementing Venmo API.
+<img src = 'https://github.com/zestyepaulettes/Togethr/blob/master/Login.png'>
 
+## Team
+
+#### Yasu Flores (Product Owner)
+
+#### Arthi Palaniappan (Scrum Master)
+
+#### Hamzah Chaudhary (Software Engineer) 
+
+#### Tiffany Thong (Software Engineer)
+
+## Screenshots
+
+<img src = 'https://github.com/zestyepaulettes/Togethr/blob/master/New%20Event.png'>
+<hr>
 
 ## Tech Stack
 
@@ -23,16 +37,15 @@ We are extending our colleagues project with some extra functionallities that in
 
 ### List of Resources
 
-[Sockets](www.socket.io)
+[WebSockets](www.socket.io)
 
-## Folders
 
 ###/client
 
-Inside this folder we have all the client files
+Inside this folder we have all the client-side files
 
 ###/server
 
-Inside this folder we have all the server files
+Inside this folder we have all the server-side files
 
 
