@@ -6,13 +6,13 @@ Togethr is a collaborative event planing application to help hosts organize even
 
 ## Team
 
-#### Yasu Flores (Product Owner)
+#### <a href='https://github.com/carlosyasu91'>Yasu Flores</a> (Product Owner)
 
-#### Arthi Palaniappan (Scrum Master)
+#### <a href='https://github.com/aarti156'>Arthi Palaniappan</a> (Scrum Master)
 
-#### Hamzah Chaudhary (Software Engineer) 
+#### <a href='https://github.com/hamzahc1'>Hamzah Chaudhary</a> (Software Engineer) 
 
-#### Tiffany Thong (Software Engineer)
+#### <a href='https://github.com/tiffeli'>Tiffany Thong (Software Engineer)
 
 ## Screenshots
 
