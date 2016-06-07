@@ -12,7 +12,7 @@ Togethr is a collaborative event planing application to help hosts organize even
 
 #### <a href='https://github.com/hamzahc1'>Hamzah Chaudhary</a> (Software Engineer) 
 
-#### <a href='https://github.com/tiffeli'>Tiffany Thong (Software Engineer)
+#### <a href='https://github.com/tiffeli'>Tiffany Thong</a> (Software Engineer)
 
 ## Screenshots
 
